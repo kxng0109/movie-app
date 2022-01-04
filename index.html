@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#00ff00">
+	<title>Unknown</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Montserrat+Alternates:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
+	<script type="text/javascript" defer src="index.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
+</head>
+<body class="daytheme">
+	<div id="loading">
+		<div id="loading-animation">
+			<p id="loading-text">LOADING</p>
+			<div id="loading-circles-div">
+				<div class="loading-circles" id="loading-circle1"></div>
+				<div class="loading-circles" id="loading-circle2"></div>
+				<div class="loading-circles" id="loading-circle3"></div>
+			</div>
+		</div>
+	</div>
+	<div id="container">
+		<header>
+			<a href="index.html" id="header-icon"><img src="images/LOGO.svg"></a>
+			<div id="search-area">
+				<form class="search">
+					<input type="search" name="search" id="search-bar-header" class="search-bar">
+					<button type="submit" class="search-btn-main">
+						<a id="search-btn-area" class="link">
+							<ion-icon name="search-circle-outline" id="search-btn"></ion-icon>
+						</a>
+					</button>
+				</form>
+			</div>
+		</header>
+
+		<main id="main">
+			<section id="search">
+				<h3 id="search-response"></h3>
+			</section>
+
+			<section id="welcome-section">
+				<h2 id="welcome">Welcome!</h2>
+				<div id="search-area-main">
+					<form class="search">
+						<input type="search" name="search" id="search-bar-main" class="search-bar">
+						<button type="submit" class="search-btn-main">
+							<a id="search-btn-area-main" class="link">
+								<ion-icon name="search-circle-outline" id="search-btn-main"></ion-icon>
+							</a>
+						</button>
+					</form>
+				</div>
+				<h4>Search for any movie, tv-series or person</h4>
+			</section>
+
+			<section id="trending-section">
+				<h2 id="trending-header">Trending</h2>
+				<div>
+					<div id="trending-choice">
+						<a href="#" class=" all options section-link">All</a>
+						<a href="#" class="movies options section-link">Movies</a>
+						<a href="#" class="tv-shows options section-link">TV Shows</a>
+					</div>
+					<div id="time-window">
+						<a href="#" class="daily options section-link">Daily</a>
+						<a href="#" class="weekly options section-link">Weekly</a>
+					</div>
+				</div>
+				
+				<section id="trending-movies-div">
+					<a href="#" class="movie-link">
+						<div class="category-movies">
+							<img class="movie-image skeletonImg">
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title"></h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>
+					</a>
+					<a href="#" class="movie-link">
+						<div class="category-movies">
+							<img class="movie-image skeletonImg">
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title"></h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>
+					</a>
+					<a href="#" class="movie-link">
+						<div class="category-movies">
+							<img class="movie-image skeletonImg">
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title"></h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>
+					</a>
+				</section>
+			</section>
+
+
+			<section id="popular-section">
+				<h2 id="popular-header">What's been Popular</h2>
+
+				<div>
+					<div id="popular-choice">
+						<a href="#" class=" all options section-link">Movies</a>
+						<a href="#" class="movies options section-link">TV Shows</a>
+						<a href="#" class="tv-shows options section-link">People</a>
+					</div>
+				</div>
+				
+				<section id="popular-movies-div">
+					<a href="#" class="movie-link">
+						<div class="category-movies">
+							<img class="movie-image skeletonImg">
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title"></h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>
+					</a>
+					<a href="#" class="movie-link">
+						<div class="category-movies">
+							<img class="movie-image skeletonImg">
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title"></h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>
+					</a>
+					<a href="#" class="movie-link">
+						<div class="category-movies">
+							<img class="movie-image skeletonImg">
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title"></h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>
+					</a>
+				</section>
+			</section>
+		</main>
+	</div>
+</body>
+</html>
