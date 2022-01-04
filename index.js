@@ -38,7 +38,6 @@ let infos = (theDiv, something)=>{
 	categoryRelease = document.querySelectorAll(`${something} .movie-release-date`);
 }
 
-
 let searchForm = qSA('.search');
 let searchInput = qSA('.search-bar');
 let searchSection = qS('#search');
@@ -70,6 +69,9 @@ let loadingCircles = qSA('.loading-circles');
 container.onscroll = () =>{
 	// console.log(container.scrollTop)
 	counter = container.scrollTop;
+	if (counter >= 100) {
+		popularSection.style.animation = 'comeIn 1s linear forwards'
+	}
 	return counter;
 }
 
@@ -291,14 +293,14 @@ let searching = (theType) =>{
 
 
 function trendingInfo () {
-	infos(trendingDiv, '#trending-section');
-		// console.log(categoryImage);
 	let trending = `${proxy}trending/${type}/${timeWindow}?api_key=${api_key}`;
 	fetch(trending)
 	  .then(response => response.json())
 	  .then(data => {
+		infos(trendingDiv, '#trending-section');
+	  	console.log(trending)
 		// timEr(data);
-	  	// console.log(data);
+	  	console.log(data);
 	  	// const {page} = data;
 	  	// const {adult, media_type, title, overview, release_date, poster_path, vote_average} = data.results[0];
 
@@ -309,13 +311,13 @@ function trendingInfo () {
 	  	function aCallback (item, index) {
 		  	const {adult, media_type, title, overview, release_date, poster_path, vote_average, name, first_air_date, vote_count} = data.results[index];
 		  	categoryImage[index].setAttribute('src', `${images}${poster_path}`);
-		  	if (title == undefined){	
+		  	if (title == undefined){
 		  		categoryTitle[index].textContent = name;
 		  	} else{
 		  		categoryTitle[index].textContent = title;
 		  	}
 
-		  	if (release_date == undefined){	  		
+		  	if (release_date == undefined){
 		  		categoryRelease[index].textContent = first_air_date;
 		  	} else{
 		  		categoryRelease[index].textContent = release_date;
@@ -332,8 +334,9 @@ function popularInfo(type){
 	fetch(popular)
 	.then(response => response.json())
 	.then(pdata => {
+	  	console.log(popular)
 		console.log(pdata)
-		for (var resultDivNum = 1; resultDivNum <= pdata.results.length - 4; resultDivNum++) {
+		for (var resultDivNum = 1; resultDivNum <= pdata.results.length - 3; resultDivNum++) {
 			let alinks = document.createElement('a');
 			alinks.classList.add('movie-link');
 			alinks.setAttribute('href', '#');
@@ -349,17 +352,19 @@ function popularInfo(type){
 							</div>
 						</div>`
 			popularDiv.appendChild(alinks);
-			if (resultDivNum === pdata.results.length - 4) {
+			infos(popularDiv, '#popular-section');
+			if (resultDivNum === pdata.results.length - 3) {
+				category.forEach(aCallback);
 				function aCallback (item, index) {
 				  	const {adult, media_type, title, overview, release_date, poster_path, vote_average, name, first_air_date, vote_count} = pdata.results[index];
 				  	categoryImage[index].setAttribute('src', `${images}${poster_path}`);
-				  	if (title == undefined){	  		
+				  	if (title == undefined){	
 				  		categoryTitle[index].textContent = name;
 				  	} else{
 				  		categoryTitle[index].textContent = title;
 				  	}
 
-				  	if (release_date == undefined){	  		
+				  	if (release_date == undefined){
 				  		categoryRelease[index].textContent = first_air_date;
 				  	} else{
 				  		categoryRelease[index].textContent = release_date;
@@ -371,9 +376,6 @@ function popularInfo(type){
 	})
 }
 
-popularInfo('movie');
-// popularInfo()
-
 window.onload = () =>{
 	Loader();
 	type = 'all';
@@ -381,7 +383,11 @@ window.onload = () =>{
 	trendingAll.style.backgroundColor = '#120D31';
 	trendingMovies.style.backgroundColor = 'transparent';
 	trendingTV.style.backgroundColor = 'transparent';
+	popularAll.style.backgroundColor = '#120D31';
+	popularMovies.style.backgroundColor = 'transparent';
+	popularTV.style.backgroundColor = 'transparent';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+	popularInfo('movie');
 }
 
 trendingAll.onclick = () =>{
@@ -421,4 +427,24 @@ weeklyTrending.onclick = ()=>{
 	daiilyTrending.style.backgroundColor = 'transparent';
 	weeklyTrending.style.backgroundColor = '#120D31';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+}
+
+popularAll.onclick = () =>{
+		window.onload()
+	}
+
+popularMovies.onclick = ()=>{
+	type = 'movie';
+	popularInfo('movie');
+	popularAll.style.backgroundColor = 'transparent';
+	popularMovies.style.backgroundColor = '#120D31';
+	popularTV.style.backgroundColor = 'transparent';
+}
+
+popularTV.onclick = ()=>{
+	type = 'tv';
+	popularInfo('tv');
+	popularAll.style.backgroundColor = 'transparent';
+	popularMovies.style.backgroundColor = 'transparent';
+	popularTV.style.backgroundColor = '#120D31';
 }
