@@ -1,7 +1,7 @@
 let proxy = "https://api.themoviedb.org/3/";
 let api_key = "44ae4b9d7f7d9b75d4fc1729f0360036";
-let size = 'w200';
-let images = `https://image.tmdb.org/t/p/${size}/`;//used to be original not w200
+let size = 'w200/';
+let images = `https://image.tmdb.org/t/p/`;//used to be original not w200
 var type;
 var timeWindow = 'day';
 let qSA = (qSA) => document.querySelectorAll(qSA);
@@ -158,10 +158,10 @@ let possibilities = (index, first, second, circular, title, date, images, poster
 			second[index].style.height = '195px';
 			second[index].setAttribute('alt', `${original_title}`);
 		} else{
-			second[index].setAttribute('src', `${images}${poster_path}`);					  			
+			second[index].setAttribute('src', `${images}${size}${poster_path}`);					  			
 		}
 	}else if(profile_path !== null) {
-		first[index].setAttribute('src', `${images}${profile_path}`);
+		first[index].setAttribute('src', `${images}${size}${profile_path}`);
 		first[index].style.display = 'block';
 		second[index].style.display = 'none';
 		circular[index].style.display = 'block';
@@ -298,7 +298,7 @@ let searching = (theType) =>{
 				  		resultQuery.textContent = `Result of ${searchValue}`;
 				  		searchSection.style.animation = 'flyIn 0.7s linear forwards'
 				  		if(poster_path === undefined) return;
-				  		searchSection.style.background = `url('${images}${search.results[anyValue(search.results.length)].poster_path}')`;
+				  		searchSection.style.background = `url('${images}${size}${search.results[anyValue(search.results.length)].poster_path}')`;
 					  	searchSection.style.backgroundSize = 'contain';
 					  	searchSection.style.backgroundPosition = 'center';
 			  		});
@@ -319,13 +319,15 @@ function trendingInfo () {
 	  	// const {page} = data;
 	  	// const {adult, media_type, title, overview, release_date, poster_path, vote_average} = data.results[0];
 
-	  	container.style.background = `url('${images}${data.results[anyValue(data.results.length)].poster_path}')`;
+	  	size = 'w400/'
+	  	container.style.background = `url('${images}${size}${data.results[anyValue(data.results.length)].poster_path}')`;
 	  	container.style.backgroundSize = 'contain';
 	  	container.style.backgroundPosition = 'center';
+	  	size = 'w200/'
 	  	category.forEach(aCallback);
 	  	function aCallback (item, index) {
 		  	const {adult, media_type, title, overview, release_date, poster_path, vote_average, name, first_air_date, vote_count} = data.results[index];
-		  	categoryImage[index].setAttribute('src', `${images}${poster_path}`);
+		  	categoryImage[index].setAttribute('src', `${images}${size}${poster_path}`);
 		  	if (title == undefined){
 		  		categoryTitle[index].textContent = name;
 		  	} else{
@@ -344,13 +346,21 @@ function trendingInfo () {
 
 
 function popularInfo(type){
-	infos(popularDiv, '#popular-section');
+	var popularPersonImage;
+	var popularCircular;
 	let popular = `${proxy}${type}/popular?api_key=${api_key}`;
 	fetch(popular)
 	.then(response => response.json())
 	.then(pdata => {
-		console.log(pdata)
-		for (var resultDivNum = 1; resultDivNum < pdata.results.length - 2; resultDivNum++) {
+	infos(popularDiv, '#popular-section');
+		console.log(pdata);
+		var resultDivNum;
+		if (category.length === pdata.results.length){
+			category.forEach( function(element, index) {
+				popularDiv.removeChild(category[index]);
+			});
+		}
+		for (var resultDivNum = 1; resultDivNum <= pdata.results.length; resultDivNum++) {
 			let alinks = document.createElement('a');
 			alinks.classList.add('movie-link');
 			alinks.setAttribute('href', '#');
@@ -370,9 +380,9 @@ function popularInfo(type){
 						</div>`
 			popularDiv.appendChild(alinks);
 			infos(popularDiv, '#popular-section');
-			let popularPersonImage = qSA('.popular-person-image');
-			let popularCircular = qSA('.popular-circular-portrait');
-			if (resultDivNum === pdata.results.length - 3) {
+			popularPersonImage = qSA('.popular-person-image');
+			popularCircular = qSA('.popular-circular-portrait');
+			if(category.length === 20){
 				category.forEach(aCallback);
 				function aCallback (item, index) {
 				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = pdata.results[index];
@@ -384,7 +394,7 @@ function popularInfo(type){
 				  	}
 				}
 			}
-		}	  	
+		}
 	})
 }
 
@@ -452,7 +462,7 @@ popularMovies.onclick = () =>{
 	}
 
 popularTV.onclick = ()=>{
-	popularInfo('movie');
+	popularInfo('tv');
 	popularMovies.style.backgroundColor = 'transparent';
 	popularTV.style.backgroundColor = '#120D31';
 	popularPeople.style.backgroundColor = 'transparent';
