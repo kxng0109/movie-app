@@ -1,6 +1,7 @@
 let proxy = "https://api.themoviedb.org/3/";
 let api_key = "44ae4b9d7f7d9b75d4fc1729f0360036";
-let images = "https://image.tmdb.org/t/p/original/";
+let size = 'w200';
+let images = `https://image.tmdb.org/t/p/${size}/`;//used to be original not w200
 var type;
 var timeWindow = 'day';
 let qSA = (qSA) => document.querySelectorAll(qSA);
@@ -23,19 +24,20 @@ var categoryRelease;
 let trendingAll = qS(`#trending-section .all`);
 let trendingMovies = qS(`#trending-section .movies`);
 let trendingTV = qS(`#trending-section .tv-shows`);
-let popularAll = qS(`#popular-section .all`);;
-let popularMovies = qS(`#popular-section .movies`);
+let popularMovies = qS(`#popular-section .movies`);;
 let popularTV = qS(`#popular-section .tv-shows`);
+let popularPeople = qS(`#popular-section .popular-people`);
 let daiilyTrending = qS('.daily');
 let weeklyTrending = qS('.weekly');
 
 let infos = (theDiv, something)=>{
 	category = theDiv.querySelectorAll('.movie-link');
-	categoryImage = document.querySelectorAll(`${something} .movie-image`);
+	categoryImage = document.querySelectorAll(`${something} .category-image`);
 	rating = document.querySelectorAll(`${something} .rating`);
 	ratingBg = document.querySelectorAll(`${something} .rating-bg`);
 	categoryTitle = document.querySelectorAll(`${something} .movie-title`);
 	categoryRelease = document.querySelectorAll(`${something} .movie-release-date`);
+	categoryInfo = document.querySelectorAll(`${something} .movie-first-info`);
 }
 
 let searchForm = qSA('.search');
@@ -66,11 +68,12 @@ let loadingAnimation = qS('#loading-animation');
 let loadingText = qS('#loading-text');
 let loadingCircles = qSA('.loading-circles');
 
+
 container.onscroll = () =>{
 	// console.log(container.scrollTop)
 	counter = container.scrollTop;
 	if (counter >= 100) {
-		popularSection.style.animation = 'comeIn 1s linear forwards'
+		popularSection.style.animation = 'comeIn 0.5s linear forwards'
 	}
 	return counter;
 }
@@ -106,8 +109,12 @@ let Loader = () =>{
 			loadingCircles[index].style.animation = '';
 		});
 	}
-	const ANINTERVAL = setTimeout(myFunc, 2500);
+	value === undefined ? value = 2500 : value;
+	var numeric = value;
+	value = undefined
+	const ANINTERVAL = setTimeout(myFunc, numeric);
 }
+
 
 
 let everyLink = document.querySelectorAll('a');
@@ -143,6 +150,47 @@ let votePerc = (index, varName, vote_average, rating, vote_count) =>{
 	}
 }
 
+let possibilities = (index, first, second, circular, title, date, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department) =>{
+	if (typeof profile_path === 'undefined') {
+		circular[index].style.display = 'none';
+		first[index].style.display = 'none';
+		if (poster_path === undefined || poster_path === null) {
+			second[index].style.height = '195px';
+			second[index].setAttribute('alt', `${original_title}`);
+		} else{
+			second[index].setAttribute('src', `${images}${poster_path}`);					  			
+		}
+	}else if(profile_path !== null) {
+		first[index].setAttribute('src', `${images}${profile_path}`);
+		first[index].style.display = 'block';
+		second[index].style.display = 'none';
+		circular[index].style.display = 'block';
+	} else{
+		first[index].setAttribute('src', `images/photo1.webp`);
+		first[index].style.display = 'block';
+		second[index].style.display = 'none';
+		circular[index].style.display = 'block';
+	}
+
+	if (original_title !== undefined) {
+		title[index].textContent = `${original_title}`; 			  			
+	} else if(original_name !== undefined){
+		title[index].textContent = `${original_name}`; 
+	}else {
+		title[index].textContent = `${name}`
+	}
+
+	if (release_date !== undefined){
+		date[index].textContent = `${release_date}`;
+	} else if(first_air_date !== undefined){
+		date[index].textContent = `${first_air_date}`;
+	} else{
+		date[index].textContent = `Forte: ${known_for_department}`;
+	}
+
+	if(poster_path === undefined) return;
+}
+
 
 function load () {
 	let links = document.createElement('a');
@@ -151,7 +199,7 @@ function load () {
 
 	links.innerHTML = `
 							<div class="category-movies">
-							<img class="movie-image skeletonImg">
+							<img class="category-image skeletonImg">
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
@@ -174,7 +222,7 @@ searchForm.forEach((item, index) =>{
 	searchForm[index].onsubmit = (e) =>{
 		e.preventDefault();
 		if (searchValue !== '') {
-			searching('person');
+			searching('multi');
 		} else{
 			alert('Please write something.')//change this
 		}
@@ -229,43 +277,12 @@ let searching = (theType) =>{
 				searchResultDescription = qSA('.search-result-description');
 				searchResultDate = qSA('.search-result-date');
 				searchResultPerson = qSA('.search-person-image');
+				let searchCircular = qSA('.circular-portrait');
 				if (resultDivNum === search.results.length) {
 			  		searchDiv.forEach((item, index) =>{
 				  		const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = search.results[index];
 
-				  		if (profile_path === undefined) {
-				  			searchResultPerson[index].style.display = 'none';
-				  			if (poster_path === undefined) {
-					  			searchImage[index].style.height = '195px';
-					  		} else{
-					  			searchImage[index].setAttribute('src', `${images}${poster_path}`);					  			
-					  		}
-				  		}else if(profile_path !== null) {
-				  			searchResultPerson[index].setAttribute('src', `${images}${profile_path}`);
-				  			searchResultPerson[index].style.display = 'block';
-				  			searchImage[index].style.display = 'none';
-				  		} else{
-				  			searchResultPerson[index].setAttribute('src', `images/photo1.webp`);
-				  			searchResultPerson[index].style.display = 'block';
-				  			searchImage[index].style.display = 'none';
-				  		}
-
-				  		if (original_title !== undefined) {
-				  			searchResultTitle[index].textContent = `${original_title}`; 			  			
-				  		} else if(original_name !== undefined){
-				  			searchResultTitle[index].textContent = `${original_name}`; 
-				  		}else {
-				  			searchResultTitle[index].textContent = `${name}`
-				  		}
-
-				  		if (release_date !== undefined){
-				  			searchResultDate[index].textContent = `${release_date}`;
-				  		} else if(first_air_date !== undefined){
-				  			searchResultDate[index].textContent = `${first_air_date}`;
-				  		} else{
-				  			searchResultDate[index].textContent = `Forte: ${known_for_department}`;
-				  		}
-
+				  		possibilities(index, searchResultPerson, searchImage, searchCircular, searchResultTitle, searchResultDate, images,poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
 				  		if (overview !== undefined) {
 				  			searchResultDescription[index].textContent = `${overview}`;
 				  		}else {
@@ -298,9 +315,7 @@ function trendingInfo () {
 	  .then(response => response.json())
 	  .then(data => {
 		infos(trendingDiv, '#trending-section');
-	  	console.log(trending)
 		// timEr(data);
-	  	console.log(data);
 	  	// const {page} = data;
 	  	// const {adult, media_type, title, overview, release_date, poster_path, vote_average} = data.results[0];
 
@@ -334,16 +349,18 @@ function popularInfo(type){
 	fetch(popular)
 	.then(response => response.json())
 	.then(pdata => {
-	  	console.log(popular)
 		console.log(pdata)
-		for (var resultDivNum = 1; resultDivNum <= pdata.results.length - 3; resultDivNum++) {
+		for (var resultDivNum = 1; resultDivNum < pdata.results.length - 2; resultDivNum++) {
 			let alinks = document.createElement('a');
 			alinks.classList.add('movie-link');
 			alinks.setAttribute('href', '#');
 
 			alinks.innerHTML = `
 									<div class="category-movies">
-							<img class="movie-image skeletonImg">
+							<img class="category-image skeletonImg">
+							<div class="popular-circular-portrait">
+								<img src=""class="popular-person-image">
+							</div>
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
@@ -353,23 +370,18 @@ function popularInfo(type){
 						</div>`
 			popularDiv.appendChild(alinks);
 			infos(popularDiv, '#popular-section');
+			let popularPersonImage = qSA('.popular-person-image');
+			let popularCircular = qSA('.popular-circular-portrait');
 			if (resultDivNum === pdata.results.length - 3) {
 				category.forEach(aCallback);
 				function aCallback (item, index) {
-				  	const {adult, media_type, title, overview, release_date, poster_path, vote_average, name, first_air_date, vote_count} = pdata.results[index];
-				  	categoryImage[index].setAttribute('src', `${images}${poster_path}`);
-				  	if (title == undefined){	
-				  		categoryTitle[index].textContent = name;
-				  	} else{
-				  		categoryTitle[index].textContent = title;
+				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = pdata.results[index];
+				  	possibilities(index, popularPersonImage, categoryImage, popularCircular, categoryTitle, categoryRelease, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
+				  	votePerc(index, rating, vote_average, rating);
+				  	if (type === 'person') {
+				  		category[index].style.height = '300px';
+				  		categoryInfo[index].style.top = '200px'
 				  	}
-
-				  	if (release_date == undefined){
-				  		categoryRelease[index].textContent = first_air_date;
-				  	} else{
-				  		categoryRelease[index].textContent = release_date;
-				  	}
-				  	votePerc(index, rating, vote_average, rating);		  
 				}
 			}
 		}	  	
@@ -377,22 +389,28 @@ function popularInfo(type){
 }
 
 window.onload = () =>{
+	value = 3800;
 	Loader();
 	type = 'all';
 	trendingInfo();
 	trendingAll.style.backgroundColor = '#120D31';
 	trendingMovies.style.backgroundColor = 'transparent';
 	trendingTV.style.backgroundColor = 'transparent';
-	popularAll.style.backgroundColor = '#120D31';
-	popularMovies.style.backgroundColor = 'transparent';
+	popularMovies.style.backgroundColor = '#120D31';
 	popularTV.style.backgroundColor = 'transparent';
+	popularPeople.style.backgroundColor = 'transparent';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
 	popularInfo('movie');
 }
 
 trendingAll.onclick = () =>{
-		window.onload()
-	}
+	Loader();
+	type = 'all';
+	trendingInfo();
+	trendingAll.style.backgroundColor = '#120D31';
+	trendingMovies.style.backgroundColor = 'transparent';
+	trendingTV.style.backgroundColor = 'transparent';
+}
 
 trendingMovies.onclick = ()=>{
 	type = 'movie';
@@ -429,22 +447,20 @@ weeklyTrending.onclick = ()=>{
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
 }
 
-popularAll.onclick = () =>{
+popularMovies.onclick = () =>{
 		window.onload()
 	}
 
-popularMovies.onclick = ()=>{
-	type = 'movie';
-	popularInfo('movie');
-	popularAll.style.backgroundColor = 'transparent';
-	popularMovies.style.backgroundColor = '#120D31';
-	popularTV.style.backgroundColor = 'transparent';
-}
-
 popularTV.onclick = ()=>{
-	type = 'tv';
-	popularInfo('tv');
-	popularAll.style.backgroundColor = 'transparent';
+	popularInfo('movie');
 	popularMovies.style.backgroundColor = 'transparent';
 	popularTV.style.backgroundColor = '#120D31';
+	popularPeople.style.backgroundColor = 'transparent';
+}
+
+popularPeople.onclick = ()=>{
+	popularInfo('person');
+	popularMovies.style.backgroundColor = 'transparent';
+	popularTV.style.backgroundColor = 'transparent';
+	popularPeople.style.backgroundColor = '#120D31';
 }

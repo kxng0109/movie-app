@@ -261,7 +261,7 @@ input[type='search']{
 .search-image{
 	width: 130px;
 	border-radius: 10px;
-	margin-left: 10px;
+	margin-left: 20px;
 	background-color: grey;
 }
 
@@ -277,7 +277,7 @@ input[type='search']{
 	animation: changeBg 0.5s ease-out 2s forwards;
 }
 
-.circular-portrait{
+.circular-portrait, .popular-circular-portrait{
 	margin-left: 20px;
 	 position: relative;
 	 width: 120px;
@@ -286,7 +286,13 @@ input[type='search']{
 	 border-radius: 50%;
 }
 
-.search-person-image{
+.popular-circular-portrait{
+	margin-left: 0px;
+	width: 150px;
+	height: 150px;
+}
+
+.search-person-image, .popular-person-image{
 	 width: 100%;
 	 height: auto;
 }
@@ -371,7 +377,7 @@ input[type='search']{
 	}
 }
 
-.movie-image{
+.category-image{
 	width: 175px;
 	border-radius: 10px;
 	position: absolute;
