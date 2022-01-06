@@ -10,6 +10,8 @@ let trendingSection = qS('#trending-section');
 let popularSection = qS('#popular-section');
 let trendingDiv = qS('#trending-movies-div');
 let popularDiv = qS('#popular-movies-div');
+let nav = qS('#nav');
+let menuBtn = qS('#header-menu');
 let main = qS('#main');
 let container = qS('#container');
 for (var k = 0; k < 17; k++) {
@@ -29,7 +31,6 @@ let popularTV = qS(`#popular-section .tv-shows`);
 let popularPeople = qS(`#popular-section .popular-people`);
 let daiilyTrending = qS('.daily');
 let weeklyTrending = qS('.weekly');
-
 let infos = (theDiv, something)=>{
 	category = theDiv.querySelectorAll('.movie-link');
 	categoryImage = document.querySelectorAll(`${something} .category-image`);
@@ -39,7 +40,6 @@ let infos = (theDiv, something)=>{
 	categoryRelease = document.querySelectorAll(`${something} .movie-release-date`);
 	categoryInfo = document.querySelectorAll(`${something} .movie-first-info`);
 }
-
 let searchForm = qSA('.search');
 let searchInput = qSA('.search-bar');
 let searchSection = qS('#search');
@@ -67,12 +67,58 @@ let loading = qS('#loading');
 let loadingAnimation = qS('#loading-animation');
 let loadingText = qS('#loading-text');
 let loadingCircles = qSA('.loading-circles');
+let username;
+let userIcon = qS('#user');
+let welcomeUsername = qS('#welcome-username');
+let userHover = qS('#user-hover');
+let hoverUsername = qS('#user-hover-username');
+let hoverChangeUsername = qS('#user-hover-change');
+let newUsernameField = qS('#new-username-field');
+let submitUsername = qS('#submit-new-username');
+let changeUsernameScreen = qS('#change-name');
+let inside = qS('#change-name');
+let changeNameForm = qS('#change-name-form');
 
+if(localStorage.getItem('name') === null){
+	username = `Guest${anyValue(9)}${anyValue(9)}${anyValue(9)}`
+	console.log(username);
+	localStorage.setItem('name', `${username}`);
+}else {
+	username = localStorage.getItem('name');
+}
 
+userIcon.onclick = () =>{
+	userHover.style.display = 'inline-flex';
+	if (userHover.display = 'inline-flex') {
+		userHover.display = 'none';
+	}
+}
+
+hoverChangeUsername.onclick = () =>{
+	changeUsernameScreen.style.display = "inline-flex";
+}
+
+changeNameForm.onsubmit = (e) =>{
+	if (newUsernameField.value === '') {
+		alert('please type in a name');
+		e.preventDefault();
+	} else{
+		username = `${newUsernameField.value}`;
+		localStorage.setItem('name', `${username}`);
+	}
+}
+
+menuBtn.onclick = () =>{
+	if (nav.style.animation === '1s ease 0s 1 normal forwards running showMenu') {
+		nav.style.animation = 'hideMenu 1s normal forwards'
+	} else{
+		nav.style.animation = 'showMenu 1s normal forwards';
+	}
+}
 container.onscroll = () =>{
 	// console.log(container.scrollTop)
 	counter = container.scrollTop;
-	if (counter >= 100) {
+	if (counter >= 200) {
 		popularSection.style.animation = 'comeIn 0.5s linear forwards'
 	}
 	return counter;
@@ -315,14 +361,17 @@ function trendingInfo () {
 	  .then(response => response.json())
 	  .then(data => {
 		infos(trendingDiv, '#trending-section');
+		// category[0].scrollIntoView();
+		trendingDiv.scrollTo({left: 0, behavior: 'smooth'});
 		// timEr(data);
 	  	// const {page} = data;
 	  	// const {adult, media_type, title, overview, release_date, poster_path, vote_average} = data.results[0];
 
 	  	size = 'w400/'
 	  	container.style.background = `url('${images}${size}${data.results[anyValue(data.results.length)].poster_path}')`;
-	  	container.style.backgroundSize = 'contain';
+	  	container.style.backgroundSize = 'cover';
 	  	container.style.backgroundPosition = 'center';
+	  	container.style.backgroundRepeat = 'no-repeat';
 	  	size = 'w200/'
 	  	category.forEach(aCallback);
 	  	function aCallback (item, index) {
@@ -353,6 +402,7 @@ function popularInfo(type){
 	.then(response => response.json())
 	.then(pdata => {
 	infos(popularDiv, '#popular-section');
+	popularDiv.scrollTo({left: 0, behavior: 'smooth'});
 		console.log(pdata);
 		var resultDivNum;
 		if (category.length === pdata.results.length){
@@ -411,6 +461,17 @@ window.onload = () =>{
 	popularPeople.style.backgroundColor = 'transparent';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
 	popularInfo('movie');
+	welcomeUsername.textContent = `Welcome ${username}`;
+	hoverUsername.textContent = `${username}`;
+	let welcomeUser = () => {
+		welcomeUsername.style.display = 'block';
+		welcomeUsername.style.animation = 'welcomeUsername 8s linear';
+		let welcomeUserDelete = () =>{
+			welcomeUsername.style.display = 'none';
+		}
+		setTimeout(welcomeUserDelete, 8000);
+	}
+	setTimeout(welcomeUser, 4000);
 }
 
 trendingAll.onclick = () =>{

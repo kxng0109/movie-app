@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#00ff00">
+	<meta name="theme-color" content="#60695C">
 	<title>Unknown</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +25,10 @@
 		</div>
 	</div>
 	<div id="container">
+		<p id="welcome-username"></p>
+		<div></div>
 		<header>
-			<a href="index.html" id="header-icon"><img src="images/LOGO.svg"></a>
+			<a href="index.html" id="header-icon"><img src="images/nobg.png" class="logo"></a>
 			<div id="search-area">
 				<form class="search">
 					<input type="search" name="search" id="search-bar-header" class="search-bar">
@@ -37,7 +39,29 @@
 					</button>
 				</form>
 			</div>
+			<ion-icon name="person-circle-outline"  id="user"></ion-icon>
+			<ion-icon name="menu-outline" id="header-menu"></ion-icon>
 		</header>
+
+		<div id="user-hover">
+			<p id="user-hover-username"></p>
+			<p id="user-hover-change">Change name &nbsp;&nbsp;&nbsp;<ion-icon name="pencil-outline"></ion-icon></p>
+		</div>
+
+		<div id="change-name">
+			<div id="inside-change-name">
+				<p>What should we call you?</p>
+				<form id="change-name-form">
+					<input type="text" name="username" placeholder="Type it here!" id="new-username-field">
+				</form>
+			</div>
+		</div>
+
+		<nav id="nav">
+			<a href="index.html" id="menu-icon"><img src="images/nobg.png" class="logo"></a>
+			<a href="#trending-section">Trending</a>
+			<a href="#popular-section">Popular</a>
+		</nav>
 
 		<main id="main">
 			<section id="search">
@@ -123,48 +147,6 @@
 				</div>
 				
 				<section id="popular-movies-div">
-					<!-- <a href="#" class="movie-link">
-						<div class="category-movies">
-							<img class="category-image skeletonImg">
-							<div class="popular-circular-portrait">
-								<img src=""class="popular-person-image">
-							</div>
-							<p class="rating">N/A</p>
-							<div class="rating-bg"></div>
-							<div class="movie-first-info">
-								<h4 class="movie-title"></h4>
-								<p class="movie-release-date"></p>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="movie-link">
-						<div class="category-movies">
-							<img class="category-image skeletonImg">
-							<div class="popular-circular-portrait">
-								<img src=""class="popular-person-image">
-							</div>
-							<p class="rating">N/A</p>
-							<div class="rating-bg"></div>
-							<div class="movie-first-info">
-								<h4 class="movie-title"></h4>
-								<p class="movie-release-date"></p>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="movie-link">
-						<div class="category-movies">
-							<img class="category-image skeletonImg">
-							<div class="popular-circular-portrait">
-								<img src=""class="popular-person-image">
-							</div>
-							<p class="rating">N/A</p>
-							<div class="rating-bg"></div>
-							<div class="movie-first-info">
-								<h4 class="movie-title"></h4>
-								<p class="movie-release-date"></p>
-							</div>
-						</div>
-					</a> -->
 				</section>
 			</section>
 		</main>
