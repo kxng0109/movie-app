@@ -78,6 +78,7 @@ let submitUsername = qS('#submit-new-username');
 let changeUsernameScreen = qS('#change-name');
 let inside = qS('#change-name');
 let changeNameForm = qS('#change-name-form');
+let exitChangeUsernameScreen = qS('#exit-change-username');
 
 if(localStorage.getItem('name') === null){
 	username = `Guest${anyValue(9)}${anyValue(9)}${anyValue(9)}`
@@ -96,6 +97,15 @@ userIcon.onclick = () =>{
 
 hoverChangeUsername.onclick = () =>{
 	changeUsernameScreen.style.display = "inline-flex";
+	container.style.overflow = 'hidden';
+	exitChangeUsernameScreen.style.display = "block";
+	exitChangeUsernameScreen.style.animation = "exitenter 1s forwards";
+}
+
+exitChangeUsernameScreen.onclick = () =>{
+	container.style.overflow = 'initial';
+	exitChangeUsernameScreen.style.display = "none";
+	changeUsernameScreen.style.display = 'none';
 }
 
 changeNameForm.onsubmit = (e) =>{
