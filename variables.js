@@ -41,6 +41,9 @@ let searchResultDescription;
 let searchResultDate;
 let searchResultPerson;
 let searchResultsDiv;
+let theId;
+var Genre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, Duration;
+
 let infos = (theDiv, something)=>{
 	category = theDiv.querySelectorAll('.movie-link');
 	categoryImage = document.querySelectorAll(`${something} .category-image`);
@@ -83,8 +86,7 @@ let searchTV = qS('#search-tv');
 let searchPeople = qS('#search-people');
 
 if(localStorage.getItem('name') === null){
-	username = `Guest${anyValue(9)}${anyValue(9)}${anyValue(9)}`
-	console.log(username);
+	username = `Guest${anyValue(9)}${anyValue(9)}${anyValue(9)}`;
 	localStorage.setItem('name', `${username}`);
 }else {
 	username = localStorage.getItem('name');

@@ -1,130 +1,10 @@
-let proxy = "https://api.themoviedb.org/3/";
-let api_key = "44ae4b9d7f7d9b75d4fc1729f0360036";
-let size = 'w200/';
-let images = `https://image.tmdb.org/t/p/`;//used to be original not w200
-var type;
-var timeWindow = 'day';
-let qSA = (qSA) => document.querySelectorAll(qSA);
-let qS = (qS) => document.querySelector(qS);
-let trendingSection = qS('#trending-section');
-let popularSection = qS('#popular-section');
-let trendingDiv = qS('#trending-movies-div');
-let popularDiv = qS('#popular-movies-div');
-let nav = qS('#nav');
-let menuBtn = qS('#header-menu');
-let main = qS('#main');
-let container = qS('#container');
+// import * as variable from "./variables.js";
+
 for (var k = 0; k < 17; k++) {
 	load();
 }
-let category;
-var categoryImage;
-var rating;
-var ratingBg;
-var categoryTitle;
-var categoryRelease;
-let trendingAll = qS(`#trending-section .all`);
-let trendingMovies = qS(`#trending-section .movies`);
-let trendingTV = qS(`#trending-section .tv-shows`);
-let popularMovies = qS(`#popular-section .movies`);;
-let popularTV = qS(`#popular-section .tv-shows`);
-let popularPeople = qS(`#popular-section .popular-people`);
-let daiilyTrending = qS('.daily');
-let weeklyTrending = qS('.weekly');
-let infos = (theDiv, something)=>{
-	category = theDiv.querySelectorAll('.movie-link');
-	categoryImage = document.querySelectorAll(`${something} .category-image`);
-	rating = document.querySelectorAll(`${something} .rating`);
-	ratingBg = document.querySelectorAll(`${something} .rating-bg`);
-	categoryTitle = document.querySelectorAll(`${something} .movie-title`);
-	categoryRelease = document.querySelectorAll(`${something} .movie-release-date`);
-	categoryInfo = document.querySelectorAll(`${something} .movie-first-info`);
-}
-let searchForm = qSA('.search');
-let searchInput = qSA('.search-bar');
-let searchSection = qS('#search');
-let searchDiv;
-let searchImage;
-let searchRating;
-let searchResultTitle;
-let searchResultDescription;
-let searchResultDate;
-let searchResultPerson;
-let resultQuery = qS('#search-response');
-let searchResultsContainer = qS('#search');
-let ratingPercent;
-let page_no;
-let timer = 0;
-daiilyTrending.style.backgroundColor = '#120D31';
-var counter;
-var Num = 1;
-var searchValue;
-let anyValue = (value) =>{
-	let anyNum = Math.floor(Math.random() * value);
-	return anyNum;
-}
-let loading = qS('#loading');
-let loadingAnimation = qS('#loading-animation');
-let loadingText = qS('#loading-text');
-let loadingCircles = qSA('.loading-circles');
-let username;
-let userIcon = qS('#user');
-let welcomeUsername = qS('#welcome-username');
-let userHover = qS('#user-hover');
-let hoverUsername = qS('#user-hover-username');
-let hoverChangeUsername = qS('#user-hover-change');
-let newUsernameField = qS('#new-username-field');
-let submitUsername = qS('#submit-new-username');
-let changeUsernameScreen = qS('#change-name');
-let inside = qS('#change-name');
-let changeNameForm = qS('#change-name-form');
-let exitChangeUsernameScreen = qS('#exit-change-username');
+dailyTrending.style.backgroundColor = '#120D31';
 
-if(localStorage.getItem('name') === null){
-	username = `Guest${anyValue(9)}${anyValue(9)}${anyValue(9)}`
-	console.log(username);
-	localStorage.setItem('name', `${username}`);
-}else {
-	username = localStorage.getItem('name');
-}
-
-userIcon.onclick = () =>{
-	userHover.style.display = 'inline-flex';
-	if (userHover.display = 'inline-flex') {
-		userHover.display = 'none';
-	}
-}
-
-hoverChangeUsername.onclick = () =>{
-	changeUsernameScreen.style.display = "inline-flex";
-	container.style.overflow = 'hidden';
-	exitChangeUsernameScreen.style.display = "block";
-	exitChangeUsernameScreen.style.animation = "exitenter 1s forwards";
-}
-
-exitChangeUsernameScreen.onclick = () =>{
-	container.style.overflow = 'initial';
-	exitChangeUsernameScreen.style.display = "none";
-	changeUsernameScreen.style.display = 'none';
-}
-
-changeNameForm.onsubmit = (e) =>{
-	if (newUsernameField.value === '') {
-		alert('please type in a name');
-		e.preventDefault();
-	} else{
-		username = `${newUsernameField.value}`;
-		localStorage.setItem('name', `${username}`);
-	}
-}
-
-menuBtn.onclick = () =>{
-	if (nav.style.animation === '1s ease 0s 1 normal forwards running showMenu') {
-		nav.style.animation = 'hideMenu 1s normal forwards'
-	} else{
-		nav.style.animation = 'showMenu 1s normal forwards';
-	}
-}
 container.onscroll = () =>{
 	// console.log(container.scrollTop)
 	counter = container.scrollTop;
@@ -151,14 +31,16 @@ container.onclick = () =>{
 
 let Loader = () =>{
 	loadingCircles.forEach( function(element, index) {
-		loadingCircles[index].style.bottom = '-80vh';
+		loadingCircles[index].style.bottom = '-10vh';
 	});
+	container.style.overflowY = 'hidden';
 	loading.style.display = 'inline-flex';
 	loadingText.style.animation = 'textFadeIn 1.5s forwards';
 	loadingCircles[0].style.animation = 'loadingFlyIn 2.5s infinite';
 	loadingCircles[1].style.animation = 'loadingFlyIn 2.5s 0.08s infinite';
 	loadingCircles[2].style.animation = 'loadingFlyIn 2.5s 0.16s infinite';
 	let myFunc = () =>{
+		container.style.overflowY = 'scroll';
 		loading.style.display = 'none';
 		loadingText.style.animation = '';
 		loadingCircles.forEach((element, index) =>{
@@ -171,12 +53,10 @@ let Loader = () =>{
 	const ANINTERVAL = setTimeout(myFunc, numeric);
 }
 
-
-
-let everyLink = document.querySelectorAll('a');
-everyLink.forEach( function(element, index) {
-	everyLink[index].addEventListener('click', Loader);
-});
+// let everyLink = document.querySelectorAll('a');
+// everyLink.forEach( function(element, index) {
+// 	everyLink[index].addEventListener('click', Loader);
+// });
 
 
 let votePerc = (index, varName, vote_average, rating, vote_count) =>{
@@ -278,7 +158,11 @@ searchForm.forEach((item, index) =>{
 	searchForm[index].onsubmit = (e) =>{
 		e.preventDefault();
 		if (searchValue !== '') {
-			searching('multi');
+			searchAll.style.backgroundColor = '#120D31';
+			searchMovies.style.backgroundColor = 'transparent';
+			searchTV.style.backgroundColor = 'transparent';
+			searchPeople.style.backgroundColor = 'transparent';
+			searching('multi', 1);
 		} else{
 			alert('Please write something.')//change this
 		}
@@ -288,9 +172,9 @@ searchForm.forEach((item, index) =>{
 		// 	searchValue[index] = searchInput[index].value;
 		// 	return searchValue;
 		// });
-let searching = (theType) =>{
-	page_no;
-	type = theType;
+let searching = (thetype, page_no) =>{
+	page_no = 1;
+	type = thetype;
 	let search = `${proxy}search/${type}?api_key=${api_key}&query=${searchValue}&page=${page_no}`;
 	fetch(search)
 	.then(response => response.json())
@@ -371,21 +255,21 @@ function trendingInfo () {
 	  .then(response => response.json())
 	  .then(data => {
 		infos(trendingDiv, '#trending-section');
-		// category[0].scrollIntoView();
 		trendingDiv.scrollTo({left: 0, behavior: 'smooth'});
+		console.log(data)
 		// timEr(data);
 	  	// const {page} = data;
-	  	// const {adult, media_type, title, overview, release_date, poster_path, vote_average} = data.results[0];
+	  	// const {adult, media_.type, title, overview, release_date, poster_path, vote_average} = data.results[0];
 
 	  	size = 'w400/'
 	  	container.style.background = `url('${images}${size}${data.results[anyValue(data.results.length)].poster_path}')`;
 	  	container.style.backgroundSize = 'cover';
 	  	container.style.backgroundPosition = 'center';
 	  	container.style.backgroundRepeat = 'no-repeat';
-	  	size = 'w200/'
+	  	size = 'w200/';
 	  	category.forEach(aCallback);
 	  	function aCallback (item, index) {
-		  	const {adult, media_type, title, overview, release_date, poster_path, vote_average, name, first_air_date, vote_count} = data.results[index];
+		  	const {adult, media_type, title, overview, release_date, poster_path, vote_average, name, first_air_date, vote_count, id} = data.results[index];
 		  	categoryImage[index].setAttribute('src', `${images}${size}${poster_path}`);
 		  	if (title == undefined){
 		  		categoryTitle[index].textContent = name;
@@ -398,7 +282,14 @@ function trendingInfo () {
 		  	} else{
 		  		categoryRelease[index].textContent = release_date;
 		  	}
-		  	votePerc(index, rating, vote_average, rating);		  
+		  	votePerc(index, rating, vote_average, rating);
+		  	category[index].onclick = () => {
+		  		const tempInfo = `${proxy}/${media_type}/${id}`;
+		  		localStorage.setItem('moreInfo', tempInfo);
+		  		window.location.replace('./moreinfo.html');
+		  		// setTimeout(categoryinfo(id, media_type), 3000);
+		  		// setTimeout(Loader, 100);
+		  	}
 		  }
 	  }	);
 }
@@ -413,7 +304,7 @@ function popularInfo(type){
 	.then(pdata => {
 	infos(popularDiv, '#popular-section');
 	popularDiv.scrollTo({left: 0, behavior: 'smooth'});
-		console.log(pdata);
+		// console.log(pdata);
 		var resultDivNum;
 		if (category.length === pdata.results.length){
 			category.forEach( function(element, index) {
@@ -459,8 +350,8 @@ function popularInfo(type){
 }
 
 window.onload = () =>{
-	value = 3800;
-	Loader();
+	// value = 3800;
+	// Loader();
 	type = 'all';
 	trendingInfo();
 	trendingAll.style.backgroundColor = '#120D31';
@@ -485,7 +376,7 @@ window.onload = () =>{
 }
 
 trendingAll.onclick = () =>{
-	Loader();
+	// Loader();
 	type = 'all';
 	trendingInfo();
 	trendingAll.style.backgroundColor = '#120D31';
@@ -512,18 +403,18 @@ trendingTV.onclick = ()=>{
 }
 // timeWindow = 'day';
 
-daiilyTrending.onclick = ()=>{
+dailyTrending.onclick = ()=>{
 	timeWindow = 'day';
 	trendingInfo();
 	weeklyTrending.style.backgroundColor = 'transparent';
-	daiilyTrending.style.backgroundColor = '#120D31';
+	dailyTrending.style.backgroundColor = '#120D31';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
 }
 
 weeklyTrending.onclick = ()=>{
 	timeWindow = 'week';
 	trendingInfo();
-	daiilyTrending.style.backgroundColor = 'transparent';
+	dailyTrending.style.backgroundColor = 'transparent';
 	weeklyTrending.style.backgroundColor = '#120D31';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
 }
@@ -544,4 +435,36 @@ popularPeople.onclick = ()=>{
 	popularMovies.style.backgroundColor = 'transparent';
 	popularTV.style.backgroundColor = 'transparent';
 	popularPeople.style.backgroundColor = '#120D31';
+}
+
+searchAll.onclick = () =>{
+	searching('multi', 1);
+	searchAll.style.backgroundColor = '#120D31';
+	searchMovies.style.backgroundColor = 'transparent';
+	searchTV.style.backgroundColor = 'transparent';
+	searchPeople.style.backgroundColor = 'transparent';
+}
+
+searchMovies.onclick = () =>{
+	searching('movie', 1);
+	searchAll.style.backgroundColor = 'transparent';
+	searchMovies.style.backgroundColor = '#120D31';
+	searchTV.style.backgroundColor = 'transparent';
+	searchPeople.style.backgroundColor = 'transparent';
+}
+
+searchTV.onclick = () =>{
+	searching('tv', 1);
+	searchAll.style.backgroundColor = 'transparent';
+	searchMovies.style.backgroundColor = 'transparent';
+	searchTV.style.backgroundColor = '#120D31';
+	searchPeople.style.backgroundColor = 'transparent';
+}
+
+searchPeople.onclick = () =>{
+	searching('person', 1);
+	searchAll.style.backgroundColor = 'transparent';
+	searchMovies.style.backgroundColor = 'transparent';
+	searchTV.style.backgroundColor = 'transparent';
+	searchPeople.style.backgroundColor = '#120D31';
 }
