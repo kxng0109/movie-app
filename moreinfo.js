@@ -13,6 +13,9 @@ Status = qS('#status');
 voteCount = qS('#vcnumber');
 Duration = qS('#dvalue');
 tagLine = qS('#tagline');
+backGround = qS('#background');
+overview = qS('#overview');
+let cast = qS('#cast');
 
 let votePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
@@ -47,28 +50,61 @@ function categoryinfo () {
 	.then(response => response.json())
 	.then(data =>{
 		const{backdrop_path, belongs_to_collection, genres, homepage, id, original_title, overview, poster_path, production_companies, production_countries, spoken_languages, status, release_date, tagline, title, vote_average, vote_count, runtime} = data;
+		document.title = `${title}`;
 		console.log(data);
 		votePerc(vote_average, rating, vote_count);
 		voteCount.textContent = vote_count;
 		Duration.textContent = durationConversion(runtime);
 		categoryTitle.textContent = title;
 		categoryRelease.textContent = release_date;
-		tagLine.textContent = tagline;
+		tagLine.textContent = `...${tagline}....`;
 		categoryImages.forEach((element, index) =>{
 			categoryImages[index].setAttribute('src', `${images}${size}${poster_path}`);
 		});
-		Status.textContent = `Status: ${status}`;
+		// Status.textContent = `Status: ${status}`;
+		let theGenres = '';
+		 genres.forEach((element, index) =>{
+		 	if (genres.length > 1) {
+				if (index === genres.length - 1) {
+					theGenres += genres[index].name + '.';
+				}else{					
+					theGenres += genres[index].name + ', ';
+				}
+			}else {
+				theGenres += genres[index].name;
+			}
+		})
+		Genre.textContent = `Genre: ${theGenres}`;
 		size = 'original';
-		container.style.background = `url('${images}${size}${backdrop_path}') no-repeat center`;
-		container.style.backgroundSize = 'cover';
+		backGround.style.background = `url('${images}${size}${backdrop_path}') no-repeat center`;
+		backGround.style.backgroundSize = 'cover';
+		this.overview.textContent = overview;//This is confusing, this,overview is the variable I made, overview is the destructured variable
 	});
 	fetch(theCatCredit)
 	.then(response => response.json())
 	.then(data =>{
+		data.cast.forEach((element, index) =>{
+			if (data.cast.length >= 20) {
+				data.cast[index]
+			}
+		})
 		console.log(data)
 	});
 }
 
+function add(){
+	let castLists = document.createElement(`<div>
+						<a href="">
+							<img src="images/test.jpg" class="cast-members">
+						</a>
+						<div class="cast-info">
+							<p class="cast-real-name">Name</p>
+							<p class="cast-name">Cast name</p>
+						</div>
+					</div>`)
+	cast.appendChild(castLists);
+}
+add()
 
 window.onload = () =>{
 	theCat = localStorage.getItem('moreInfo');

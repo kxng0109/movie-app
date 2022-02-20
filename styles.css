@@ -203,9 +203,9 @@ body::-webkit-scrollbar{
 
 
 header{
-	/*position: sticky;
+	position: absolute;
 	top: 0;
-	right: 0;*/
+	right: 0;
 	width: 100%;
 	z-index: 2;
 	height: var(--top);
@@ -560,7 +560,7 @@ input[type='search']{
 	width: 100%;
 }
 
-#trending-movies-div, #popular-movies-div{
+#trending-movies-div, #popular-movies-div, #cast{
 	overflow-x: scroll;
 	overflow-y: hidden;
 	display: flex;
@@ -768,8 +768,6 @@ input[type='search']{
 #main2{
 	height: 100vh;
 	display: block;
-	/*background: url('images/test.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat;*/
-
 }
 
 #quickinfo1{
@@ -806,12 +804,12 @@ input[type='search']{
 	margin-right: 29px;
 }
 
-#crew{
+#cast{
 	overflow-x: auto;
 }
 
-.crew-members{
-	width: 100px;
+.cast-members{
+	width: 150px;
 }
 
 .subtext{
@@ -833,4 +831,67 @@ input[type='search']{
 	text-align: center;
 	font-size: 25px;
 	color: white;
+	text-decoration: underline;
+}
+
+#background{
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	filter: brightness(0.5) opacity(0.8);
+	-webkit-filter: brightness(0.5) opacity(0.8);
+	-moz-filter: brightness(0.5) opacity(0.8);
+}
+
+#overview-div>*{
+	padding-left: 20px;
+	color: white;
+}
+
+#overview-div>h3{
+	padding-bottom: 10px;
+}
+
+#title{
+	margin: 20px 0;
+}
+
+#tagline{
+	padding-left: 20px;
+	color: hsl(0, 0%, 90%);
+}
+
+.cast-real-name{
+	font-size: 18px;
+	color: white;
+}
+
+.cast-name{
+	font-size: 14px;
+	color: white;
+}
+
+#castod{
+	position: relative;	
+	padding-left: 20px;
+}
+
+#cast{
+	column-gap: 30px;
+}
+
+#back-to-begin{
+	position: absolute;
+	top: 35%;
+	font-size: 40px;
+	color: white;
+}
+
+#blur{
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 40px;
+	background: linear-gradient(90deg, transparent, hsl(0, 0%, 80%));
 }

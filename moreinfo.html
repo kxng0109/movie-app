@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#60695C">
-	<title>Unknown</title>
+	<title>More Info</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,15 +65,16 @@
 			<a href="./index.html">Popular</a>
 		</nav>
 
+		<div id="background"></div>
+
 		<main id="main2" class="main">
 			<div id="quickinfo">
-				<p id="title" class="info-text"></p>
 				<div id="quickinfo2">
 					<img src="" id="main-image" class="image">
 					<div>
 						<p id="release-date" class="info-text"></p>
-						<p id="tagline" class="info-text"></p>
-						<p id="status" class="info-text"></p>
+						<p id="genre"></p>
+						<!-- <p id="status" class="info-text"></p> -->
 					</div>
 				</div>
 				<div id="quickinfo1">
@@ -91,18 +92,21 @@
 					</div>
 				</div>
 
-				<div>
-					<!-- <p id="overview" class="info-text">Lorem ipsum dolor sit amet consectetur.</p> -->
-				</div>	
+				<p id="title" class="info-text"></p>
+
+				<div id="overview-div">
+					<h3>Overview</h3>
+					<p id="overview"></p>
+				</div>
+
+				<em id="tagline"></em>
 			</div>
 
-			<div id="crew">
-				<div>
-					<img src="images/test.jpg" class="crew-members">
-					<div>
-						<p class="crew-real-name">Name</p>
-						<p class="crew-name">Cast name</p>
-					</div>
+			<div id="castod">				
+				<ion-icon name="chevron-back-circle-outline" id="back-to-begin">
+				</ion-icon>
+				<div id="blur"></div>
+				<div id="cast">
 				</div>
 			</div>
 		</main>

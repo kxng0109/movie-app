@@ -42,7 +42,7 @@ let searchResultDate;
 let searchResultPerson;
 let searchResultsDiv;
 let theId;
-var Genre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, Duration;
+var Genre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, Duration, backGround, overview;
 
 let infos = (theDiv, something)=>{
 	category = theDiv.querySelectorAll('.movie-link');
