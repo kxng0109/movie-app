@@ -16,6 +16,7 @@ tagLine = qS('#tagline');
 backGround = qS('#background');
 overview = qS('#overview');
 let cast = qS('#cast');
+let castImages, castRealName, castName;
 
 let votePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
@@ -80,31 +81,49 @@ function categoryinfo () {
 		backGround.style.backgroundSize = 'cover';
 		this.overview.textContent = overview;//This is confusing, this,overview is the variable I made, overview is the destructured variable
 	});
+
 	fetch(theCatCredit)
 	.then(response => response.json())
 	.then(data =>{
-		data.cast.forEach((element, index) =>{
-			if (data.cast.length >= 20) {
-				data.cast[index]
-			}
-		})
+		if (data.cast.length < 15) {
+			data.cast.forEach( (element, index) =>{
+				castStuff;
+			});
+		}
 		console.log(data)
-	});
+	})
+};
+
+let castStuff = () =>{	
+	const{name, character, profile_path} = data.cast[index];
+	add();
+	castImages = qSA('.cast-members-img');
+	castRealName = qSA('.cast-real-name');
+	castName = qSA(".cast-name");
+	castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+	castRealName[index].textContent = name;
+	castName[index].textContent = character;
 }
 
 function add(){
-	let castLists = document.createElement(`<div>
-						<a href="">
-							<img src="images/test.jpg" class="cast-members">
-						</a>
-						<div class="cast-info">
-							<p class="cast-real-name">Name</p>
-							<p class="cast-name">Cast name</p>
-						</div>
-					</div>`)
-	cast.appendChild(castLists);
+	let outerDiv = document.createElement('div');
+	let aTag = document.createElement('a');
+	aTag.setAttribute('href', '');
+	let anImg = document.createElement('img');
+	anImg.classList.add('cast-members-img');
+	let innerDiv = document.createElement('div');
+	innerDiv.classList.add('cast-info')
+	let firstP = document.createElement('p');
+	firstP.classList.add('cast-real-name');
+	let secondP = document.createElement('p');
+	secondP.classList.add('cast-name');
+	outerDiv.appendChild(aTag);
+	outerDiv.appendChild(innerDiv);
+	aTag.appendChild(anImg);
+	innerDiv.appendChild(firstP);
+	innerDiv.appendChild(secondP);
+	cast.appendChild(outerDiv);
 }
-add()
 
 window.onload = () =>{
 	theCat = localStorage.getItem('moreInfo');

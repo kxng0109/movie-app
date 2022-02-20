@@ -808,7 +808,7 @@ input[type='search']{
 	overflow-x: auto;
 }
 
-.cast-members{
+.cast-members-img{
 	width: 150px;
 }
 
@@ -878,6 +878,7 @@ input[type='search']{
 
 #cast{
 	column-gap: 30px;
+	height: fit-content;
 }
 
 #back-to-begin{
