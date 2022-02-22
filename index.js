@@ -5,9 +5,8 @@ for (var k = 0; k < 17; k++) {
 }
 dailyTrending.style.backgroundColor = '#120D31';
 
-container.onscroll = () =>{
-	// console.log(container.scrollTop)
-	counter = container.scrollTop;
+window.onscroll = () =>{
+	counter = window.scrollY;//used to be container.scrollTop
 	if (counter >= 200) {
 		popularSection.style.animation = 'comeIn 0.5s linear forwards'
 	}

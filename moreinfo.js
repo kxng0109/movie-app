@@ -17,6 +17,7 @@ backGround = qS('#background');
 overview = qS('#overview');
 let cast = qS('#cast');
 let castImages, castRealName, castName;
+let backToBegin = qS('#back-to-begin');
 
 let votePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
@@ -85,24 +86,52 @@ function categoryinfo () {
 	fetch(theCatCredit)
 	.then(response => response.json())
 	.then(data =>{
-		if (data.cast.length < 15) {
-			data.cast.forEach( (element, index) =>{
-				castStuff;
-			});
+		console.log(data);
+
+		switch (data.cast.length <= 15) {
+			case true:
+				data.cast.forEach( (element, index) =>{
+					const{name, character, profile_path} = data.cast[index];
+					add();
+					castImages = qSA('.cast-members-img');
+					castRealName = qSA('.cast-real-name');
+					castName = qSA(".cast-name");
+					castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+					castRealName[index].textContent = name;
+					castName[index].textContent = character;
+				});
+			break;
+			default:
+				for (let i = 0; i <= 14; i++) {
+					const{name, character, profile_path} = data.cast[i];
+					add();
+					castImages = qSA('.cast-members-img');
+					castRealName = qSA('.cast-real-name');
+					castName = qSA(".cast-name");
+					castImages[i].setAttribute('src',  `${images}${size}${profile_path}`);
+					castRealName[i].textContent = name;
+					castName[i].textContent = character;
+				}
+				let moreCast = qS('#more-link');
+			break;
 		}
-		console.log(data)
-	})
+	});
 };
 
-let castStuff = () =>{	
-	const{name, character, profile_path} = data.cast[index];
-	add();
-	castImages = qSA('.cast-members-img');
-	castRealName = qSA('.cast-real-name');
-	castName = qSA(".cast-name");
-	castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
-	castRealName[index].textContent = name;
-	castName[index].textContent = character;
+cast.onscroll = () =>{
+	switch (cast.scrollLeft >= 150){
+		case true:
+		backToBegin.style.display = 'block';
+		break;
+
+		default:
+		backToBegin.style.display = 'none';
+		break;
+	}
+}
+
+backToBegin.onclick = () =>{
+	cast.scrollTo({left: 0, behavior: 'smooth'});
 }
 
 function add(){
@@ -130,4 +159,5 @@ window.onload = () =>{
 	theCatInfo = `${theCat}?api_key=${api_key}`;
 	theCatCredit = `${theCat}/credits?api_key=${api_key}`;
 	categoryinfo();
+	backToBegin.style.display = 'none';
 }
