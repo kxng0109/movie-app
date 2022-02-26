@@ -1,8 +1,3 @@
-// import {proxy, api_key, images, qS, qSA, main, container, menuBtn, loading, 
-// 	loadingAnimation, loadingText, loadingCircles, userIcon, userHover, 
-// 	hoverUsername, hoverChangeUsername, newUsernameField, submitUsername, 
-// 	changeUsernameScreen, inside, changeNameForm, exitChangeUsernameScreen} from "./variables.js";
-
 categoryImages = qSA('.image');
 rating = qS('#avnumber');
 categoryTitle = qS('#title');
@@ -15,9 +10,9 @@ Duration = qS('#dvalue');
 tagLine = qS('#tagline');
 backGround = qS('#background');
 overview = qS('#overview');
-let cast = qS('#cast');
-let castImages, castRealName, castName;
-let backToBegin = qS('#back-to-begin');
+const cast = qS('#cast');
+let castImages, castRealName, castName, eachCast;
+const backToBegin = qS('#back-to-begin');
 
 let votePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
@@ -41,9 +36,16 @@ let votePerc = (vote_average, rating, vote_count) =>{
 }
 
 let durationConversion = rawDuration =>{
-	var hour = Math.floor(rawDuration / 60);
-	var minute = (rawDuration % 60);
-	return `${hour}:${minute}`;
+	switch (true) {
+		case typeof rawDuration === 'number':			
+			const hour = Math.floor(rawDuration / 60);
+			const minute = (rawDuration % 60);
+			return `${hour}:${minute}`;
+		break;
+		default:
+			return '--:--'
+		break;
+	}
 }
 
 var theCat, theCatInfo, theCatCredit;
@@ -85,39 +87,37 @@ function categoryinfo () {
 	fetchCast();
 }
 
-function fetchCast(){
+function fetchCast(boolean){
 	fetch(theCatCredit)
 	.then(response => response.json())
 	.then(data =>{
 		console.log(data);
 
-		switch (data.cast.length <= 15) {
-			case true:
-				data.cast.forEach( (element, index) =>{
-					const{name, character, profile_path} = data.cast[index];
-					add();
-					castImages = qSA('.cast-members-img');
-					castRealName = qSA('.cast-real-name');
-					castName = qSA(".cast-name");
+		data.cast.forEach( (element, index) =>{
+			const{name, character, profile_path} = data.cast[index];
+			add();
+			castImages = qSA('.cast-members-img');
+			castRealName = qSA('.cast-real-name');
+			castName = qSA(".cast-name");
+			eachCast = qSA('.eachCast');
+			size = 'w200';
+			switch (profile_path === null || profile_path === undefined) {
+				case false:
 					castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
-					castRealName[index].textContent = name;
-					castName[index].textContent = character;
-				});
-			break;
-			default:
-			let i, iValue += 15;
-				for (i = 0; i <= iValue; i++) {
-					const{name, character, profile_path} = data.cast[i];
-					add();
-					castImages = qSA('.cast-members-img');
-					castRealName = qSA('.cast-real-name');
-					castName = qSA(".cast-name");
-					castImages[i].setAttribute('src',  `${images}${size}${profile_path}`);
-					castRealName[i].textContent = name;
-					castName[i].textContent = character;
-				}
-				loadMore();
-			break;
+					break;
+				default:
+					castImages[index].setAttribute('src',  `../images/photo1.webp`);
+					break;
+			}
+			castRealName[index].textContent = name;
+			castName[index].textContent = character;
+		});
+
+		if (data.cast.length > 15) {
+			loadMore();
+			for (var i = 15; i <= data.cast.length - 1; i++) {
+				eachCast[i].style.display = 'none';
+			}
 		}
 	});
 };
@@ -155,6 +155,7 @@ backToBegin.onclick = () =>{
 
 function add(){
 	let outerDiv = document.createElement('div');
+	outerDiv.classList.add('eachCast');
 	let aTag = document.createElement('a');
 	aTag.setAttribute('href', '');
 	let anImg = document.createElement('img');

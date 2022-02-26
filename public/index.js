@@ -138,7 +138,7 @@ function load () {
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
-								<h4 class="movie-title"></h4>
+								<h4 class="movie-title "></h4>
 								<p class="movie-release-date"></p>
 							</div>
 						</div>`
@@ -204,7 +204,7 @@ let searching = (thetype, page_no) =>{
 										</div>
 										<div class="search-rating"></div>
 										<div class="search-text">
-											<h3 class="search-result-title"></h3>
+											<h3 class="search-result-title "></h3>
 											<p class="search-result-description"></p>
 											<p class="search-result-date"></p>
 										</div>`
@@ -240,6 +240,7 @@ let searching = (thetype, page_no) =>{
 				  		searchSection.style.background = `url('${images}${size}${search.results[anyValue(search.results.length)].poster_path}')`;
 					  	searchSection.style.backgroundSize = 'contain';
 					  	searchSection.style.backgroundPosition = 'center';
+
 			  		});
 				}
 	  		}
@@ -324,7 +325,7 @@ function popularInfo(type){
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
-								<h4 class="movie-title"></h4>
+								<h4 class="movie-title "></h4>
 								<p class="movie-release-date"></p>
 							</div>
 						</div>`
