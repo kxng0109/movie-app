@@ -84,59 +84,69 @@ function categoryinfo () {
 		backGround.style.backgroundSize = 'cover';
 		this.overview.textContent = overview;//This is confusing, this,overview is the variable I made, overview is the destructured variable
 	});
-	fetchCast();
+	fetchCast('no');
 }
 
-function fetchCast(boolean){
+function fetchCast(more){
 	fetch(theCatCredit)
 	.then(response => response.json())
 	.then(data =>{
 		console.log(data);
 
-		data.cast.forEach( (element, index) =>{
-			const{name, character, profile_path} = data.cast[index];
-			add();
-			castImages = qSA('.cast-members-img');
-			castRealName = qSA('.cast-real-name');
-			castName = qSA(".cast-name");
-			eachCast = qSA('.eachCast');
-			size = 'w200';
-			switch (profile_path === null || profile_path === undefined) {
-				case false:
-					castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
-					break;
-				default:
-					castImages[index].setAttribute('src',  `../images/photo1.webp`);
-					break;
-			}
-			castRealName[index].textContent = name;
-			castName[index].textContent = character;
-		});
+		switch (more === 'no') {
+			case false:
+				for (var i = 15; i <= data.cast.length - 1; i++) {
+					eachCast[i].style.display = 'block';
+				}
+				qS('.more').style.display = 'none';
+			break;
+			default:
+				data.cast.forEach( (element, index) =>{
+					const{name, character, profile_path} = data.cast[index];
+					add();
+					castImages = qSA('.cast-members-img');
+					castRealName = qSA('.cast-real-name');
+					castName = qSA(".cast-name");
+					eachCast = qSA('.eachCast');
+					size = 'w200';
+					switch (profile_path === null || profile_path === undefined) {
+						case false:
+							castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+						break;
+						default:
+							castImages[index].setAttribute('src',  `../images/photo1.webp`);
+						break;
+					}
+					castRealName[index].textContent = name;
+					castName[index].textContent = character;
+				});
 
-		if (data.cast.length > 15) {
-			loadMore();
-			for (var i = 15; i <= data.cast.length - 1; i++) {
-				eachCast[i].style.display = 'none';
-			}
+				if (data.cast.length > 15) {
+					loadMore();
+					for (var i = 15; i <= data.cast.length - 1; i++) {
+						eachCast[i].style.display = 'none';
+					}
+				}
+			break;
 		}
 	});
 };
 
 let loadMore = () =>{
 	let moreDiv = document.createElement('div');
-	let moreA = document.createElement('a');
+	let moreP = document.createElement('p');
 	let forwardIconMore = document.createElement('ion-icon');
 	forwardIconMore.setAttribute('name', 'chevron-forward-outline');
-	moreA.setAttribute('href', '#');
-	moreA.textContent = 'Load more';
-	moreA.classList.add('more-link');
-	moreDiv.appendChild(moreA);
+	// moreA.setAttribute('href', '#');
+	moreP.textContent = 'Load more';
+	moreP.classList.add('more-link');
+	moreDiv.appendChild(moreP);
 	moreDiv.appendChild(forwardIconMore);
 	moreDiv.classList.add('more');
 	cast.appendChild(moreDiv);
 }
 
-setTimeout(() => {let moreCast = qS('.more-link'); moreCast.onclick = () => fetchCast();}, 1000);
+setTimeout(() => {let moreCast = qS('.more-link'); moreCast.onclick = () => fetchCast('yes');}, 1500);
 cast.onscroll = () =>{
 	switch (cast.scrollLeft >= 150){
 		case true:
