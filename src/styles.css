@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *, *:before, *:after{
 	padding: 0;
 	margin: 0;
@@ -6,7 +10,8 @@
 
 :root{
 	--orange: #E27D60;
-	--blue: #85CDCA;
+	/*--blue: #85CDCA;*/
+	--blue: hsla(178°, 42%, 66%, 0.5);
 	--yellow: #E8A87C;
 	--red: #C38D9E;
 	--green: #41B3A3;
@@ -168,16 +173,9 @@ nav a{
 }
 
 #welcome-username{
-	position: absolute;
 	top: var(--top);
-	right: 0;
-	width: fit-content;
-	padding: 10px 20px;
-	z-index: 3;
 	background: seagreen;
-	font-size: 5vw;
-	opacity: 0;
-	display: none;
+	@apply hidden fixed right-0 px-5 py-2.5 z-3 text-[5vw] opacity-0 w-fit;
 }
 
 @keyframes welcomeUsername{
@@ -204,18 +202,7 @@ nav a{
 
 
 header{
-	position: sticky;
-	top: 0;
-	right: 0;
-	width: 100%;
-	z-index: 2;
-	height: var(--top);
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding: 10px 20px;
-	background-color: #60695C;
-	align-items: center;
+	@apply sticky top-0 right-0 w-full z-2 flex flex-row justify-between items-center bg-[#60695C] px-5 py-2.5 h-[var(--top)]
 }
 
 #search-area{
@@ -561,6 +548,10 @@ input[type='search']{
 	width: 100%;
 }
 
+.section-link{
+	@apply cursor-pointer
+}
+
 #trending-movies-div, #popular-movies-div, #cast{
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -609,28 +600,16 @@ input[type='search']{
 }
 
 .category-movies{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	/*background: #FDF0D5;*/
-	width: 200px;
-	margin: 30px 20px;
-	border-radius: 10px;
-	height: 350px;
-	position: relative;
+	@apply relative flex flex-col items-center w-[12.5rem] my-[1.875rem] mx-5 rounded-xl h-[21.875rem]
 }
 
 .movie-first-info{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	position: absolute;
-	top: 270px;
+	@apply flex flex-col justify-between absolute top-[270px] text-lg;
 }
 
 .movie-title, .movie-release-date{
-	margin-top: 5px;
-	text-align: center;
+	@apply mt-1.5 text-center;
 }
 
 .skeletonText{	
@@ -657,12 +636,12 @@ input[type='search']{
 }
 
 .movie-title{
-	text-align: center;
+	@apply text-center
 }
 
 .movie-link{
-	color: black;
-	text-decoration: none;
+	@apply text-black no-underline;
+	/*text-decoration: none;*/
 }
 
 .rating{
@@ -694,6 +673,7 @@ input[type='search']{
 	background-position: 0 100%;
 	width: fit-content;
 	animation: moving 1s infinite linear;
+	@apply font-bold text-xl
 }
 
 @keyframes moving{
@@ -855,6 +835,10 @@ input[type='search']{
 
 #overview-div>h3{
 	padding-bottom: 10px;
+}
+
+#overview{	
+	margin-bottom: 30px;
 }
 
 #title{

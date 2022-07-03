@@ -4,6 +4,7 @@ let images = `https://image.tmdb.org/t/p/`;//used to be original not w200
 var timeWindow = 'day';
 let qSA = (qSA) => document.querySelectorAll(qSA);
 let qS = (qS) => document.querySelector(qS);
+let homePageBackground = qS('#homePageBackground')
 let trendingSection = qS('#trending-section');
 let popularSection = qS('#popular-section');
 let trendingDiv = qS('#trending-movies-div');

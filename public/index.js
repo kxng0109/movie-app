@@ -66,7 +66,7 @@ let votePerc = (index, varName, vote_average, rating, vote_count) =>{
 		rating[index].style.backgroundColor = "transparent";
 	}else{
 		if (vote_count !== 0) {
-			ratingPercent = vote_average * 10;
+			ratingPercent = parseInt((vote_average * 10));
 			varName[index].textContent = ratingPercent + '%';	
 			if (ratingPercent >= 80) {
 		  		rating[index].style.backgroundColor = "hsl(120, 100%, 35%)";
@@ -262,10 +262,10 @@ function trendingInfo () {
 	  	// const {adult, media_.type, title, overview, release_date, poster_path, vote_average} = data.results[0];
 
 	  	size = 'w400/'
-	  	container.style.background = `url('${images}${size}${data.results[anyValue(data.results.length)].poster_path}')`;
-	  	container.style.backgroundSize = 'cover';
-	  	container.style.backgroundPosition = 'center';
-	  	container.style.backgroundRepeat = 'no-repeat';
+	  	homePageBackground.style.background = `url('${images}${size}${data.results[anyValue(data.results.length)].poster_path}')`;
+	  	homePageBackground.style.backgroundSize = 'cover';
+	  	homePageBackground.style.backgroundPosition = 'center';
+	  	homePageBackground.style.backgroundRepeat = 'no-repeat';
 	  	size = 'w200/';
 	  	category.forEach(aCallback);
 	  	function aCallback (item, index) {
@@ -282,7 +282,7 @@ function trendingInfo () {
 		  	} else{
 		  		categoryRelease[index].textContent = release_date;
 		  	}
-		  	votePerc(index, rating, vote_average, rating);
+		  	votePerc(index, rating, vote_average, rating);//check why you passed rating twice
 		  	category[index].onclick = () => {
 		  		const tempInfo = `${proxy}/${media_type}/${id}`;
 		  		localStorage.setItem('moreInfo', tempInfo);
