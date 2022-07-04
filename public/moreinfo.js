@@ -20,7 +20,7 @@ let votePerc = (vote_average, rating, vote_count) =>{
 		rating.textContent = '';
 	}else{
 		if (vote_count !== 0) {
-			ratingPercent = vote_average * 10;
+			ratingPercent = parseInt((vote_average * 10));
 			rating.textContent = ratingPercent + '%';	
 			if (ratingPercent >= 80) {
 		  		rating.style.color = "hsl(120, 100%, 35%)";
@@ -35,11 +35,19 @@ let votePerc = (vote_average, rating, vote_count) =>{
 	}
 }
 
-let durationConversion = rawDuration =>{
+
+//Converts into hours and minutes
+let durationConversion = (rawDuration, episodeDuration) =>{
 	switch (true) {
 		case typeof rawDuration === 'number':			
-			const hour = Math.floor(rawDuration / 60);
-			const minute = (rawDuration % 60);
+			hour = Math.floor(rawDuration / 60);
+			minute = (rawDuration % 60);
+			return `${hour}:${minute}`;
+		break;
+
+		case episodeDuration != undefined || episodeDuration != null:
+			hour = Math.floor(episodeDuration[0] / 60);
+			minute = (episodeDuration[0] % 60);
 			return `${hour}:${minute}`;
 		break;
 		default:
@@ -53,13 +61,17 @@ function categoryinfo () {
 	fetch(theCatInfo)
 	.then(response => response.json())
 	.then(data =>{
-		const{backdrop_path, belongs_to_collection, genres, homepage, id, original_title, overview, poster_path, production_companies, production_countries, spoken_languages, status, release_date, tagline, title, vote_average, vote_count, runtime} = data;
+		const{backdrop_path, belongs_to_collection, episode_run_time, genres, homepage, id, name, original_title, original_name, overview, poster_path, production_companies, production_countries, spoken_languages, status, release_date, tagline, title, vote_average, vote_count, runtime} = data;
 		document.title = `${title}`;
 		console.log(data);
 		votePerc(vote_average, rating, vote_count);
 		voteCount.textContent = vote_count;
-		Duration.textContent = durationConversion(runtime);
-		categoryTitle.textContent = title;
+		Duration.textContent = durationConversion(runtime, episode_run_time);//calls durationConversion which converts the runtime into hours and minutes
+		//Check for whichever one is available and makes them the title
+		categoryTitle.textContent = title ? title 
+		: original_title ? original_title 
+		: name ? name : original_name;
+		
 		categoryRelease.textContent = release_date;
 		tagLine.textContent = `...${tagline}....`;
 		categoryImages.forEach((element, index) =>{
@@ -79,7 +91,7 @@ function categoryinfo () {
 			}
 		})
 		Genre.textContent = `Genre: ${theGenres}`;
-		size = 'original';
+		size = 'w300';
 		backGround.style.background = `url('${images}${size}${backdrop_path}') no-repeat center`;
 		backGround.style.backgroundSize = 'cover';
 		this.overview.textContent = overview;//This is confusing, this,overview is the variable I made, overview is the destructured variable
@@ -87,13 +99,14 @@ function categoryinfo () {
 	fetchCast('no');
 }
 
+//To fetch the casts of the movie/tv show
 function fetchCast(more){
 	fetch(theCatCredit)
 	.then(response => response.json())
 	.then(data =>{
-		console.log(data);
+		// console.log(data);
 
-		switch (more === 'no') {
+		switch (more === 'no') {//If the user clicks "load more" or not in the casts place
 			case false:
 				for (var i = 15; i <= data.cast.length - 1; i++) {
 					eachCast[i].style.display = 'block';
@@ -114,7 +127,7 @@ function fetchCast(more){
 							castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
 						break;
 						default:
-							castImages[index].setAttribute('src',  `../images/photo1.webp`);
+							castImages[index].setAttribute('src',  `./images/photo1.webp`);
 						break;
 					}
 					castRealName[index].textContent = name;

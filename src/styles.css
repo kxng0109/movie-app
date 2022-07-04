@@ -24,6 +24,7 @@
 
 nav .logo{
 	width: 100px;
+	height: auto;
 }
 
 nav a{
@@ -378,6 +379,10 @@ nav>*{
     100%{background-position:0% 2%}
 }
 
+.headings{
+	@apply font-bold
+}
+
 #welcome{
 	font-size: 40px;
 }
@@ -412,6 +417,10 @@ button[type='submit']{
 
 input[type='search']{
 	padding: 0 10px;
+}
+
+input{
+	@apply focus-visible:outline-0 focus:outline-0 cursor-text text-black
 }
 
 
@@ -601,7 +610,7 @@ input[type='search']{
 
 .category-movies{
 	/*background: #FDF0D5;*/
-	@apply relative flex flex-col items-center w-[12.5rem] my-[1.875rem] mx-5 rounded-xl h-[21.875rem]
+	@apply relative flex flex-col items-center w-[12.5rem] my-[1.875rem] mx-5 rounded-xl h-[22.875rem]
 }
 
 .movie-first-info{
@@ -672,7 +681,7 @@ input[type='search']{
 	background-repeat: repeat-x;
 	background-position: 0 100%;
 	width: fit-content;
-	animation: moving 1s infinite linear;
+	/*animation: moving 1s infinite linear;*/
 	@apply font-bold text-xl
 }
 
@@ -790,10 +799,7 @@ input[type='search']{
 }
 
 .cast-members-img, .more{
-	width: 150px;
-	height: 225px;
-	object-fit: cover;
-	border-radius: 5px;
+	@apply min-w-[9.375rem] h-auto object-cover rounded-md;
 }
 
 .subtext{
@@ -819,13 +825,7 @@ input[type='search']{
 }
 
 #background{
-	position: fixed;
-	inset: 0;
-	height: 100vh;
-	z-index: 0;
-	filter: brightness(0.5) opacity(0.8);
-	-webkit-filter: brightness(0.5) opacity(0.8);
-	-moz-filter: brightness(0.5) opacity(0.8);
+	@apply fixed inset-0 h-screen z-0 brightness-[0.4] opacity-80;
 }
 
 #overview-div>*{
@@ -851,8 +851,7 @@ input[type='search']{
 }
 
 .cast-real-name{
-	font-size: 18px;
-	color: white;
+	@apply mt-2 text-base text-white
 }
 
 .cast-name{

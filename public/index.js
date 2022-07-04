@@ -134,11 +134,11 @@ function load () {
 
 	links.innerHTML = `
 							<div class="category-movies">
-							<img class="category-image skeletonImg">
+							<img class="category-image skeletonImg" loading='lazy'>
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
-								<h4 class="movie-title "></h4>
+								<h4 class="movie-title headings"></h4>
 								<p class="movie-release-date"></p>
 							</div>
 						</div>`
@@ -181,7 +181,7 @@ let searching = (thetype, page_no) =>{
 	  	// timEr(search);
 	  	console.log(search);	  
 	  	if(search.results.length == 0) {
-	  		alert(`${type} does not exist`)
+	  		alert(`${type} does not exist`) //fix this as well, change the text to something useful
 	  	}else{
 	  		searchSection.style.display = 'block';
 	  		if (searchSection.style.display == 'block') {
@@ -325,7 +325,7 @@ function popularInfo(type){
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
-								<h4 class="movie-title "></h4>
+								<h4 class="movie-title headings"></h4>
 								<p class="movie-release-date"></p>
 							</div>
 						</div>`

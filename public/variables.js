@@ -123,11 +123,13 @@ changeNameForm.onsubmit = (e) =>{
 	}
 }
 
-menuBtn.onclick = () =>{
-	if (nav.style.animation === '1s ease 0s 1 normal forwards running showMenu') {
-		nav.style.animation = 'hideMenu 1s normal forwards'
-	} else{
-		nav.style.animation = 'showMenu 1s normal forwards';
+if (menuBtn){	
+	menuBtn.onclick = () =>{
+		if (nav.style.animation === '1s ease 0s 1 normal forwards running showMenu') {
+			nav.style.animation = 'hideMenu 1s normal forwards'
+		} else{
+			nav.style.animation = 'showMenu 1s normal forwards';
+		}
 	}
 }
 
