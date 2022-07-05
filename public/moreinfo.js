@@ -50,13 +50,13 @@ let durationConversion = (rawDuration, episodeDuration) =>{
 	switch (true) {
 		case typeof rawDuration === 'number':			
 			hour = Math.floor(rawDuration / 60);
-			minute = (rawDuration % 60) == 0 ? '00' : (rawDuration % 60);
+			minute = (rawDuration % 60) <= 10 ? `0${rawDuration % 60}` : (rawDuration % 60);
 			return `${hour}:${minute}`;
 		break;
 
 		case episodeDuration != undefined || episodeDuration != null:
 			hour = Math.floor(episodeDuration[0] / 60);
-			minute = (episodeDuration % 60) == 0 ? '00' : (episodeDuration % 60);
+			minute = (episodeDuration[0] % 60)  <= 10 ? `0${episodeDuration[0] % 60}` : (episodeDuration[0] % 60);
 			return `${hour}:${minute}`;
 		break;
 		default:
