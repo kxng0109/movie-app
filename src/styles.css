@@ -348,13 +348,7 @@ nav>*{
 }
 
 #main1, #main2{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	position: absolute;
-	width: 100%;
-	top: var(--top);
-	left: 0;
+	@apply flex flex-col justify-center absolute w-full top-[var(--top)] left-0
 }
 
 #welcome-section{
@@ -756,8 +750,8 @@ input{
 
 
 #main2{
-	height: 100vh;
-	display: block;
+	background: hwb(0deg 0% 100% / 50%);
+	@apply block h-fit;
 }
 
 #quickinfo1{
@@ -816,12 +810,8 @@ input{
 	font-size: 20px;
 }
 
-#title{
-	height: 10vmin;
-	text-align: center;
-	font-size: 25px;
-	color: white;
-	text-decoration: underline;
+#movieTitle{
+	@apply text-center text-xl text-white my-5
 }
 
 #background{
@@ -841,13 +831,9 @@ input{
 	margin-bottom: 30px;
 }
 
-#title{
-	margin: 20px 0;
-}
-
 #tagline{
-	padding-left: 20px;
 	color: hsl(0, 0%, 90%);
+	@apply px-5 text-lg;
 }
 
 .cast-real-name{
@@ -855,38 +841,34 @@ input{
 }
 
 .cast-name{
-	font-size: 14px;
-	color: white;
+	@apply text-sm text-white mb-2
 }
 
 #castod{
-	position: relative;	
-	padding-left: 20px;
+	@apply relative pl-5;
 }
 
 #cast{
-	margin-top: 30px;
+	/*margin-top: 30px;
 	column-gap: 30px;
 	height: fit-content;
 	display: flex;
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: flex-start;*/
+	@apply mt-9 mb-5 gap-x-8 h-fit flex flex-row items-start;
 }
 
 #back-to-begin{
-	position: absolute;
+	/*position: absolute;
 	top: 25%;
 	font-size: 50px;
-	color: white;
+	color: white;*/
+	@apply absolute top-1/2 text-5xl text-white -translate-y-1/2
 }
 
 #blur{
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 40px;
-	background: linear-gradient(90deg, transparent, hsl(0, 0%, 80%));
+	background: linear-gradient(90deg, transparent, hsl(0, 0%, 70%));
+	@apply absolute right-0 top-16 bottom-0 w-9 
 }
 
 .more{
@@ -904,4 +886,16 @@ input{
 	color: white;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+.each-production-company-div{
+	@apply flex flex-col items-center px-4 justify-center border-r my-3
+}
+
+.production-companies--image{
+	@apply w-20 mb-2 bg-white
+}
+
+.production-companies--name{
+	@apply text-white text-lg text-center
 }

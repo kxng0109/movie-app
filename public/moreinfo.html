@@ -67,11 +67,24 @@
 				<div id="quickinfo2">
 					<img src="" id="main-image" class="image">
 					<div>
-						<p id="genre"></p>
-						<p id="release-date" class="info-text"></p>
+						<div id="languages-spoken--container">
+							<p id="languages-spoken--header" class="underline text-lg">Language Spoken:</p>
+							<p id="each-language"></p>
+						</div>
+						
+						<div id="genre--container">
+							<p id="genre--header" class="underline text-lg">Genre:</p>
+							<p id="genre"></p>
+						</div>
+
+						<div id="release-date--container">
+							<p id="release-date--header" class="underline text-lg">Released:</p>
+							<p id="release-date" class="info-text"></p>
+						</div>
 						<!-- <p id="status" class="info-text"></p> -->
 					</div>
 				</div>
+
 				<div id="quickinfo1">
 					<div id="averagevote">
 						<div id="avnumber"></div>
@@ -87,17 +100,33 @@
 					</div>
 				</div>
 
-				<p id="title" class="info-text"></p>
+				<p id="movieTitle" class="info-text"></p>
 
 				<div id="overview-div">
-					<h3>Overview</h3>
+					<h3 class="underline text-lg">Overview</h3>
 					<p id="overview"></p>
 				</div>
 
 				<em id="tagline"></em>
+
+				<div class="grid grid-cols-2 budget-revenue-div">
+					<div id="budget--container" class="text-center my-7 text-white">
+						<p id="budget--header" class="text-lg">Budget:</p>
+						<p id="budget"></p>
+					</div>
+
+					<div id="revenue--container" class="text-center my-7 text-white border-l">
+						<p id="revenue--header" class="text-lg">Revenue:</p>
+						<p id="revenue"></p>
+					</div>
+				</div>
+
+				<div id="production-companies--container" class="justify-between px-5 my-4 hidden align-center overflow-x-auto">
+				</div>
 			</div>
 
-			<div id="castod">				
+			<div id="castod">
+				<h2 class="text-white text-2xl underline">Casts</h2>
 				<ion-icon name="chevron-back-circle-outline" id="back-to-begin">
 				</ion-icon>
 				<div id="blur"></div>

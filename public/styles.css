@@ -510,12 +510,30 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: -1;
 }
 
+.my-7 {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .block {
   display: block;
 }
 
+.flex {
+  display: flex;
+}
+
 .inline-flex {
   display: inline-flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -528,6 +546,51 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-screen {
   width: 100vw;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.border-l {
+  border-left-width: 1px;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .blur-\[2px\] {
@@ -1004,14 +1067,14 @@ nav>*{
   padding-bottom: 20px;
 }
 
-#main1, #main2{
+#main1, #main2 {
+  position: absolute;
+  top: var(--top);
+  left: 0px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
-  position: absolute;
-  width: 100%;
-  top: var(--top);
-  left: 0;
 }
 
 #welcome-section{
@@ -1562,8 +1625,11 @@ input:focus-visible {
 }
 
 #main2{
-  height: 100vh;
+  background: hwb(0deg 0% 100% / 50%);
   display: block;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 #quickinfo1{
@@ -1626,12 +1692,14 @@ input:focus-visible {
   font-size: 20px;
 }
 
-#title{
-  height: 10vmin;
+#movieTitle {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   text-align: center;
-  font-size: 25px;
-  color: white;
-  text-decoration: underline;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 #background {
@@ -1660,13 +1728,12 @@ input:focus-visible {
   margin-bottom: 30px;
 }
 
-#title{
-  margin: 20px 0;
-}
-
 #tagline{
-  padding-left: 20px;
   color: hsl(0, 0%, 90%);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .cast-real-name {
@@ -1677,42 +1744,60 @@ input:focus-visible {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.cast-name{
-  font-size: 14px;
-  color: white;
+.cast-name {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-#castod{
+#castod {
   position: relative;
-  padding-left: 20px;
+  padding-left: 1.25rem;
 }
 
 #cast{
-  margin-top: 30px;
-  -moz-column-gap: 30px;
-       column-gap: 30px;
+  /*margin-top: 30px;
+	column-gap: 30px;
+	height: fit-content;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;*/
+  margin-top: 2.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  display: flex;
   flex-direction: row;
   align-items: flex-start;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }
 
 #back-to-begin{
+  /*position: absolute;
+	top: 25%;
+	font-size: 50px;
+	color: white;*/
   position: absolute;
-  top: 25%;
-  font-size: 50px;
-  color: white;
+  top: 50%;
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  font-size: 3rem;
+  line-height: 1;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity))
 }
 
 #blur{
+  background: linear-gradient(90deg, transparent, hsl(0, 0%, 70%));
   position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 40px;
-  background: linear-gradient(90deg, transparent, hsl(0, 0%, 80%));
+  right: 0px;
+  top: 4rem;
+  bottom: 0px;
+  width: 2.25rem
 }
 
 .more{
@@ -1730,4 +1815,31 @@ input:focus-visible {
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.each-production-company-div {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.production-companies--image {
+  margin-bottom: 0.5rem;
+  width: 5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.production-companies--name {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
