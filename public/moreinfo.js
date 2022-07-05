@@ -1,4 +1,4 @@
-categoryImages = qSA('.image');
+categoryImage = qSA('.image');
 rating = qS('#avnumber');
 categoryTitle = qS('#movieTitle');
 categoryRelease = qS('#release-date');
@@ -21,6 +21,7 @@ let languagesSpokenHeader = qS('#languages-spoken--header');
 let releaseDateHeader = qS('#release-date--header');
 let productionCompaniesContainer = qS('#production-companies--container');
 let budgetAndRevenueDiv = qS('.budget-revenue-div');
+let recommendationsParentDiv = qS('#recommendations-parent-div');
 
 
 let votePerc = (vote_average, rating, vote_count) =>{
@@ -90,7 +91,7 @@ let addComma = array =>{
 }
 
 
-var theCategory, theCategoryInfo, theCategoryCredit;
+var theCategory, theCategoryInfo, theCategoryCredit, callRecommendations;
 //Calls the API and receives evey info about the movie and assigns them
 function categoryinfo () {
 	fetch(theCategoryInfo)
@@ -100,7 +101,7 @@ function categoryinfo () {
 		
 		//Replaces the title of the wepbage with the title of the movie or tv show
 		document.title = `${showTheNameOfMovieOrTv(title, original_title, name, original_name)}`;
-		console.log(data);
+		// console.log(data);
 		//Maps over the spoken_language array from the api and calls a function which gets it's result and displays it
 		let spokenLanguagesName = spoken_languages.map(item =>item.english_name);
 		eachLanguage.textContent = `${addComma(spokenLanguagesName)}`;
@@ -119,9 +120,9 @@ function categoryinfo () {
 		categoryRelease.textContent = release_date ? release_date : last_air_date;
 
 		tagLine.textContent = `...${tagline}....`;
-
-		categoryImages.forEach((element, index) =>{
-			categoryImages[index].setAttribute('src', `${images}${size}${poster_path}`);
+		categoryImage.forEach((element, index) =>{
+			size = 'w400';
+			categoryImage[index].setAttribute('src', `${images}${size}${poster_path}`);
 		});
 
 		// Status.textContent = `Status: ${status}`;
@@ -148,7 +149,7 @@ function categoryinfo () {
 		mappedProductionName.forEach((item, index) =>{
 			loadCompanies(mappedProductionImage[index], mappedProductionName[index])
 		})
-		productionCompaniesContainer.style.display = mappedProductionName ? 'flex' : 'none'
+		productionCompaniesContainer.style.display = mappedProductionName ? 'grid' : 'none'
 
 		size = 'w300';
 		backGround.style.background = `url('${images}${size}${backdrop_path}') no-repeat center`;
@@ -161,6 +162,9 @@ function categoryinfo () {
 		this.budget.textContent = `$${budget}`;
 		this.revenue.textContent = `$${revenue}`;
 	});
+	
+	//Look for recommendations
+	recommendations()
 
 	//Fetch the cast, the no parameter is to tell the function to 
 	//display a maximum of 15 casts when callling the function
@@ -284,10 +288,48 @@ function add(){
 	cast.appendChild(outerDiv);
 }
 
+
+//Look for recommendations
+let recommendations = () =>{
+	fetch(callRecommendations)
+	.then(res => res.json())
+	.then(data => {
+		console.log(data);
+		data.results.forEach((item, index) =>{
+			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average} = data.results[index];
+			let recommendationLink = `${proxy}/${media_type}/${id}`
+			let posterImage = `${images}${size}${poster_path}`;
+			console.log(recommendationLink)
+			recommendationTemplate(recommendationLink, title, original_title, name, original_name, posterImage)
+		})
+	})
+}
+
+let recommendationTemplate = (recommendationLink, title, original_title, name, original_name, posterImage) =>{
+	let links = document.createElement('a');
+	links.classList.add('movie-link');
+	links.setAttribute('href', recommendationLink);
+
+	links.innerHTML = `
+							<div class="category-movies">
+							<img class="category-image skeletonImg" loading='lazy' src=${posterImage}>
+							<p class="rating">N/A</p>
+							<div class="rating-bg"></div>
+							<div class="movie-first-info">
+								<h4 class="movie-title headings">${showTheNameOfMovieOrTv(title, original_title, name, original_name)}</h4>
+								<p class="movie-release-date"></p>
+							</div>
+						</div>`
+	recommendationsParentDiv.appendChild(links);
+}
+
+
 window.onload = () =>{
 	theCategory = localStorage.getItem('moreInfo');
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
 	theCategoryCredit = `${theCategory}/credits?api_key=${api_key}`;
+	callRecommendations = `${theCategory}/recommendations?api_key=${api_key}&page=1`
 	categoryinfo();
+	console.log(callRecommendations)
 	backToBegin.style.display = 'none';
 }

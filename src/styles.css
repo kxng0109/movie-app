@@ -755,37 +755,26 @@ input{
 }
 
 #quickinfo1{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 30px;
 	background-color: hsla(0, 0%, 100%, 0.9);
+	@apply flex flex-row justify-between items-center p-5;
 }
 
 #quickinfo2{
-	color: white;
-	width: 100%;
-	height: 80vmin;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	padding: 0 20px;
 	background-color: hsla(0, 0%, 10%, 0.2);
+	@apply text-white w-full h-fit flex flex-row justify-center items-center px-5 my-8;
 }
 
-#quickinfo2>div{
-	height: 70%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+#quickinfo2>div, #overview{
+	font-size: min(4.5vw, 16px);
+}
+
+.quickinfo--headers{
+	font-size: min(5vw, 18px);
+	@apply underline;
 }
 
 #main-image{
-	border-radius: 10px;
-	width: 175px;
-	margin-right: 29px;
+	@apply w-1/2 max-w-[175px] mr-7 rounded-md;
 }
 
 #cast{
@@ -797,8 +786,7 @@ input{
 }
 
 .subtext{
-	color: grey;
-	font-size: 13px;
+	@apply text-gray-500 text-sm text-center;
 }
 
 #avnumber, #vcnumber, #dvalue{
@@ -823,17 +811,9 @@ input{
 	color: white;
 }
 
-#overview-div>h3{
-	padding-bottom: 10px;
-}
-
-#overview{	
-	margin-bottom: 30px;
-}
-
 #tagline{
 	color: hsl(0, 0%, 90%);
-	@apply px-5 text-lg;
+	@apply px-5 text-lg block text-center;
 }
 
 .cast-real-name{
@@ -888,8 +868,12 @@ input{
 	cursor: pointer;
 }
 
+#production-companies--container{
+	grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+}
+
 .each-production-company-div{
-	@apply flex flex-col items-center px-4 justify-center border-r my-3
+	@apply flex flex-col items-center px-4 justify-center my-3 
 }
 
 .production-companies--image{

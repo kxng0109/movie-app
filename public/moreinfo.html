@@ -66,20 +66,20 @@
 			<div id="quickinfo">
 				<div id="quickinfo2">
 					<img src="" id="main-image" class="image">
-					<div>
+					<div class="h-[70%] flex flex-col justify-between">
 						<div id="languages-spoken--container">
-							<p id="languages-spoken--header" class="underline text-lg">Language Spoken:</p>
+							<p id="languages-spoken--header" class="quickinfo--headers">Language Spoken:</p>
 							<p id="each-language"></p>
 						</div>
 						
-						<div id="genre--container">
-							<p id="genre--header" class="underline text-lg">Genre:</p>
+						<div id="genre--container" class="my-6">
+							<p id="genre--header" class="quickinfo--headers">Genre:</p>
 							<p id="genre"></p>
 						</div>
 
 						<div id="release-date--container">
-							<p id="release-date--header" class="underline text-lg">Released:</p>
-							<p id="release-date" class="info-text"></p>
+							<p id="release-date--header" class="quickinfo--headers">Released:</p>
+							<p id="release-date"></p>
 						</div>
 						<!-- <p id="status" class="info-text"></p> -->
 					</div>
@@ -103,8 +103,8 @@
 				<p id="movieTitle" class="info-text"></p>
 
 				<div id="overview-div">
-					<h3 class="underline text-lg">Overview</h3>
-					<p id="overview"></p>
+					<h3 class="underline text-lg pb-3">Overview</h3>
+					<p id="overview" class="mb-8"></p>
 				</div>
 
 				<em id="tagline"></em>
@@ -121,18 +121,20 @@
 					</div>
 				</div>
 
-				<div id="production-companies--container" class="justify-between px-5 my-4 hidden align-center overflow-x-auto">
+				<div id="production-companies--container" class="justify-center px-5 my-4 hidden align-center overflow-x-auto place-content-center">
 				</div>
 			</div>
 
 			<div id="castod">
-				<h2 class="text-white text-2xl underline">Casts</h2>
+				<h2 class="text-white text-lg underline">Casts</h2>
 				<ion-icon name="chevron-back-circle-outline" id="back-to-begin">
 				</ion-icon>
 				<div id="blur"></div>
 				<div id="cast">
 				</div>
 			</div>
+
+			<div id="recommendations-parent-div" class="flex overflow-x-auto"></div>
 		</main>
 	</div>
 </body>
