@@ -22,7 +22,8 @@ let releaseDateHeader = qS('#release-date--header');
 let productionCompaniesContainer = qS('#production-companies--container');
 let budgetAndRevenueDiv = qS('.budget-revenue-div');
 let recommendationsParentDiv = qS('#recommendations-parent-div');
-
+let episodeAndSeason = qS('#episode-and-season');
+var recommendationsDiv;
 
 let votePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
@@ -97,11 +98,14 @@ function categoryinfo () {
 	fetch(theCategoryInfo)
 	.then(response => response.json())
 	.then(data =>{
-		const{backdrop_path, belongs_to_collection, budget, episode_run_time, genres, homepage, id, last_air_date, name, original_title, original_name, overview, poster_path, production_companies, production_countries, spoken_languages, status, release_date, revenue, tagline, title, vote_average, vote_count, runtime} = data;
+		const{backdrop_path, belongs_to_collection, budget, episode_run_time, genres, homepage, id, last_air_date, name, number_of_episodes, number_of_seasons, original_title, original_name, overview, poster_path, production_companies, production_countries, spoken_languages, status, release_date, revenue, tagline, title, vote_average, vote_count, runtime} = data;
 		
 		//Replaces the title of the wepbage with the title of the movie or tv show
 		document.title = `${showTheNameOfMovieOrTv(title, original_title, name, original_name)}`;
-		// console.log(data);
+		console.log(data);
+		episodeAndSeason.textContent = `Currently on S${number_of_seasons} E${number_of_episodes}`
+		if (typeof number_of_episodes == 'number') {episodeAndSeason.style.display = 'block'};
+
 		//Maps over the spoken_language array from the api and calls a function which gets it's result and displays it
 		let spokenLanguagesName = spoken_languages.map(item =>item.english_name);
 		eachLanguage.textContent = `${addComma(spokenLanguagesName)}`;
@@ -299,28 +303,35 @@ let recommendations = () =>{
 			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average} = data.results[index];
 			let recommendationLink = `${proxy}/${media_type}/${id}`
 			let posterImage = `${images}${size}${poster_path}`;
-			console.log(recommendationLink)
-			recommendationTemplate(recommendationLink, title, original_title, name, original_name, posterImage)
+			// let votePercentage = `${parseInt(vote_average * 10)}%`
+			// rating = qSA('.rating');
+			// votePerc(index, rating, vote_average, rating); //Check this
+			recommendationTemplate(recommendationLink, title, original_title, name, original_name, posterImage);
+			if (recommendationsDiv == undefined || recommendationsDiv == null) return
+				recommendationsDiv[index].onclick = () =>{
+				localStorage.setItem('moreInfo', recommendationLink)
+				window.location.reload();
+			}
 		})
 	})
 }
 
-let recommendationTemplate = (recommendationLink, title, original_title, name, original_name, posterImage) =>{
+let recommendationTemplate = (recommendationLink, title, original_title, name, original_name, posterImage, votePercentage) =>{
 	let links = document.createElement('a');
 	links.classList.add('movie-link');
-	links.setAttribute('href', recommendationLink);
+	links.setAttribute('href', 'javascript:void(0)');
 
 	links.innerHTML = `
-							<div class="category-movies">
+							<div class="category-movies recommendations-div">
 							<img class="category-image skeletonImg" loading='lazy' src=${posterImage}>
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
-							<div class="movie-first-info">
+							<div class="movie-first-info recommendationsTitleAndDate">
 								<h4 class="movie-title headings">${showTheNameOfMovieOrTv(title, original_title, name, original_name)}</h4>
-								<p class="movie-release-date"></p>
 							</div>
 						</div>`
 	recommendationsParentDiv.appendChild(links);
+	recommendationsDiv = qSA('.recommendations-div');
 }
 
 
@@ -330,6 +341,5 @@ window.onload = () =>{
 	theCategoryCredit = `${theCategory}/credits?api_key=${api_key}`;
 	callRecommendations = `${theCategory}/recommendations?api_key=${api_key}&page=1`
 	categoryinfo();
-	console.log(callRecommendations)
 	backToBegin.style.display = 'none';
 }

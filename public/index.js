@@ -179,7 +179,7 @@ let searching = (thetype, page_no) =>{
 	.then(response => response.json())
 	.then(search => {
 	  	// timEr(search);
-	  	console.log(search);	  
+	  	console.log(search);
 	  	if(search.results.length == 0) {
 	  		alert(`${type} does not exist`) //fix this as well, change the text to something useful
 	  	}else{
@@ -256,7 +256,7 @@ function trendingInfo () {
 	  .then(data => {
 		infos(trendingDiv, '#trending-section');
 		trendingDiv.scrollTo({left: 0, behavior: 'smooth'});
-		console.log(data)
+		// console.log(data)
 		// timEr(data);
 	  	// const {page} = data;
 	  	// const {adult, media_.type, title, overview, release_date, poster_path, vote_average} = data.results[0];

@@ -8,6 +8,7 @@
   	<link rel="icon" type="image/x-icon" href="./images/nobg.png">
 	<title>More Info</title>
 	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="stylesheet" type="text/css" href="./moreinfo.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Montserrat+Alternates:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
@@ -66,7 +67,7 @@
 			<div id="quickinfo">
 				<div id="quickinfo2">
 					<img src="" id="main-image" class="image">
-					<div class="h-[70%] flex flex-col justify-between">
+					<div class="h-[90%] flex flex-col justify-between">
 						<div id="languages-spoken--container">
 							<p id="languages-spoken--header" class="quickinfo--headers">Language Spoken:</p>
 							<p id="each-language"></p>
@@ -81,6 +82,8 @@
 							<p id="release-date--header" class="quickinfo--headers">Released:</p>
 							<p id="release-date"></p>
 						</div>
+
+						<p id="episode-and-season" class="hidden mt-3"></p>
 						<!-- <p id="status" class="info-text"></p> -->
 					</div>
 				</div>
@@ -121,7 +124,7 @@
 					</div>
 				</div>
 
-				<div id="production-companies--container" class="justify-center px-5 my-4 hidden align-center overflow-x-auto place-content-center">
+				<div id="production-companies--container" class="justify-center px-5 my-4 hidden align-center overflow-x-auto place-content-center horizontal">
 				</div>
 			</div>
 
@@ -130,11 +133,12 @@
 				<ion-icon name="chevron-back-circle-outline" id="back-to-begin">
 				</ion-icon>
 				<div id="blur"></div>
-				<div id="cast">
+				<div id="cast" class="horizontal">
 				</div>
 			</div>
 
-			<div id="recommendations-parent-div" class="flex overflow-x-auto"></div>
+				<p class="text-white underline text-lg pl-5">Recommended for You</p>
+			<div id="recommendations-parent-div" class="flex overflow-x-auto vertical"></div>
 		</main>
 	</div>
 </body>
