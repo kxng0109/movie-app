@@ -44,6 +44,7 @@ let searchResultPerson;
 let searchResultsDiv;
 let theId;
 var Genre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, Duration, backGround, overview;
+let popular;
 
 let infos = (theDiv, something)=>{
 	category = theDiv.querySelectorAll('.movie-link');

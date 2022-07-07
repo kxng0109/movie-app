@@ -102,7 +102,7 @@ let possibilities = (index, first, second, circular, title, date, images, poster
 function load () {
 	let links = document.createElement('a');
 	links.classList.add('movie-link');
-	links.setAttribute('href', '#');
+	links.setAttribute('href', 'javascript:void(0)');
 
 	links.innerHTML = `
 							<div class="category-movies">
@@ -167,7 +167,7 @@ let searching = (thetype, page_no) =>{
   			for (var resultDivNum = 1; resultDivNum <= search.results.length; resultDivNum++) {
 				searchResultsDiv = document.createElement('a');
 				searchResultsDiv.classList.add('search-info');
-				searchResultsDiv.setAttribute('href', '#');
+				searchResultsDiv.setAttribute('href', 'javascript:void(0)');
 
 				searchResultsDiv.innerHTML = `
 										<img src="" class="search-image">
@@ -228,7 +228,7 @@ function trendingInfo () {
 	  .then(data => {
 		infos(trendingDiv, '#trending-section');
 		trendingDiv.scrollTo({left: 0, behavior: 'smooth'});
-		// console.log(data)
+		console.log(data)
 		// timEr(data);
 	  	// const {page} = data;
 	  	// const {adult, media_.type, title, overview, release_date, poster_path, vote_average} = data.results[0];
@@ -276,7 +276,7 @@ function popularInfo(type){
 	.then(pdata => {
 	infos(popularDiv, '#popular-section');
 	popularDiv.scrollTo({left: 0, behavior: 'smooth'});
-		// console.log(pdata);
+		console.log(pdata);
 		var resultDivNum;
 		if (category.length === pdata.results.length){
 			category.forEach( function(element, index) {
@@ -286,11 +286,11 @@ function popularInfo(type){
 		for (var resultDivNum = 1; resultDivNum <= pdata.results.length; resultDivNum++) {
 			let alinks = document.createElement('a');
 			alinks.classList.add('movie-link');
-			alinks.setAttribute('href', '#');
+			alinks.setAttribute('href', 'javascript:void(0)');
 
 			alinks.innerHTML = `
-									<div class="category-movies">
-							<img class="category-image skeletonImg">
+									<div class="category-movies popular">
+							<img class="category-image skeletonImg" loading="lazy">
 							<div class="popular-circular-portrait">
 								<img src=""class="popular-person-image">
 							</div>
@@ -302,18 +302,26 @@ function popularInfo(type){
 							</div>
 						</div>`
 			popularDiv.appendChild(alinks);
+			popular = qSA('.popular')
 			infos(popularDiv, '#popular-section');
 			popularPersonImage = qSA('.popular-person-image');
 			popularCircular = qSA('.popular-circular-portrait');
 			if(category.length === 20){
 				category.forEach(aCallback);
 				function aCallback (item, index) {
-				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = pdata.results[index];
+				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path, id} = pdata.results[index];
 				  	possibilities(index, popularPersonImage, categoryImage, popularCircular, categoryTitle, categoryRelease, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
 				  	votePerc(index, rating, vote_average);
 				  	if (type === 'person') {
 				  		category[index].style.height = '300px';
 				  		categoryInfo[index].style.top = '200px'
+				  	}
+				  	popular[index].onclick = () => {
+				  		const tempInfo = `${proxy}/${type}/${id}`;
+				  		localStorage.setItem('moreInfo', tempInfo);
+				  		window.location.replace('./moreinfo.html');
+				  		// setTimeout(categoryinfo(id, media_type), 3000);
+				  		// setTimeout(Loader, 100);
 				  	}
 				}
 			}
