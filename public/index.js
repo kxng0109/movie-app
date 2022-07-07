@@ -273,17 +273,17 @@ function popularInfo(type){
 	let popular = `${proxy}${type}/popular?api_key=${api_key}`;
 	fetch(popular)
 	.then(response => response.json())
-	.then(pdata => {
+	.then(data => {
 	infos(popularDiv, '#popular-section');
 	popularDiv.scrollTo({left: 0, behavior: 'smooth'});
-		console.log(pdata);
+		console.log(data);
 		var resultDivNum;
-		if (category.length === pdata.results.length){
+		if (category.length === data.results.length){
 			category.forEach( function(element, index) {
 				popularDiv.removeChild(category[index]);
 			});
 		}
-		for (var resultDivNum = 1; resultDivNum <= pdata.results.length; resultDivNum++) {
+		for (var resultDivNum = 1; resultDivNum <= data.results.length; resultDivNum++) {
 			let alinks = document.createElement('a');
 			alinks.classList.add('movie-link');
 			alinks.setAttribute('href', 'javascript:void(0)');
@@ -309,7 +309,7 @@ function popularInfo(type){
 			if(category.length === 20){
 				category.forEach(aCallback);
 				function aCallback (item, index) {
-				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path, id} = pdata.results[index];
+				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path, id} = data.results[index];
 				  	possibilities(index, popularPersonImage, categoryImage, popularCircular, categoryTitle, categoryRelease, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
 				  	votePerc(index, rating, vote_average);
 				  	if (type === 'person') {
@@ -320,8 +320,6 @@ function popularInfo(type){
 				  		const tempInfo = `${proxy}/${type}/${id}`;
 				  		localStorage.setItem('moreInfo', tempInfo);
 				  		window.location.replace('./moreinfo.html');
-				  		// setTimeout(categoryinfo(id, media_type), 3000);
-				  		// setTimeout(Loader, 100);
 				  	}
 				}
 			}

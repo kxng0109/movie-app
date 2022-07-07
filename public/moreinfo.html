@@ -32,12 +32,12 @@
 		<p id="welcome-username"></p>
 		<div></div>
 		<header>
-			<a href="index.html" id="header-icon"><img src="./images/nobg.png" class="logo"></a>
+			<a href="./index.html" id="header-icon"><img src="./images/nobg.png" class="logo" alt="website-logo"></a>
 			<div id="search-area">
 				<form class="search">
 					<input type="search" name="search" id="search-bar-header" class="search-bar">
 					<button type="submit" class="search-btn-main">
-						<a id="search-btn-area" class="link">
+						<a id="search-btn-area" class="link" href="javascript:void">
 							<ion-icon name="search-circle-outline" id="search-btn"></ion-icon>
 						</a>
 					</button>
@@ -66,20 +66,20 @@
 		<main id="main2" class="main">
 			<div id="quickinfo">
 				<div id="quickinfo2">
-					<img src="" id="main-image" class="image">
+					<img src="" id="main-image" class="image" alt="poster image">
 					<div class="h-[90%] flex flex-col justify-between">
 						<div id="languages-spoken--container">
-							<p id="languages-spoken--header" class="quickinfo--headers">Language Spoken:</p>
+							<p id="languages-spoken--header" class="quickinfo--headers"></p>
 							<p id="each-language"></p>
 						</div>
 						
 						<div id="genre--container" class="my-6">
-							<p id="genre--header" class="quickinfo--headers">Genre:</p>
+							<p id="genre--header" class="quickinfo--headers"></p>
 							<p id="genre"></p>
 						</div>
 
 						<div id="release-date--container">
-							<p id="release-date--header" class="quickinfo--headers">Released:</p>
+							<p id="release-date--header" class="quickinfo--headers"></p>
 							<p id="release-date"></p>
 						</div>
 
@@ -106,13 +106,13 @@
 				<p id="movieTitle" class="info-text"></p>
 
 				<div id="overview-div">
-					<h3 class="underline text-lg pb-3">Overview</h3>
+					<h3 class="underline text-lg pb-3"></h3>
 					<p id="overview" class="mb-8"></p>
 				</div>
 
 				<em id="tagline"></em>
 
-				<div class="grid grid-cols-2 budget-revenue-div">
+				<div class="grid grid-cols-2 budget-revenue-div hidden">
 					<div id="budget--container" class="text-center my-7 text-white">
 						<p id="budget--header" class="text-lg">Budget:</p>
 						<p id="budget"></p>
@@ -128,7 +128,7 @@
 				</div>
 			</div>
 
-			<div id="castod">
+			<div id="casts--parent-div">
 				<h2 class="text-white text-lg underline">Casts</h2>
 				<ion-icon name="chevron-back-circle-outline" id="back-to-begin">
 				</ion-icon>
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 
-				<p class="text-white underline text-lg pl-5">Recommended for You</p>
+				<p class="text-white underline text-lg pl-5 recommendations--header hidden">Recommended for You</p>
 			<div id="recommendations-parent-div" class="flex overflow-x-auto vertical"></div>
 		</main>
 	</div>

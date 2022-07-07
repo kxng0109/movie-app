@@ -1,0 +1,128 @@
+#main2{
+	background: hwb(0deg 0% 100% / 50%);
+	@apply block h-fit;
+}
+
+#quickinfo1{
+	background-color: hsla(0, 0%, 100%, 0.9);
+	@apply hidden flex-row justify-between items-center p-5;
+}
+
+#quickinfo2{
+	background-color: hsla(0, 0%, 10%, 0.2);
+	@apply text-white w-full h-fit flex flex-row justify-center items-center px-5 my-8;
+}
+
+#quickinfo2>div, #overview{
+	font-size: min(4.5vw, 16px);
+}
+
+.quickinfo--headers{
+	font-size: min(5vw, 18px);
+	@apply underline;
+}
+
+#main-image{
+	@apply w-1/2 max-w-[175px] mr-7 rounded-md;
+}
+
+#cast{
+	overflow-x: auto;
+}
+
+.cast-members-img, .more{
+	@apply min-w-[9.375rem] h-auto object-cover rounded-md;
+}
+
+.subtext{
+	@apply text-gray-500 text-sm text-center;
+}
+
+#avnumber, #vcnumber, #dvalue{
+	text-align: center;
+	font-size: 27px;
+}
+
+.info-text{
+	font-size: 20px;
+}
+
+#movieTitle{
+	@apply text-center text-xl text-white my-5
+}
+
+#background{
+	@apply fixed inset-0 h-screen z-0 brightness-[0.4] opacity-80;
+}
+
+#overview-div>*{
+	padding-left: 20px;
+	color: white;
+}
+
+#tagline{
+	color: hsl(0, 0%, 90%);
+	@apply px-5 text-lg block text-center;
+}
+
+.cast-real-name{
+	@apply mt-2 text-base text-white
+}
+
+.cast-name{
+	@apply text-sm text-white mb-2
+}
+
+#casts--parent-div{
+	@apply hidden relative pl-5;
+}
+
+#cast{
+	@apply mt-9 mb-5 gap-x-8 h-fit flex flex-row items-start;
+}
+
+#back-to-begin{
+	@apply absolute top-1/2 text-5xl text-white -translate-y-1/2 cursor-pointer;
+}
+
+#blur{
+	background: linear-gradient(90deg, transparent, hsl(0, 0%, 70%));
+	@apply absolute right-0 top-16 bottom-0 w-9 
+}
+
+.more{
+	min-width: 150px;
+	height: 225.17px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	color: white;
+}
+
+.more-link{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#production-companies--container{
+	grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+}
+
+.each-production-company-div{
+	@apply flex flex-col items-center px-4 justify-center my-3 
+}
+
+.production-companies--image{
+	@apply w-20 mb-2 bg-white
+}
+
+.production-companies--name{
+	@apply text-white text-lg text-center
+}
+
+.recommendationsTitleAndDate{
+	color: white;
+}
