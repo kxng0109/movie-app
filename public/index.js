@@ -57,34 +57,6 @@ let Loader = () =>{
 // 	everyLink[index].addEventListener('click', Loader);
 // });
 
-
-let votePerc = (index, varName, vote_average, rating, vote_count) =>{
-	if (vote_average === undefined) {
-		rating[index].style.display = 'none';
-		ratingBg[index].style.display = 'none';
-		rating[index].textContent = '';
-		rating[index].style.backgroundColor = "transparent";
-	}else{
-		if (vote_count !== 0) {
-			ratingPercent = parseInt((vote_average * 10));
-			varName[index].textContent = ratingPercent + '%';	
-			if (ratingPercent >= 80) {
-		  		rating[index].style.backgroundColor = "hsl(120, 100%, 35%)";
-		  		ratingBg[index].style.backgroundColor = "hsl(120, 100%, 25%)";
-		  	} else if (ratingPercent >= 50) {
-		  		rating[index].style.backgroundColor = "hsl(66, 100%, 35%)";
-		  		ratingBg[index].style.backgroundColor = "hsl(66, 100%, 25%)";
-		  	} else {
-		  		rating[index].style.backgroundColor = "hsl(0, 100%, 35%)";
-		  		ratingBg[index].style.backgroundColor = "hsl(0, 100%, 25%)";
-		  	}
-		} else{
-			rating[index].textContent = 'N/A';
-			rating[index].style.backgroundColor = "grey";
-		}
-	}
-}
-
 let possibilities = (index, first, second, circular, title, date, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department) =>{
 	if (typeof profile_path === 'undefined') {
 		circular[index].style.display = 'none';
@@ -233,7 +205,7 @@ let searching = (thetype, page_no) =>{
 				  				searchResultDescription[index].textContent = `Featured on: ${known_for[0].original_title || known_for[0].original_name}`;
 				  			} else return
 				  		}
-				  		votePerc(index, searchRating, vote_average, searchRating, vote_count);
+				  		votePerc(index, searchRating, vote_average, vote_count);
 				  		resultQuery.textContent = `Result of ${searchValue}`;
 				  		searchSection.style.animation = 'flyIn 0.7s linear forwards'
 				  		if(poster_path === undefined) return;
@@ -282,7 +254,7 @@ function trendingInfo () {
 		  	} else{
 		  		categoryRelease[index].textContent = release_date;
 		  	}
-		  	votePerc(index, rating, vote_average, rating);//check why you passed rating twice
+		  	votePerc(index, rating, vote_average);//check why you passed rating twice
 		  	category[index].onclick = () => {
 		  		const tempInfo = `${proxy}/${media_type}/${id}`;
 		  		localStorage.setItem('moreInfo', tempInfo);
@@ -338,7 +310,7 @@ function popularInfo(type){
 				function aCallback (item, index) {
 				  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = pdata.results[index];
 				  	possibilities(index, popularPersonImage, categoryImage, popularCircular, categoryTitle, categoryRelease, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
-				  	votePerc(index, rating, vote_average, rating);
+				  	votePerc(index, rating, vote_average);
 				  	if (type === 'person') {
 				  		category[index].style.height = '300px';
 				  		categoryInfo[index].style.top = '200px'

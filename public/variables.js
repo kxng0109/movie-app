@@ -123,7 +123,7 @@ changeNameForm.onsubmit = (e) =>{
 	}
 }
 
-if (menuBtn){	
+if (menuBtn){
 	menuBtn.onclick = () =>{
 		if (nav.style.animation === '1s ease 0s 1 normal forwards running showMenu') {
 			nav.style.animation = 'hideMenu 1s normal forwards'
@@ -132,6 +132,34 @@ if (menuBtn){
 		}
 	}
 }
+
+let votePerc = (index, varName, vote_average, vote_count) =>{
+	if (vote_average === undefined) {
+		varName[index].style.display = 'none';
+		ratingBg[index].style.display = 'none';
+		varName[index].textContent = '';
+		varName[index].style.backgroundColor = "transparent";
+	}else{
+		if (vote_count !== 0) {
+			ratingPercent = parseInt((vote_average * 10));
+			varName[index].textContent = ratingPercent + '%';	
+			if (ratingPercent >= 80) {
+		  		varName[index].style.backgroundColor = "hsl(120, 100%, 35%)";
+		  		ratingBg[index].style.backgroundColor = "hsl(120, 100%, 25%)";
+		  	} else if (ratingPercent >= 50) {
+		  		varName[index].style.backgroundColor = "hsl(66, 100%, 35%)";
+		  		ratingBg[index].style.backgroundColor = "hsl(66, 100%, 25%)";
+		  	} else {
+		  		varName[index].style.backgroundColor = "hsl(0, 100%, 35%)";
+		  		ratingBg[index].style.backgroundColor = "hsl(0, 100%, 25%)";
+		  	}
+		} else{
+			varName[index].textContent = 'N/A';
+			varName[index].style.backgroundColor = "grey";
+		}
+	}
+}
+
 
 
 // export {proxy, api_key, images, timeWindow, qS, qSA, trendingSection, username,

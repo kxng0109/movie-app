@@ -25,7 +25,7 @@ let recommendationsParentDiv = qS('#recommendations-parent-div');
 let episodeAndSeason = qS('#episode-and-season');
 var recommendationsDiv;
 
-let votePerc = (vote_average, rating, vote_count) =>{
+let moreInfoVotePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
 		rating.style.display = 'none';
 		rating.textContent = '';
@@ -111,7 +111,7 @@ function categoryinfo () {
 		eachLanguage.textContent = `${addComma(spokenLanguagesName)}`;
 		languagesSpokenHeader.textContent = spoken_languages.length > 1 ? 'Languages Spoken:' : 'Language Spoken:';
 
-		votePerc(vote_average, rating, vote_count);
+		moreInfoVotePerc(vote_average, rating, vote_count);
 		voteCount.textContent = vote_count;
 
 		//calls durationConversion which converts the runtime into hours and minutes
@@ -300,13 +300,11 @@ let recommendations = () =>{
 	.then(data => {
 		console.log(data);
 		data.results.forEach((item, index) =>{
-			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average} = data.results[index];
+			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average, vote_count} = data.results[index];
 			let recommendationLink = `${proxy}/${media_type}/${id}`
 			let posterImage = `${images}${size}${poster_path}`;
-			// let votePercentage = `${parseInt(vote_average * 10)}%`
-			// rating = qSA('.rating');
-			// votePerc(index, rating, vote_average, rating); //Check this
-			recommendationTemplate(recommendationLink, title, original_title, name, original_name, posterImage);
+
+			recommendationTemplate(title, original_title, name, original_name, posterImage, index, vote_average);
 			if (recommendationsDiv == undefined || recommendationsDiv == null) return
 				recommendationsDiv[index].onclick = () =>{
 				localStorage.setItem('moreInfo', recommendationLink)
@@ -316,7 +314,7 @@ let recommendations = () =>{
 	})
 }
 
-let recommendationTemplate = (recommendationLink, title, original_title, name, original_name, posterImage, votePercentage) =>{
+let recommendationTemplate = (title, original_title, name, original_name, posterImage, index, vote_average) =>{
 	let links = document.createElement('a');
 	links.classList.add('movie-link');
 	links.setAttribute('href', 'javascript:void(0)');
@@ -332,6 +330,9 @@ let recommendationTemplate = (recommendationLink, title, original_title, name, o
 						</div>`
 	recommendationsParentDiv.appendChild(links);
 	recommendationsDiv = qSA('.recommendations-div');
+	rating = qSA('.rating');
+	ratingBg = qSA('.rating-bg');
+	votePerc(index, rating, vote_average);
 }
 
 
