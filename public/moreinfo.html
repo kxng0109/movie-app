@@ -34,7 +34,7 @@
 		<header>
 			<a href="./index.html" id="header-icon"><img src="./images/nobg.png" class="logo" alt="website-logo"></a>
 			<div id="search-area">
-				<form class="search">
+				<form class="search" action="./searchresults.html">
 					<input type="search" name="search" id="search-bar-header" class="search-bar">
 					<button type="submit" class="search-btn-main">
 						<a id="search-btn-area" class="link" href="javascript:void">
@@ -66,7 +66,7 @@
 		<main id="main2" class="main">
 			<div id="quickinfo">
 				<div id="quickinfo2">
-					<img src="" id="main-image" class="image" alt="poster image">
+					<img id="main-image" class="image">
 					<div class="h-[90%] flex flex-col justify-between">
 						<div id="languages-spoken--container">
 							<p id="languages-spoken--header" class="quickinfo--headers"></p>
@@ -112,7 +112,7 @@
 
 				<em id="tagline"></em>
 
-				<div class="grid grid-cols-2 budget-revenue-div hidden">
+				<div class="grid grid-cols-2 budget-revenue-div">
 					<div id="budget--container" class="text-center my-7 text-white">
 						<p id="budget--header" class="text-lg">Budget:</p>
 						<p id="budget"></p>
@@ -124,7 +124,31 @@
 					</div>
 				</div>
 
-				<div id="production-companies--container" class="justify-center px-5 my-4 hidden align-center overflow-x-auto place-content-center horizontal">
+				<div id="production-companies--container" class="justify-center px-5 my-4 flex align-center overflow-x-auto place-content-center horizontal">
+				</div>
+			</div>
+
+			<div id="quickinfoperson" class="hidden">
+				<img src="./images/photo1.webp" id="moreinfo-person-image" class="rounded-md  mx-auto my-4">
+				<p id="name"></p>
+				<div id="also-knows-as-div">
+					<h4 id="also-knows-as--header">Also know as:</h4>
+					<p id="also-knows-as"></p>
+				</div>
+
+				<div id="birth-and-death-div">
+					<div class="birthday-div">
+						<p class="birthday"></p>
+						<p class="birthday--header"></p>
+					</div>
+					<div class="place-of-birth-div">
+						<p class="place-of-birth"></p>
+						<p class="place-of-birth--header"></p>
+					</div>
+					<div class="date-of-death-div">
+						<p class="date-of-death"></p>
+						<p class="date-of-death--header"></p>
+					</div>
 				</div>
 			</div>
 
@@ -137,7 +161,7 @@
 				</div>
 			</div>
 
-				<p class="text-white underline text-lg pl-5 recommendations--header hidden">Recommended for You</p>
+				<p class="text-white underline text-lg pl-5 recommendations--header mt-5">Recommended for You</p>
 			<div id="recommendations-parent-div" class="flex overflow-x-auto vertical"></div>
 		</main>
 	</div>

@@ -1,5 +1,11 @@
 #main2{
   background: hwb(0deg 0% 100% / 50%);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  top: var(--top);
   display: block;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -8,7 +14,7 @@
 
 #quickinfo1{
   background-color: hsla(0, 0%, 100%, 0.9);
-  display: none;
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +22,6 @@
 }
 
 #quickinfo2{
-  background-color: hsla(0, 0%, 10%, 0.2);
   margin-top: 2rem;
   margin-bottom: 2rem;
   display: flex;
@@ -135,7 +140,6 @@
 
 #casts--parent-div{
   position: relative;
-  display: none;
   padding-left: 1.25rem;
 }
 

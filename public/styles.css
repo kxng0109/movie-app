@@ -525,12 +525,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .block {
@@ -587,6 +596,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .overflow-x-auto {
   overflow-x: auto;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
 }
 
 .border-l {
@@ -908,7 +921,8 @@ nav a{
   }
 }
 
-header {
+header{
+  /*#60695C*/
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
@@ -921,11 +935,11 @@ header {
   align-items: center;
   justify-content: space-between;
   --tw-bg-opacity: 1;
-  background-color: rgb(96 105 92 / var(--tw-bg-opacity));
+  background-color: rgb(241 255 196 / var(--tw-bg-opacity));
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
+  padding-bottom: 0.625rem
 }
 
 #search-area{
@@ -975,7 +989,7 @@ header {
 }
 
 #header-menu, #user{
-  color: white;
+  color: black;
   font-size: 35px;
 }
 
@@ -1115,7 +1129,8 @@ nav>*{
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: hsla(300, 100%, 25%, 0.5);
+  /*background: hsla(300, 100%, 25%, 0.5);*/
+  background-color: hsla(31, 49%, 72%, 0.5);
   /*background: linear-gradient(315deg, #0000ff, #ff0000);*/
   /*background-size: 400% 400%;*/
   /*animation: flowing 40s ease infinite;*/
@@ -1186,11 +1201,13 @@ nav>*{
 button[type='submit']{
   background: transparent;
   border: none;
-  color: white;
+  color: black;
 }
 
 input[type='search']{
   padding: 0 10px;
+  background: hsl(0, 0%, 80%);
+  color: black;
 }
 
 input {
@@ -1366,7 +1383,8 @@ input:focus-visible {
 
 #trending-section{
   padding: 50px 0 20px 0;
-  background-color: hsla(163, 19%, 81%, 0.85);
+  /*background-color: hsla(163, 19%, 81%, 0.85);*/
+  background-color: hsla(192, 44%, 85%, 0.85);
   width: 100%;
 }
 
@@ -1632,7 +1650,8 @@ input:focus-visible {
 
 #popular-section{
   padding: 50px 0 20px 0;
-  background-color: hsla(172, 47%, 48%, 0.85);
+  /*background-color: hsla(172, 47%, 48%, 0.85);*/
+  background-color: hsla(209, 33%, 74%, 0.85);
   width: 100%;
   opacity: 0;
 }

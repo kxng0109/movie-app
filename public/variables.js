@@ -43,7 +43,7 @@ let searchResultDate;
 let searchResultPerson;
 let searchResultsDiv;
 let theId;
-var Genre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, Duration, backGround, overview;
+var theGenre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, theDuration, backGround, theOverview;
 let popular;
 
 let infos = (theDiv, something)=>{

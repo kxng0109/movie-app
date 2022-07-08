@@ -1,15 +1,14 @@
 #main2{
 	background: hwb(0deg 0% 100% / 50%);
-	@apply block h-fit;
+	@apply block absolute inset-0 top-[var(--top)] h-fit;
 }
 
 #quickinfo1{
 	background-color: hsla(0, 0%, 100%, 0.9);
-	@apply hidden flex-row justify-between items-center p-5;
+	@apply flex flex-row justify-between items-center p-5;
 }
 
 #quickinfo2{
-	background-color: hsla(0, 0%, 10%, 0.2);
 	@apply text-white w-full h-fit flex flex-row justify-center items-center px-5 my-8;
 }
 
@@ -74,7 +73,7 @@
 }
 
 #casts--parent-div{
-	@apply hidden relative pl-5;
+	@apply relative pl-5;
 }
 
 #cast{
