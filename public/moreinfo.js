@@ -29,6 +29,12 @@ let episodeAndSeason = qS('#episode-and-season');
 var recommendationsDiv;
 let quickInfo = qS('#quickinfo')
 let quickInfoPerson = qS('#quickinfoperson');
+let alsoKnowsAs = qS('#also-known-as');
+let theBirthday = qS('.birthday')
+let placeOfBirthDiv = qS('.place-of-birth-div')
+let placeOfBirth = qS('.place-of-birth')
+let dateOfDeathDiv = qS('.date-of-death-div')
+let dateOfDeath = qS('.date-of-death')
 
 window.onload = () =>{
 	theCategory = localStorage.getItem('moreInfo');
@@ -111,12 +117,14 @@ let addComma = array =>{
 function categoryinfo () {
 	fetch(theCategoryInfo)
 	.then(response => response.json())
-	.then(data =>{		
+	.then(data =>{
 		switch (true) {
 			case theCategory.includes('//person'): //Checks whether '//person' is in the theCategory's text
+				quickInfo.style.display = 'none';
 				categoryTitle = qS('#name');
 				categoryImage = qS('#moreinfo-person-image');
-
+				theOverview = qS('#biography');
+				tagLine = qS('#forte');
 
 				console.log(data);
 				const{also_known_as, biography, birthday, deathday, known_for_department, place_of_birth, profile_path} = data
@@ -126,12 +134,31 @@ function categoryinfo () {
 				quickInfoPerson.style.display = 'block';
 				categoryImage.setAttribute('src', `${images}${size}${profile_path}`);
 
+				container.style.backgroundColor = 'hsl(178deg, 100%, 95%)';
 				main.style.backgroundColor = 'hsl(178deg, 100%, 95%)';
 				categoryTitle.textContent = `${name}`
-				quickInfo.style.display = 'none';
+
+				alsoKnowsAs.textContent = `Also known as: ${addComma(also_known_as)}`;
+
+				theOverview.textContent = `${biography}`;
+				tagLine.textContent = `Forte: ${known_for_department}`;
+
+				theBirthday.innerHTML = birthday;
+				place_of_birth != undefined || place_of_birth != null ? (placeOfBirthDiv.style.display = 'block', placeOfBirth.textContent = `${place_of_birth}`)
+				: placeOfBirthDiv.style.display = 'none';
+
+				deathday != undefined || deathday != null ? (dateOfDeathDiv.style.display = 'block', dateOfDeath.textContent = `${deathday}`)
+				: dateOfDeathDiv.style.display = 'none';
+
+				castParentDiv.style.display = 'none';
+				recommendationsHeader.style.display = 'none';
+				recommendationsParentDiv.style.display = 'none';
+
+
 				if (profile_path == null || profile_path == undefined) return
 				// get images = ${theCategory}/images?api_key=${api_key}
 			break;
+
 			default:
 				quickInfoPerson.style.display = 'none';
 
@@ -223,9 +250,10 @@ function categoryinfo () {
 let loadCompanies = (imageSrc, companyName) =>{
 	let eachProductionCompanyDiv = document.createElement('div');
 	eachProductionCompanyDiv.classList.add('each-production-company-div');
-	let productionCompanyImage = document.createElement('img');
-	imageSrc.includes('null') ? '' : productionCompanyImage.setAttribute('src', imageSrc);
+	let productionCompanyImage;
+	imageSrc.includes('null') ? '' : (productionCompanyImage = document.createElement('img'), productionCompanyImage.setAttribute('src', imageSrc));
 	productionCompanyImage.classList.add('production-companies--image');
+	productionCompanyImage.setAttribute('alt', 'company-logo');
 	let productionCompanyName = document.createElement('p');
 	productionCompanyName.textContent = companyName;
 	productionCompanyName.classList.add('production-companies--name');
@@ -322,7 +350,8 @@ function createCastsTemplate(){
 	aTag.setAttribute('href', 'javascript:void');
 	let anImg = document.createElement('img');
 	anImg.classList.add('cast-members-img');
-	anImg.setAttribute('loading', 'lazy')
+	anImg.setAttribute('loading', 'lazy');
+	anImg.setAttribute('alt', 'casts-image');
 	let innerDiv = document.createElement('div');
 	innerDiv.classList.add('cast-info')
 	let firstP = document.createElement('p');

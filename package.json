@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm:live-server\" \"npm:tailwind-build\"",
+    "start": "concurrently \"npm:live-server\" \"npm:tailwind-build\" \"npm:tailwind-build-other-css\"",
     "live-server": "browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*, !.git/**/*' --directory --port 7777 --browser \"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\"",
-    "tailwind-build" : "tailwindcss -i src/styles.css -o public/styles.css --watch"
+    "tailwind-build" : "tailwindcss -i src/styles.css -o public/styles.css --watch",
+    "tailwind-build-other-css" : "tailwindcss -i src/moreinfo.css -o public/moreinfo.css --watch"
   },
   "author": "",
   "license": "ISC",

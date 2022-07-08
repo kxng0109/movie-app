@@ -32,7 +32,7 @@
 		<p id="welcome-username"></p>
 		<div></div>
 		<header>
-			<a href="./index.html" id="header-icon"><img src="./images/nobg.png" class="logo" alt="website-logo"></a>
+			<a href="./index.html" id="header-icon"><img src="./images/nobg.webp" class="logo" alt="website-logo"></a>
 			<div id="search-area">
 				<form class="search" action="./searchresults.html">
 					<input type="search" name="search" id="search-bar-header" class="search-bar">
@@ -66,20 +66,20 @@
 		<main id="main2" class="main">
 			<div id="quickinfo">
 				<div id="quickinfo2">
-					<img id="main-image" class="image">
+					<img id="main-image" class="image aspect-[2/3]" alt="poster-image" src="./images/grey.webp">
 					<div class="h-[90%] flex flex-col justify-between">
 						<div id="languages-spoken--container">
-							<p id="languages-spoken--header" class="quickinfo--headers"></p>
+							<p id="languages-spoken--header" class="quickinfo--headers">Language Spoken:</p>
 							<p id="each-language"></p>
 						</div>
 						
 						<div id="genre--container" class="my-6">
-							<p id="genre--header" class="quickinfo--headers"></p>
+							<p id="genre--header" class="quickinfo--headers">Genre:</p>
 							<p id="genre"></p>
 						</div>
 
 						<div id="release-date--container">
-							<p id="release-date--header" class="quickinfo--headers"></p>
+							<p id="release-date--header" class="quickinfo--headers">Released:</p>
 							<p id="release-date"></p>
 						</div>
 
@@ -128,26 +128,28 @@
 				</div>
 			</div>
 
-			<div id="quickinfoperson" class="hidden">
+			<div id="quickinfoperson" class="hidden px-6">
 				<img src="./images/photo1.webp" id="moreinfo-person-image" class="rounded-md  mx-auto my-4">
-				<p id="name"></p>
-				<div id="also-knows-as-div">
-					<h4 id="also-knows-as--header">Also know as:</h4>
-					<p id="also-knows-as"></p>
-				</div>
+				<p id="name" class="text-center text-lg mt-4 font-bold"></p>
 
-				<div id="birth-and-death-div">
+				<div id="forte" class="text-center"></div>
+					
+				<p id="also-known-as" class="my-6"></p>
+
+				<div id="biography"></div>
+
+				<div id="birth-and-death-div" class="flex justify-between items-center mt-6 text-sm">
 					<div class="birthday-div">
 						<p class="birthday"></p>
-						<p class="birthday--header"></p>
+						<p class="birthday--header text-gray-500 text-xs text-center">Birthday</p>
 					</div>
-					<div class="place-of-birth-div">
+					<div class="place-of-birth-div hidden">
 						<p class="place-of-birth"></p>
-						<p class="place-of-birth--header"></p>
+						<p class="place-of-birth--header text-gray-500 text-xs text-center">Place of birth</p>
 					</div>
-					<div class="date-of-death-div">
+					<div class="date-of-death-div hidden">
 						<p class="date-of-death"></p>
-						<p class="date-of-death--header"></p>
+						<p class="date-of-death--header text-gray-500 text-xs text-center">Death day</p>
 					</div>
 				</div>
 			</div>

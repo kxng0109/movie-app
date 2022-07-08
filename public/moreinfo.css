@@ -1,11 +1,5 @@
 #main2{
   background: hwb(0deg 0% 100% / 50%);
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  top: var(--top);
   display: block;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -108,7 +102,7 @@
 }
 
 #overview-div>*{
-  padding-left: 20px;
+  padding-inline: 20px;
   color: white;
 }
 

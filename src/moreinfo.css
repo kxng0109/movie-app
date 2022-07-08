@@ -1,6 +1,6 @@
 #main2{
 	background: hwb(0deg 0% 100% / 50%);
-	@apply block absolute inset-0 top-[var(--top)] h-fit;
+	@apply block h-fit;
 }
 
 #quickinfo1{
@@ -55,7 +55,7 @@
 }
 
 #overview-div>*{
-	padding-left: 20px;
+	padding-inline: 20px;
 	color: white;
 }
 
