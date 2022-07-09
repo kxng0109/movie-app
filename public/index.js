@@ -9,6 +9,9 @@ window.onscroll = () =>{
 	return counter;
 }
 
+let timeOfDay = new Date().getHours();
+welcomeText.textContent = timeOfDay > 16 ? 'Good Evening!' : timeOfDay > 12 ? 'Good Afternoon!' : 'Good Morning!';
+
 let Loader = () =>{
 	loadingCircles.forEach( function(element, index) {
 		loadingCircles[index].style.bottom = '-10vh';

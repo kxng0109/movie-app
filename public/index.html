@@ -20,54 +20,32 @@
 </head>
 <body class="daytheme">
 	<div id="homePageBackground" class="fixed w-screen h-screen -z-1 blur-[2px]"></div><!-- Background-image for the homepage -->
-	<div id="loading">
-		<div id="loading-animation">
-			<p id="loading-text">LOADING</p>
-			<div id="loading-circles-div">
-				<div class="loading-circles" id="loading-circle1"></div>
-				<div class="loading-circles" id="loading-circle2"></div>
-				<div class="loading-circles" id="loading-circle3"></div>
-			</div>
-		</div>
-	</div>
 	<div id="container">
 		<div></div>
 		<header>
 			<a href="./index.html" id="header-icon"><img src="./images/nobg.webp" class="logo" alt="website-logo"></a>
-			<div id="search-area">
-				<form class="search">
-					<input type="search" name="search" id="search-bar-header" class="search-bar">
-					<button type="submit" class="search-btn-main">
-						<div id="search-btn-area" class="link cursor-pointer">
-							<ion-icon name="search-circle-outline" id="search-btn"></ion-icon>
-						</div>
-					</button>
-				</form>
-			</div>
+			<form class="search w-3/5" id="search-area">
+				<input type="search" name="search" id="search-bar-header" class="search-bar">
+			</form>
 			<!-- <ion-icon name="person-circle-outline"  id="user"></ion-icon> -->
 			<ion-icon name="menu-outline" id="header-menu"></ion-icon>
 		</header>
 
 		<nav id="nav">
-			<a href="./index.html" id="menu-icon"><img src="./images/nobg.webp" class="logo" alt="website logo" loading='lazy'></a>
-			<a href="#trending-section">Trending</a>
-			<a href="#popular-section">Popular</a>
+			<a href="./index.html" id="menu-icon"><img src="./images/nobg.webp" class="w-24 h-24" alt="website logo" loading='lazy'></a>
+			<a href="#trending-section" class="no-underline text-black">Trending</a>
+			<a href="#popular-section" class="no-underline text-black">Popular</a>
 		</nav>
 
 		<main id="main1" class="main">
 			<section id="welcome-section">
-				<h2 id="welcome" class="headings">Welcome!</h2>
+				<h2 id="welcome" class="headings">Good day!</h2>
 				<div id="search-area-main">
 					<form class="search">
 						<input type="search" name="search" id="search-bar-main" class="search-bar">
-						<button type="submit" class="search-btn-main">
-							<div id="search-btn-area-main" class="link cursor-pointer">
-								<ion-icon name="search-circle-outline" id="search-btn-main"></ion-icon>
-							</div>
-						</button>
 					</form>
 				</div>
-				<h4 class="headings">Search for any movie, tv-series or person</h4>
+				<h4 class="headings text-center px-3">Search for any movie, tv-series or person</h4>
 			</section>
 
 			<section id="trending-section">
