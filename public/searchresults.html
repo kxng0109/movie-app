@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#60695C">
+	<meta name="description" content="Get information about your favourite movie, tv-show or actor/actress">
+  	<link rel="icon" type="image/x-icon" href="./images/nobg.png">
+	<title>Search Result</title>
+	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Montserrat+Alternates:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
+	<script type="text/javascript" defer src="./variables.js"></script>
+	<script type="text/javascript" defer src="./searchresults.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <p id="welcome-username"></p>
+		<div></div>
+		<header>
+			<a href="./index.html" id="header-icon"><img src="./images/nobg.webp" class="logo" alt="website-logo"></a>
+			<div id="search-area">
+				<form class="search" action="./searchresults.html">
+					<input type="search" name="search" id="search-bar-header" class="search-bar">
+					<button type="submit" class="search-btn-main">
+						<a id="search-btn-area" class="link" href="javascript:void">
+							<ion-icon name="search-circle-outline" id="search-btn"></ion-icon>
+						</a>
+					</button>
+				</form>
+			</div>
+			<ion-icon name="person-circle-outline"  id="user"></ion-icon>
+		</header>
+        <div id="user-hover">
+            <p id="user-hover-username"></p>
+            <p id="user-hover-change">Change name &nbsp;&nbsp;&nbsp;<ion-icon name="pencil-outline"></ion-icon>
+            </p>
+        </div>
+        <ion-icon name="exit-outline" id="exit-change-username"></ion-icon>
+        <div id="change-name">
+            <div id="inside-change-name">
+                <p>What should we call you?</p>
+                <form id="change-name-form">
+                    <input type="text" name="username" placeholder="Type it here!" id="new-username-field">
+                </form>
+            </div>
+        </div>
+        <nav id="nav">
+            <a href="index.html" id="menu-icon"><img src="./images/nobg.png" class="logo"></a>
+            <a href="./index.html#trending-section">Trending</a>
+            <a href="#popular-section">Popular</a>
+        </nav>
+
+		<section id="search">
+			<h3 id="search-response" class="headings"></h3>
+			<div id="search-choice">
+				<p class="search-options" id="search-all">All</p>
+				<p class="search-options" id="search-movies">Movies</p>
+				<p class="search-options" id="search-tv">TV Shows</p>
+				<p class="search-options" id="search-people">People</p>
+			</div>
+		</section>
+    </div>
+</body>
+
+</html>

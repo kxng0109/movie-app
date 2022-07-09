@@ -13,21 +13,6 @@ window.onscroll = () =>{
 	return counter;
 }
 
-container.onclick = () =>{
-	if (searchInput[0].value !== '') {
-		searchValue = searchInput[0].value
-		searchInput[1].textContent = '';
-		searchInput[1].textContent = '';
-	} else if (searchInput[1].value !== '') {
-		searchValue = searchInput[1].value
-		searchInput[0].textContent = '';
-		searchInput[0].textContent = '';
-	} else{
-		searchValue = '';
-	}
-}
-
-
 let Loader = () =>{
 	loadingCircles.forEach( function(element, index) {
 		loadingCircles[index].style.bottom = '-10vh';
@@ -57,47 +42,6 @@ let Loader = () =>{
 // 	everyLink[index].addEventListener('click', Loader);
 // });
 
-let possibilities = (index, first, second, circular, title, date, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department) =>{
-	if (typeof profile_path === 'undefined') {
-		circular[index].style.display = 'none';
-		first[index].style.display = 'none';
-		if (poster_path === undefined || poster_path === null) {
-			second[index].style.height = '195px';
-			second[index].setAttribute('alt', `${original_title}`);
-		} else{
-			second[index].setAttribute('src', `${images}${size}${poster_path}`);					  			
-		}
-	}else if(profile_path !== null) {
-		first[index].setAttribute('src', `${images}${size}${profile_path}`);
-		first[index].style.display = 'block';
-		second[index].style.display = 'none';
-		circular[index].style.display = 'block';
-	} else{
-		first[index].setAttribute('src', `images/photo1.webp`);
-		first[index].style.display = 'block';
-		second[index].style.display = 'none';
-		circular[index].style.display = 'block';
-	}
-
-	if (original_title !== undefined) {
-		title[index].textContent = `${original_title}`; 			  			
-	} else if(original_name !== undefined){
-		title[index].textContent = `${original_name}`; 
-	}else {
-		title[index].textContent = `${name}`
-	}
-
-	if (release_date !== undefined){
-		date[index].textContent = `${release_date}`;
-	} else if(first_air_date !== undefined){
-		date[index].textContent = `${first_air_date}`;
-	} else{
-		date[index].textContent = `Forte: ${known_for_department}`;
-	}
-
-	if(poster_path === undefined) return;
-}
-
 
 function load () {
 	let links = document.createElement('a');
@@ -123,101 +67,6 @@ qSA('.section-link').onclick = (e) =>{
 			e.preventDefault();
 		container.scrollTop = counter;
 	}
-}
-
-searchForm.forEach((item, index) =>{
-	searchForm[index].onsubmit = (e) =>{
-		e.preventDefault();
-		if (searchValue !== '') {
-			searchAll.style.backgroundColor = '#120D31';
-			searchMovies.style.backgroundColor = 'transparent';
-			searchTV.style.backgroundColor = 'transparent';
-			searchPeople.style.backgroundColor = 'transparent';
-			searching('multi', 1);
-		} else{
-			alert('Please write something.')//change this
-		}
-	}
-})
-		// searchInput.forEach((item, index) =>{
-		// 	searchValue[index] = searchInput[index].value;
-		// 	return searchValue;
-		// });
-let searching = (thetype, page_no) =>{
-	page_no = 1;
-	type = thetype;
-	let search = `${proxy}search/${type}?api_key=${api_key}&query=${searchValue}&page=${page_no}`;
-	fetch(search)
-	.then(response => response.json())
-	.then(search => {
-	  	// timEr(search);
-	  	console.log(search);
-	  	if(search.results.length == 0) {
-	  		alert(`${type} does not exist`) //fix this as well, change the text to something useful
-	  	}else{
-	  		searchSection.style.display = 'block';
-	  		if (searchSection.style.display == 'block') {
-	  			searchSection.style.overflowY = 'auto';
-	  		}
-	  		if (searchDiv !== undefined) {
-	  			searchDiv.forEach((item, index)=>{
-	  				searchSection.removeChild(searchDiv[index]);	  				
-	  			})
-	  		}
-  			for (var resultDivNum = 1; resultDivNum <= search.results.length; resultDivNum++) {
-				searchResultsDiv = document.createElement('a');
-				searchResultsDiv.classList.add('search-info');
-				searchResultsDiv.setAttribute('href', 'javascript:void(0)');
-
-				searchResultsDiv.innerHTML = `
-										<img src="" class="search-image">
-										<div class="circular-portrait">
-											<img src=""class="search-person-image">
-										</div>
-										<div class="search-rating"></div>
-										<div class="search-text">
-											<h3 class="search-result-title "></h3>
-											<p class="search-result-description"></p>
-											<p class="search-result-date"></p>
-										</div>`
-				searchResultsContainer.appendChild(searchResultsDiv);
-				searchDiv = qSA('.search-info');
-				searchImage = qSA('.search-image');
-				searchRating = qSA('.search-rating');
-				searchResultTitle = qSA('.search-result-title');
-				searchResultDescription = qSA('.search-result-description');
-				searchResultDate = qSA('.search-result-date');
-				searchResultPerson = qSA('.search-person-image');
-				let searchCircular = qSA('.circular-portrait');
-				if (resultDivNum === search.results.length) {
-			  		searchDiv.forEach((item, index) =>{
-				  		const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = search.results[index];
-
-				  		possibilities(index, searchResultPerson, searchImage, searchCircular, searchResultTitle, searchResultDate, images,poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
-				  		if (overview !== undefined) {
-				  			searchResultDescription[index].textContent = `${overview}`;
-				  		}else {
-				  			if (known_for.length === 3) {
-				  				searchResultDescription[index].textContent = `Featured on: ${known_for[0].original_title || known_for[0].original_name}, ${known_for[1].original_title || known_for[1].original_name}, ${known_for[2].original_title || known_for[2].original_name}`;
-				  			} else if(known_for.length === 2){
-				  				searchResultDescription[index].textContent = `Featured on: ${known_for[0].original_title || known_for[0].original_name}, ${known_for[1].original_title || known_for[1].original_name}`;
-				  			} else if(known_for.length === 1){
-				  				searchResultDescription[index].textContent = `Featured on: ${known_for[0].original_title || known_for[0].original_name}`;
-				  			} else return
-				  		}
-				  		votePerc(index, searchRating, vote_average, vote_count);
-				  		resultQuery.textContent = `Result of ${searchValue}`;
-				  		searchSection.style.animation = 'flyIn 0.7s linear forwards'
-				  		if(poster_path === undefined) return;
-				  		searchSection.style.background = `url('${images}${size}${search.results[anyValue(search.results.length)].poster_path}')`;
-					  	searchSection.style.backgroundSize = 'contain';
-					  	searchSection.style.backgroundPosition = 'center';
-
-			  		});
-				}
-	  		}
-  		}
-	})
 }
 
 
@@ -413,36 +262,4 @@ popularPeople.onclick = ()=>{
 	popularMovies.style.backgroundColor = 'transparent';
 	popularTV.style.backgroundColor = 'transparent';
 	popularPeople.style.backgroundColor = '#120D31';
-}
-
-searchAll.onclick = () =>{
-	searching('multi', 1);
-	searchAll.style.backgroundColor = '#120D31';
-	searchMovies.style.backgroundColor = 'transparent';
-	searchTV.style.backgroundColor = 'transparent';
-	searchPeople.style.backgroundColor = 'transparent';
-}
-
-searchMovies.onclick = () =>{
-	searching('movie', 1);
-	searchAll.style.backgroundColor = 'transparent';
-	searchMovies.style.backgroundColor = '#120D31';
-	searchTV.style.backgroundColor = 'transparent';
-	searchPeople.style.backgroundColor = 'transparent';
-}
-
-searchTV.onclick = () =>{
-	searching('tv', 1);
-	searchAll.style.backgroundColor = 'transparent';
-	searchMovies.style.backgroundColor = 'transparent';
-	searchTV.style.backgroundColor = '#120D31';
-	searchPeople.style.backgroundColor = 'transparent';
-}
-
-searchPeople.onclick = () =>{
-	searching('person', 1);
-	searchAll.style.backgroundColor = 'transparent';
-	searchMovies.style.backgroundColor = 'transparent';
-	searchTV.style.backgroundColor = 'transparent';
-	searchPeople.style.backgroundColor = '#120D31';
 }

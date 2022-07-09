@@ -212,11 +212,10 @@ header{/*#60695C*/
 	align-items: center;
 	justify-content: space-between;
 }
+
 #search-choice{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-evenly;
+	background: hsla(0, 0%, 100%, 0.5);
+	@apply flex items-center justify-evenly;
 }
 
 #search-btn{
@@ -422,8 +421,7 @@ input{
 
 
 #search{
-	/*change both top and left*/
-	@apply hidden absolute z-1 h-screen w-screen top-0 left-0 overflow-y-auto bg-white;
+	@apply h-fit w-screen overflow-y-auto bg-gray-400;
 }
 
 @keyframes flyI{/*change to flyIn*/
@@ -678,24 +676,13 @@ input{
 }
 
 #trending-choice, #popular-choice{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	margin-top: 10px;
-	border: 1px solid grey;
 	width: fit-content;
-	border-radius: 8px;
+	@apply flex items-center mt-3 border border-gray-500 rounded-lg
 }
 
 .options, .search-options{
-	text-decoration: none;
-	color: white;
-	display: inline-block;
-	padding: 5px 10px;
-	transition: all 1s;
-	border-radius: 8px;
-	font-size: 3.85vw;
-	font-size: clamp(3.5vw, 3.85vw, 20px);
+	font-size: clamp(13px, 3.85vw, 16px);
+	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-1000 rounded-lg;
 }
 
 .options:active{	
@@ -713,10 +700,7 @@ input{
 }
 
 #trending-section>div, #popular-section>div{
-	margin: 0 20px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	@apply mx-5 flex flex-col items-center;
 }
 
 #popular-section{

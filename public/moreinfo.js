@@ -96,22 +96,6 @@ let showTheNameOfMovieOrTv = (title, original_title, name, original_name) =>{
 	: name ? name : original_name;
 }
 
-//It creates a new array that is sort of a mapped version of the array
-//and a comma and whitespace to the end of the element
-//or return that element if it's the last in the array
-let addComma = array =>{
-	let arrayLength = array.length;
-	let updatedArray = [];
-	array.forEach((item, index) =>{
-		if (index < arrayLength - 1) {
-			updatedArray[index] = `${array[index]}, `
-		} else {
-			updatedArray[index] = array[index]
-		}
-	})
-	return updatedArray.join('')
-}
-
 
 //Calls the API and receives evey info about the movie and assigns them
 function categoryinfo () {
@@ -250,14 +234,14 @@ function categoryinfo () {
 let loadCompanies = (imageSrc, companyName) =>{
 	let eachProductionCompanyDiv = document.createElement('div');
 	eachProductionCompanyDiv.classList.add('each-production-company-div');
-	let productionCompanyImage;
-	imageSrc.includes('null') ? '' : (productionCompanyImage = document.createElement('img'), productionCompanyImage.setAttribute('src', imageSrc));
-	productionCompanyImage.classList.add('production-companies--image');
-	productionCompanyImage.setAttribute('alt', 'company-logo');
 	let productionCompanyName = document.createElement('p');
 	productionCompanyName.textContent = companyName;
 	productionCompanyName.classList.add('production-companies--name');
-	eachProductionCompanyDiv.appendChild(productionCompanyImage);
+	let productionCompanyImage;
+	imageSrc.includes('null') ? '' : (productionCompanyImage = document.createElement('img'), productionCompanyImage.setAttribute('src', imageSrc), 
+		productionCompanyImage.classList.add('production-companies--image'),
+		productionCompanyImage.setAttribute('alt', 'company-logo'), 
+		eachProductionCompanyDiv.appendChild(productionCompanyImage))
 	eachProductionCompanyDiv.appendChild(productionCompanyName);
 	productionCompaniesContainer.appendChild(eachProductionCompanyDiv);
 }
