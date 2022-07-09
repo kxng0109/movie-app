@@ -37,7 +37,9 @@ let dateOfDeathDiv = qS('.date-of-death-div')
 let dateOfDeath = qS('.date-of-death')
 
 window.onload = () =>{
-	theCategory = localStorage.getItem('moreInfo');
+	//Split the url query into an array when it sees this "="
+	let splitQuery = window.location.search.split("?"); //example of what is returned ['', 'movie/338953']
+	theCategory = `${proxy}${splitQuery[1]}`;
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
 	categoryinfo();
 	theCategoryCredit = `${theCategory}/credits?api_key=${api_key}`;
@@ -361,22 +363,17 @@ let recommendations = () =>{
 			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average, vote_count} = data.results[index];
 			let recommendationLink = `${proxy}/${media_type}/${id}`
 			let posterImage = `${images}${size}${poster_path}`;
+			let whenClicked = `./moreinfo.html?${media_type}/${id}`
 
-			recommendationTemplate(title, original_title, name, original_name, posterImage, index, vote_average, media_type);
-			if (recommendationsDiv == undefined || recommendationsDiv == null) return
-				recommendationsDiv[index].onclick = () =>{
-				localStorage.setItem('moreInfo', recommendationLink)
-				// window.location.reload();				
-				window.location.replace(`./moreInfo.html`);
-			}
+			recommendationTemplate(title, original_title, name, original_name, posterImage, index, vote_average, media_type, whenClicked);
 		})
 	})
 }
 
-let recommendationTemplate = (title, original_title, name, original_name, posterImage, index, vote_average, media_type) =>{
+let recommendationTemplate = (title, original_title, name, original_name, posterImage, index, vote_average, media_type, whenClicked) =>{
 	let links = document.createElement('a');
 	links.classList.add('movie-link');
-	links.setAttribute('href', 'javascript:void(0)');
+	links.setAttribute('href', whenClicked);
 
 	links.innerHTML = `
 							<div class="category-movies recommendations-div">

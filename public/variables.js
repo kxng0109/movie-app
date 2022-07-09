@@ -219,6 +219,7 @@ searchForm.forEach((item, index) =>{
 //and a comma and whitespace to the end of the element
 //or return that element if it's the last in the array
 let addComma = array =>{
+	// console.log(array)
 	let arrayLength = array.length;
 	let updatedArray = [];
 	array.forEach((item, index) =>{

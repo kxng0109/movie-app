@@ -41,10 +41,10 @@ let searching = (theType, page_no) =>{
 		  		}
 
 		  		//Add the divs
-	  			for (var resultDivNum = 1; resultDivNum <= search.results.length; resultDivNum++) {
+	  			for (var resultDivNum = 0; resultDivNum <= search.results.length - 1; resultDivNum++) {
 				searchResultsDiv = document.createElement('a');
 				searchResultsDiv.classList.add('search-info');
-				searchResultsDiv.setAttribute('href', 'javascript:void(0)');
+				searchResultsDiv.setAttribute('href', `./moreinfo.html?${search.results[resultDivNum].media_type}/${search.results[resultDivNum].id}`);
 
 				searchResultsDiv.innerHTML = `
 										<img src="" class="search-image">
@@ -66,24 +66,26 @@ let searching = (theType, page_no) =>{
 				searchResultDate = qSA('.search-result-date');
 				searchResultPerson = qSA('.search-person-image');
 				let searchCircular = qSA('.circular-portrait');
-
-				if (resultDivNum === search.results.length) {
-			  		searchDiv.forEach((item, index) =>{
+				index = resultDivNum
+			  			// console.log('was ran')
 				  		const {adult, id, media_type, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = search.results[index];
 
 				  		possibilities(index, searchResultPerson, searchImage, searchCircular, searchResultTitle, searchResultDate, images,poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
 
+				  		
 				  		switch (true) {
 				  			case overview !== undefined:
 				  				searchResultDescription[index].textContent = `${overview}`;
 				  			break;
 
 				  			case known_for.length == 1:
-				  				searchResultDescription[index].textContent = `${known_for}`
+				  				mappedFeatureOnTitles = known_for.map(item => item.original_title || item.original_name)
+				  				searchResultDescription[index].textContent = `${mappedFeatureOnTitles}`
 				  			break;
 
 				  			default:
-				  				searchResultDescription[index].textContent = `${addComma(known_for)}`
+				  				mappedFeatureOnTitles = known_for.map(item => item.original_title || item.original_name)
+				  				searchResultDescription[index].textContent = `${addComma(mappedFeatureOnTitles)}`
 				  			break;
 				  		}
 
@@ -95,18 +97,14 @@ let searching = (theType, page_no) =>{
 				  		searchDiv[index].onclick = () =>{
 				  			const tempInfo = `${proxy}/${media_type == undefined ? theType : media_type}/${id}`;
 					  		localStorage.setItem('moreInfo', tempInfo);
-					  		window.location.replace(`./moreinfo.html?result=${id}`);
 				  		}
 
-				  		if(poster_path === undefined) return;
 				  		//Gets random numbers from the available number of total images and loads a random image with that if it is not null.
 				  		let randomNumber = anyValue(search.results.length);
 				  		let randomImages = `${search.results[randomNumber].poster_path}`;
-				  		searchSection.style.backgroundImage = randomImages == null || randomImages == undefined ? '' : `url('${images}${size}${randomImages}')`;
+				  		searchSection.style.backgroundImage = randomImages == 'null' || randomImages == 'undefined' ? '' : `url('${images}${size}${randomImages}')`;
 					  	searchSection.style.backgroundSize = 'contain';
 					  	searchSection.style.backgroundPosition = 'center';
-			  		});
-				}
 	  		}
 	  		break;
 	  	}
