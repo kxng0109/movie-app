@@ -586,6 +586,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100vw;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -706,50 +710,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .logo{
   width: 40px;
+  height: 40px;
 }
 
 nav .logo{
   width: 100px;
-  height: auto;
+  height: 100px;
 }
 
 nav a{
   text-decoration: none;
   color: black;
-}
-
-#exit-change-username{
-  position: absolute;
-  z-index: 5;
-  top: var(--top);
-  right: 10px;
-  color: white;
-  font-size: 40px;
-  display: none;
-}
-
-@-webkit-keyframes exitenter{
-  0%{
-    pointer-events: none;
-    opacity: 0;
-  }
-
-  100%{
-    pointer-events: auto;
-    opacity: 1;
-  }
-}
-
-@keyframes exitenter{
-  0%{
-    pointer-events: none;
-    opacity: 0;
-  }
-
-  100%{
-    pointer-events: auto;
-    opacity: 1;
-  }
 }
 
 #loading{
@@ -899,68 +870,6 @@ nav a{
   background-color: white;
 }
 
-#welcome-username{
-  top: var(--top);
-  background: seagreen;
-  position: fixed;
-  right: 0px;
-  z-index: 3;
-  display: none;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-  font-size: 5vw;
-  opacity: 0;
-}
-
-@-webkit-keyframes welcomeUsername{
-  0%{
-    opacity: 0;
-  }
-
-  30%{
-    opacity: 1;
-  }
-
-  50%{
-    opacity: 1;
-  }
-
-  70%{
-    opacity: 1;
-  }
-
-  100%{
-    opacity: 0;
-  }
-}
-
-@keyframes welcomeUsername{
-  0%{
-    opacity: 0;
-  }
-
-  30%{
-    opacity: 1;
-  }
-
-  50%{
-    opacity: 1;
-  }
-
-  70%{
-    opacity: 1;
-  }
-
-  100%{
-    opacity: 0;
-  }
-}
-
 header{
   /*#60695C*/
   position: -webkit-sticky;
@@ -1028,67 +937,9 @@ header{
   }
 }
 
-#header-menu, #user{
+#header-menu{
   color: black;
   font-size: 35px;
-}
-
-#user{
-  position: relative;
-}
-
-#user-hover{
-  display: none;
-  position: absolute;
-  top: var(--top);
-  right: 0px;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  color: black;
-  padding: 20px 40px;
-  height: 110px;
-  font-size: 17px;
-  z-index: 1;
-}
-
-#change-name{
-  position: absolute;
-  z-index: 4;
-  width: 100vw;
-  height: 100vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: hsla(0, 0%, 40%, 0.7);
-}
-
-#change-name>div{
-  background: white;
-  border-radius: 7px;
-  padding: 40px;
-}
-
-#change-name > div > p{
-  margin-bottom: 40px;
-}
-
-#change-name-form{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-#new-username-field{
-  height: 30px;
-  padding-left: 10px;
-  font-family: 'Poppins', cursive;
 }
 
 .link{
@@ -1334,24 +1185,13 @@ input:focus-visible {
           animation: changeBg 0.5s ease-out 2s forwards;
 }
 
-.circular-portrait, .popular-circular-portrait {
-  position: relative;
-  margin-left: 1.25rem;
-  height: 120px;
-  width: 120px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.popular-circular-portrait{
-  margin-left: 0px;
-  width: 150px;
-  height: 150px;
-}
-
 .search-person-image, .popular-person-image{
-  width: 100%;
+  background: hsl(0, 0%, 75%);
+  aspect-ratio: 2 / 3;
   height: auto;
+  width: 100%;
+  max-width: 175px;
+  border-radius: 0.5rem
 }
 
 @-webkit-keyframes changeBg{
@@ -1429,9 +1269,9 @@ input:focus-visible {
 }
 
 #trending-movies-div, #popular-movies-div, #cast {
+  margin-top: 0.75rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
   overflow-y: hidden;
   overflow-x: scroll;
 }
@@ -1460,12 +1300,14 @@ input:focus-visible {
   }
 }
 
-.category-image{
-  width: 175px;
-  border-radius: 10px;
-  position: absolute;
+.category-image {
+  position: relative;
   z-index: 2;
-  height: 262.5px;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  width: 100%;
+  max-width: 175px;
+  border-radius: 0.5rem;
 }
 
 .skeletonImg{
@@ -1504,12 +1346,11 @@ input:focus-visible {
 .category-movies{
   /*background: #FDF0D5;*/
   position: relative;
-  margin-top: 1.875rem;
-  margin-bottom: 1.875rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   margin-left: 1.25rem;
   margin-right: 1.25rem;
   display: flex;
-  height: 22.875rem;
   width: 12.5rem;
   flex-direction: column;
   align-items: center;
@@ -1517,8 +1358,7 @@ input:focus-visible {
 }
 
 .movie-first-info {
-  position: absolute;
-  top: 270px;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

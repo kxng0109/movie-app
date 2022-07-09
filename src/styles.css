@@ -20,38 +20,17 @@
 
 .logo{
 	width: 40px;
+	height: 40px;
 }
 
 nav .logo{
 	width: 100px;
-	height: auto;
+	height: 100px;
 }
 
 nav a{
 	text-decoration: none;
 	color: black;
-}
-
-#exit-change-username{
-	position: absolute;
-	z-index: 5;
-	top: var(--top);
-	right: 10px;
-	color: white;
-	font-size: 40px;
-	display: none;
-}
-
-@keyframes exitenter{
-	0%{
-		pointer-events: none;
-		opacity: 0;
-	}
-
-	100%{
-		pointer-events: auto;
-		opacity: 1;
-	}
 }
 
 #loading{
@@ -173,34 +152,6 @@ nav a{
 	background-color: white;
 }
 
-#welcome-username{
-	top: var(--top);
-	background: seagreen;
-	@apply hidden fixed right-0 px-5 py-2.5 z-3 text-[5vw] opacity-0 w-fit;
-}
-
-@keyframes welcomeUsername{
-	0%{
-		opacity: 0;
-	}
-
-	30%{
-		opacity: 1;
-	}
-
-	50%{
-		opacity: 1;
-	}
-
-	70%{
-		opacity: 1;
-	}
-
-	100%{
-		opacity: 0;
-	}
-}
-
 
 header{/*#60695C*/
 	@apply sticky top-0 right-0 w-full z-2 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)]
@@ -241,67 +192,9 @@ header{/*#60695C*/
 	}
 }
 
-#header-menu, #user{
+#header-menu{
 	color: black;
 	font-size: 35px;
-}
-
-#user{
-	position: relative;
-}
-
-#user-hover{
-	display: none;
-	position: absolute;
-	top: var(--top);
-	right: 0px;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	background: white;
-	color: black;
-	padding: 20px 40px;
-	height: 110px;
-	font-size: 17px;
-	z-index: 1;
-}
-
-#change-name{
-	position: absolute;
-	z-index: 4;
-	width: 100vw;
-	height: 100vh;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: none;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background: hsla(0, 0%, 40%, 0.7);
-}
-
-#change-name>div{
-	background: white;
-	border-radius: 7px;
-	padding: 40px;
-}
-
-#change-name > div > p{
-	margin-bottom: 40px;
-}
-
-#change-name-form{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
-
-#new-username-field{
-	height: 30px;
-	padding-left: 10px;
-	font-family: 'Poppins', cursive;
 }
 
 .link{
@@ -465,19 +358,9 @@ input{
 	animation: changeBg 0.5s ease-out 2s forwards;
 }
 
-.circular-portrait, .popular-circular-portrait{
-	 @apply ml-5 relative w-[120px] h-[120px] overflow-hidden rounded-[50%];
-}
-
-.popular-circular-portrait{
-	margin-left: 0px;
-	width: 150px;
-	height: 150px;
-}
-
 .search-person-image, .popular-person-image{
-	 width: 100%;
-	 height: auto;
+	background: hsl(0, 0%, 75%);
+	@apply w-full h-auto aspect-[2/3] max-w-[175px] rounded-lg
 }
 
 @keyframes changeBg{
@@ -546,7 +429,7 @@ input{
 }
 
 #trending-movies-div, #popular-movies-div, #cast{
-	@apply overflow-x-scroll overflow-y-hidden flex flex-row items-center;
+	@apply overflow-x-scroll overflow-y-hidden flex flex-row mt-3;
 }
 
 @keyframes fakeLoading{
@@ -562,11 +445,7 @@ input{
 }
 
 .category-image{
-	width: 175px;
-	border-radius: 10px;
-	position: absolute;
-	z-index: 2;
-	height: 262.5px;
+	@apply w-full max-w-[175px] h-auto rounded-lg relative z-2 aspect-[2/3] ;
 }
 
 .skeletonImg{
@@ -590,11 +469,11 @@ input{
 
 .category-movies{
 	/*background: #FDF0D5;*/
-	@apply relative flex flex-col items-center w-[12.5rem] my-[1.875rem] mx-5 rounded-xl h-[22.875rem]
+	@apply relative flex flex-col items-center w-[12.5rem] my-4 mx-5 rounded-xl
 }
 
 .movie-first-info{
-	@apply flex flex-col justify-between absolute top-[270px] text-lg;
+	@apply flex flex-col justify-between mt-4 text-lg;
 }
 
 .movie-title, .movie-release-date{

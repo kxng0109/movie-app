@@ -70,59 +70,10 @@ let loading = qS('#loading');
 let loadingAnimation = qS('#loading-animation');
 let loadingText = qS('#loading-text');
 let loadingCircles = qSA('.loading-circles');
-let userIcon = qS('#user');
-let welcomeUsername = qS('#welcome-username');
-let userHover = qS('#user-hover');
-let hoverUsername = qS('#user-hover-username');
-let hoverChangeUsername = qS('#user-hover-change');
-let newUsernameField = qS('#new-username-field');
-let submitUsername = qS('#submit-new-username');
-let changeUsernameScreen = qS('#change-name');
-let inside = qS('#change-name');
-let changeNameForm = qS('#change-name-form');
-let exitChangeUsernameScreen = qS('#exit-change-username');
-let username;
 let searchAll = qS('#search-all');
 let searchMovies = qS('#search-movies');
 let searchTV = qS('#search-tv');
 let searchPeople = qS('#search-people');
-
-if(localStorage.getItem('name') === null){
-	username = `Guest${anyValue(9)}${anyValue(9)}${anyValue(9)}`;
-	localStorage.setItem('name', `${username}`);
-}else {
-	username = localStorage.getItem('name');
-}
-
-userIcon.onclick = () =>{
-	userHover.style.display = 'inline-flex';
-	if (userHover.display = 'inline-flex') {
-		userHover.display = 'none';
-	}
-}
-
-hoverChangeUsername.onclick = () =>{
-	changeUsernameScreen.style.display = "inline-flex";
-	container.style.overflow = 'hidden';
-	exitChangeUsernameScreen.style.display = "block";
-	exitChangeUsernameScreen.style.animation = "exitenter 1s forwards";
-}
-
-exitChangeUsernameScreen.onclick = () =>{
-	container.style.overflow = 'initial';
-	exitChangeUsernameScreen.style.display = "none";
-	changeUsernameScreen.style.display = 'none';
-}
-
-changeNameForm.onsubmit = (e) =>{
-	if (newUsernameField.value === '') {
-		alert('please type in a name');
-		e.preventDefault();
-	} else{
-		username = `${newUsernameField.value}`;
-		localStorage.setItem('name', `${username}`);
-	}
-}
 
 if (menuBtn){
 	menuBtn.onclick = () =>{
@@ -161,12 +112,10 @@ let votePerc = (index, varName, vote_average, vote_count) =>{
 	}
 }
 
-let possibilities = (index, first, second, circular, title, date, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department) =>{
+let possibilities = (index, first, second, title, date, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department) =>{
 	if (typeof profile_path === 'undefined') {
-		circular[index].style.display = 'none';
 		first[index].style.display = 'none';
 		if (poster_path === undefined || poster_path === null) {
-			second[index].style.height = '195px';
 			second[index].setAttribute('alt', `${original_title}`);
 		} else{
 			second[index].setAttribute('src', `${images}${size}${poster_path}`);					  			
@@ -175,12 +124,10 @@ let possibilities = (index, first, second, circular, title, date, images, poster
 		first[index].setAttribute('src', `${images}${size}${profile_path}`);
 		first[index].style.display = 'block';
 		second[index].style.display = 'none';
-		circular[index].style.display = 'block';
 	} else{
 		first[index].setAttribute('src', `images/photo1.webp`);
 		first[index].style.display = 'block';
 		second[index].style.display = 'none';
-		circular[index].style.display = 'block';
 	}
 
 	if (original_title !== undefined) {
@@ -219,7 +166,6 @@ searchForm.forEach((item, index) =>{
 //and a comma and whitespace to the end of the element
 //or return that element if it's the last in the array
 let addComma = array =>{
-	// console.log(array)
 	let arrayLength = array.length;
 	let updatedArray = [];
 	array.forEach((item, index) =>{

@@ -30,7 +30,8 @@
 }
 
 .cast-members-img, .more{
-	@apply min-w-[9.375rem] h-auto object-cover rounded-md;
+	background: hsl(0, 0%, 75%);
+	@apply min-w-[150px] h-auto object-cover rounded-md aspect-[2/3];
 }
 
 .subtext{

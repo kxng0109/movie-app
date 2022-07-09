@@ -63,7 +63,7 @@ function trendingInfo () {
 
 				links.innerHTML = `
 										<div class="category-movies">
-										<img class="category-image skeletonImg" loading='lazy'>
+										<img class="category-image skeletonImg" loading='lazy' src="./images/grey.webp" alt="trending movies images">
 										<p class="rating">N/A</p>
 										<div class="rating-bg"></div>
 										<div class="movie-first-info">
@@ -116,7 +116,7 @@ function popularInfo(type){
 	.then(data => {
 		infos(popularDiv, '#popular-section');
 		popularDiv.scrollTo({left: 0, behavior: 'smooth'});
-		
+
 		var resultDivNum;
 		if (category.length === data.results.length){
 			category.forEach( function(element, index) {
@@ -130,10 +130,8 @@ function popularInfo(type){
 
 			alinks.innerHTML = `
 									<div class="category-movies popular">
-							<img class="category-image skeletonImg" loading="lazy">
-							<div class="popular-circular-portrait">
-								<img src=""class="popular-person-image">
-							</div>
+							<img class="category-image skeletonImg" loading="lazy" src="./images/grey.webp" alt="popular movies images">
+							<img src="./images/photo1.webp" class="popular-person-image">
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
@@ -145,15 +143,10 @@ function popularInfo(type){
 			popular = qSA('.popular')
 			infos(popularDiv, '#popular-section');
 			popularPersonImage = qSA('.popular-person-image');
-			popularCircular = qSA('.popular-circular-portrait');
-			index = resultDivNum
+			index = resultDivNum;
 		  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path, id} = data.results[index];
-		  	possibilities(index, popularPersonImage, categoryImage, popularCircular, categoryTitle, categoryRelease, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
+		  	possibilities(index, popularPersonImage, categoryImage, categoryTitle, categoryRelease, images, poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
 		  	votePerc(index, rating, vote_average);
-		  	if (type === 'person') {
-		  		category[index].style.height = '300px';
-		  		categoryInfo[index].style.top = '200px'
-		  	}
 		}
 	})
 }
@@ -171,17 +164,6 @@ window.onload = () =>{
 	popularPeople.style.backgroundColor = 'transparent';
 	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
 	popularInfo('movie');
-	welcomeUsername.textContent = `Welcome ${username}`;
-	hoverUsername.textContent = `${username}`;
-	let welcomeUser = () => {
-		welcomeUsername.style.display = 'block';
-		welcomeUsername.style.animation = 'welcomeUsername 8s linear';
-		let welcomeUserDelete = () =>{
-			welcomeUsername.style.display = 'none';
-		}
-		setTimeout(welcomeUserDelete, 8000);
-	}
-	setTimeout(welcomeUser, 4000);
 }
 
 trendingAll.onclick = () =>{

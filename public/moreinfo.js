@@ -40,6 +40,7 @@ window.onload = () =>{
 	//Split the url query into an array when it sees this "="
 	let splitQuery = window.location.search.split("?"); //example of what is returned ['', 'movie/338953']
 	theCategory = `${proxy}${splitQuery[1]}`;
+	theCategory.includes('person') ? (quickInfo.style.display = 'none', castParentDiv.style.display = 'none') : '';
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
 	categoryinfo();
 	theCategoryCredit = `${theCategory}/credits?api_key=${api_key}`;
@@ -105,14 +106,13 @@ function categoryinfo () {
 	.then(response => response.json())
 	.then(data =>{
 		switch (true) {
-			case theCategory.includes('//person'): //Checks whether '//person' is in the theCategory's text
+			case theCategory.includes('person'): //Checks whether '//person' is in the theCategory's text
 				quickInfo.style.display = 'none';
 				categoryTitle = qS('#name');
 				categoryImage = qS('#moreinfo-person-image');
 				theOverview = qS('#biography');
 				tagLine = qS('#forte');
 
-				console.log(data);
 				const{also_known_as, biography, birthday, deathday, known_for_department, place_of_birth, profile_path} = data
 				var{name} = data; //Using var because it shows issue of the 'name' variable being declared already;
 
@@ -137,7 +137,6 @@ function categoryinfo () {
 				: dateOfDeathDiv.style.display = 'none';
 
 				castParentDiv.style.display = 'none';
-				recommendationsHeader.style.display = 'none';
 				recommendationsParentDiv.style.display = 'none';
 
 
@@ -221,8 +220,7 @@ function categoryinfo () {
 				theRevenue.textContent = `$${revenue}`;
 	
 				//Look for recommendations
-				recommendations()
-				recommendationsHeader.style.display = 'block';
+				recommendations();
 
 				//Fetch the cast, the no parameter is to tell the function to 
 				//display a maximum of 15 casts when callling the function
@@ -254,7 +252,6 @@ function fetchCast(more){
 	fetch(theCategoryCredit)
 	.then(response => response.json())
 	.then(data =>{
-		// console.log(data);
 
 		switch (more === 'no') {//If the user clicks "load more" or not in the casts place
 			case false:
@@ -265,8 +262,9 @@ function fetchCast(more){
 			break;
 			default:
 				data.cast.forEach( (element, index) =>{
-					const{name, character, profile_path} = data.cast[index];
-					createCastsTemplate();
+					const{name, id, character, profile_path} = data.cast[index];
+					type = 'person';
+					createCastsTemplate(`./moreinfo.html?${type}/${id}`);
 					castImages = qSA('.cast-members-img');
 					castRealName = qSA('.cast-real-name');
 					castName = qSA(".cast-name");
@@ -329,11 +327,11 @@ backToBegin.onclick = () =>{
 }
 
 // To add the basic templates for the casts section
-function createCastsTemplate(){
+function createCastsTemplate(whenClicked){
 	let outerDiv = document.createElement('div');
 	outerDiv.classList.add('eachCast');
 	let aTag = document.createElement('a');
-	aTag.setAttribute('href', 'javascript:void');
+	aTag.setAttribute('href', whenClicked);
 	let anImg = document.createElement('img');
 	anImg.classList.add('cast-members-img');
 	anImg.setAttribute('loading', 'lazy');
@@ -358,13 +356,12 @@ let recommendations = () =>{
 	fetch(callRecommendations)
 	.then(res => res.json())
 	.then(data => {
-		console.log(data);
+		if(data.results.length > 1) {recommendationsHeader.style.display = 'block'};
 		data.results.forEach((item, index) =>{
 			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average, vote_count} = data.results[index];
 			let recommendationLink = `${proxy}/${media_type}/${id}`
 			let posterImage = `${images}${size}${poster_path}`;
-			let whenClicked = `./moreinfo.html?${media_type}/${id}`
-
+			let whenClicked = `./moreinfo.html?${media_type}/${id}`;
 			recommendationTemplate(title, original_title, name, original_name, posterImage, index, vote_average, media_type, whenClicked);
 		})
 	})
