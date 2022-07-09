@@ -12,35 +12,6 @@ window.onscroll = () =>{
 let timeOfDay = new Date().getHours();
 welcomeText.textContent = timeOfDay > 16 ? 'Good Evening!' : timeOfDay > 12 ? 'Good Afternoon!' : 'Good Morning!';
 
-let Loader = () =>{
-	loadingCircles.forEach( function(element, index) {
-		loadingCircles[index].style.bottom = '-10vh';
-	});
-	container.style.overflowY = 'hidden';
-	loading.style.display = 'inline-flex';
-	loadingText.style.animation = 'textFadeIn 1.5s forwards';
-	loadingCircles[0].style.animation = 'loadingFlyIn 2.5s infinite';
-	loadingCircles[1].style.animation = 'loadingFlyIn 2.5s 0.08s infinite';
-	loadingCircles[2].style.animation = 'loadingFlyIn 2.5s 0.16s infinite';
-	let myFunc = () =>{
-		container.style.overflowY = 'scroll';
-		loading.style.display = 'none';
-		loadingText.style.animation = '';
-		loadingCircles.forEach((element, index) =>{
-			loadingCircles[index].style.animation = '';
-		});
-	}
-	value === undefined ? value = 2500 : value;
-	var numeric = value;
-	value = undefined
-	const ANINTERVAL = setTimeout(myFunc, numeric);
-}
-
-// let everyLink = document.querySelectorAll('a');
-// everyLink.forEach( function(element, index) {
-// 	everyLink[index].addEventListener('click', Loader);
-// });
-
 
 qSA('.section-link').onclick = (e) =>{
 	for (let count2 = 0; count2 < qSA('.section-link').length - 1; count2++) {
@@ -154,18 +125,19 @@ function popularInfo(type){
 	})
 }
 
+//Changes items background colors
+let changeBackgroundColor = (coloured, transparent1, transparent2, transparent3) =>{
+	coloured.style.backgroundColor = '#120D31';
+	transparent1.style.backgroundColor = 'transparent';
+	transparent2 == undefined || transparent2 == null ? '' : transparent2.style.backgroundColor = 'transparent';
+	transparent3 == undefined || transparent3 == null ? '' : transparent3.style.backgroundColor = 'transparent';
+}
+
 window.onload = () =>{
-	// value = 3800;
-	// Loader();
 	type = 'all';
 	trendingInfo();
-	trendingAll.style.backgroundColor = '#120D31';
-	trendingMovies.style.backgroundColor = 'transparent';
-	trendingTV.style.backgroundColor = 'transparent';
-	popularMovies.style.backgroundColor = '#120D31';
-	popularTV.style.backgroundColor = 'transparent';
-	popularPeople.style.backgroundColor = 'transparent';
-	trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+	changeBackgroundColor(trendingAll, trendingMovies, trendingTV);
+	changeBackgroundColor(popularMovies, popularTV, popularPeople);
 	popularInfo('movie');
 }
 
@@ -173,63 +145,46 @@ trendingAll.onclick = () =>{
 	// Loader();
 	type = 'all';
 	trendingInfo();
-	trendingAll.style.backgroundColor = '#120D31';
-	trendingMovies.style.backgroundColor = 'transparent';
-	trendingTV.style.backgroundColor = 'transparent';
+	changeBackgroundColor(trendingAll, trendingMovies, trendingTV);
 }
 
 trendingMovies.onclick = ()=>{
 	type = 'movie';
 	trendingInfo();
-	trendingAll.style.backgroundColor = 'transparent';
-	trendingMovies.style.backgroundColor = '#120D31';
-	trendingTV.style.backgroundColor = 'transparent';
-	// trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+	changeBackgroundColor(trendingMovies, trendingAll, trendingTV);
 }
 
 trendingTV.onclick = ()=>{
 	type = 'tv';
 	trendingInfo();
-	trendingAll.style.backgroundColor = 'transparent';
-	trendingMovies.style.backgroundColor = 'transparent';
-	trendingTV.style.backgroundColor = '#120D31';
-	// trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+	changeBackgroundColor(trendingTV, trendingMovies, trendingAll);
 }
-// timeWindow = 'day';
 
 dailyTrending.onclick = ()=>{
 	timeWindow = 'day';
 	trendingInfo();
 	weeklyTrending.style.backgroundColor = 'transparent';
 	dailyTrending.style.backgroundColor = '#120D31';
-	// trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+	changeBackgroundColor(dailyTrending, weeklyTrending);
 }
 
 weeklyTrending.onclick = ()=>{
 	timeWindow = 'week';
 	trendingInfo();
-	dailyTrending.style.backgroundColor = 'transparent';
-	weeklyTrending.style.backgroundColor = '#120D31';
-	// trendingDiv.style.animation = 'fakeLoading 1s linear forwards running';
+	changeBackgroundColor(weeklyTrending, dailyTrending);
 }
 
 popularMovies.onclick = () =>{	
 	popularInfo('movie');
-	popularMovies.style.backgroundColor = '#120D31';
-	popularTV.style.backgroundColor = 'transparent';
-	popularPeople.style.backgroundColor = 'transparent';
+	changeBackgroundColor(popularMovies, popularTV, popularPeople);
 }
 
 popularTV.onclick = ()=>{
 	popularInfo('tv');
-	popularMovies.style.backgroundColor = 'transparent';
-	popularTV.style.backgroundColor = '#120D31';
-	popularPeople.style.backgroundColor = 'transparent';
+	changeBackgroundColor(popularTV, popularMovies, popularPeople);
 }
 
 popularPeople.onclick = ()=>{
 	popularInfo('person');
-	popularMovies.style.backgroundColor = 'transparent';
-	popularTV.style.backgroundColor = 'transparent';
-	popularPeople.style.backgroundColor = '#120D31';
+	changeBackgroundColor(popularPeople, popularTV, popularMovies);
 }
