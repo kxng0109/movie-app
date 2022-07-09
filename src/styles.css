@@ -52,7 +52,7 @@
 
 
 header{/*#60695C*/
-	@apply sticky top-0 right-0 w-full z-2 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)]
+	@apply sticky top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)]
 }
 
 #search-choice{
@@ -75,7 +75,7 @@ header{/*#60695C*/
 nav{
 	position: fixed;
 	top: 0px;
-	z-index: 1;
+	z-index: 3;
 	height: 100vh;
 	width: 70vw;
 	background-color: darkseagreen;
@@ -264,7 +264,7 @@ input{
 }
 
 .category-image{
-	@apply w-full max-w-[175px] h-auto rounded-lg relative z-2 aspect-[2/3] ;
+	@apply w-full max-w-[175px] h-auto rounded-lg relative z-1 aspect-[2/3] ;
 }
 
 .skeletonImg{
@@ -311,7 +311,7 @@ input{
 	background-color: grey;/*remove*/
 	color: white;
 	padding: 2px 15px;
-	z-index: 3;
+	z-index: 2;
 	right: 0%;
 }
 
@@ -321,7 +321,7 @@ input{
 	height: 29px;
 	display: inline-block;
 	position: absolute;
-	z-index: 1;
+	z-index: 0;
 	right: -2px;
 	top: 33px;
 	transform: rotateZ(-60deg);
