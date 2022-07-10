@@ -768,8 +768,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 header{
   /*#60695C*/
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0px;
   right: 0px;
   z-index: 4;

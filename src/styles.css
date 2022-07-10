@@ -52,7 +52,7 @@
 
 
 header{/*#60695C*/
-	@apply sticky top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)]
+	@apply fixed top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)]
 }
 
 #search-choice{
