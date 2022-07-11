@@ -71,6 +71,7 @@ let searchAll = qS('#search-all');
 let searchMovies = qS('#search-movies');
 let searchTV = qS('#search-tv');
 let searchPeople = qS('#search-people');
+let largeScreenNavMenuText = qSA('.large-screen-nav--menu-text');
 
 if (menuBtn){
 	menuBtn.onclick = () =>{
@@ -158,7 +159,6 @@ searchForm.forEach((item, index) =>{
 	}
 });
 
-
 //It creates a new array that is sort of a mapped version of the array
 //and a comma and whitespace to the end of the element
 //or return that element if it's the last in the array
@@ -174,14 +174,3 @@ let addComma = array =>{
 	})
 	return updatedArray.join('')
 }
-
-
-
-// export {proxy, api_key, images, timeWindow, qS, qSA, trendingSection, username,
-// 	popularSection, trendingDiv, popularDiv, main, container, trendingAll, trendingMovies,
-// 	trendingTV, popularMovies, popularTV, popularPeople, dailyTrending, weeklyTrending,
-// 	menuBtn, loading, searchForm, searchInput, searchSection, resultQuery,
-// 	searchResultsContainer, anyValue, loadingAnimation, loadingText, loadingCircles, 
-// 	userIcon, userHover, welcomeUsername,	hoverUsername, hoverChangeUsername, 
-// 	newUsernameField, submitUsername, changeUsernameScreen, inside, changeNameForm,
-// 	 exitChangeUsernameScreen};

@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 *, *:before, *:after{
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+	@apply p-0 m-0 scroll-smooth box-border;
 }
 
 :root{
@@ -58,15 +56,15 @@
 }
 
 .large-screen-nav-menu--children{
-	@apply  ml-14 my-6 flex items-center hover:border-r-2 border-red-500 active:border-r-2;
+	@apply  ml-12 my-6 flex items-center hover:border-r-2 border-red-500 active:border-r-2;
 }
 
-/*.large-screen-nav-menu--children-icon{
-	@apply
+.large-screen-nav-menu--children-icon{
+	@apply lg:text-xl;
 }
-*/
+
 .large-screen-nav--menu-text{
-	@apply ml-2 no-underline text-gray-600 text-lg hover:text-black;
+	@apply ml-2 no-underline text-gray-600 text-lg font-medium hover:text-black lg:text-xl;
 }
 
 #container{/*#141B41 #C6D8D3*/
@@ -165,7 +163,7 @@ header{/*#60695C*/
 }
 
 .headings{
-	@apply font-bold
+	@apply font-semibold
 }
 
 #welcome{
@@ -177,7 +175,7 @@ header{/*#60695C*/
 }
 
 #search-bar-main{
-	@apply mx-auto w-full h-10 border-0 rounded-3xl;
+	@apply mx-auto w-full h-10 border-0 rounded-3xl max-w-[500px];
 }
 
 #search-btn-main{
@@ -354,15 +352,13 @@ input{
 	transform: rotateZ(-60deg);
 }
 
-#trending-header, #popular-header{	
-	margin-left: 20px;
+#trending-header, #popular-header{
 	background: linear-gradient(90deg, #cc33ff, transparent 50%);
 	background-size: 30px 2px;
 	background-repeat: repeat-x;
 	background-position: 0 100%;
-	width: fit-content;
 	/*animation: moving 1s infinite linear;*/
-	@apply font-bold text-xl
+	@apply font-semibold text-xl ml-5 w-fit lg:text-2xl;
 }
 
 @keyframes moving{

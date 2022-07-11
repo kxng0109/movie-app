@@ -5,7 +5,7 @@
 
 #quickinfo1{
 	background-color: hsla(0, 0%, 100%, 0.9);
-	@apply flex flex-row justify-between items-center p-5;
+	@apply flex flex-row justify-between items-center p-5 lg:px-[5vw];
 }
 
 #quickinfo2{
@@ -66,11 +66,11 @@
 }
 
 .cast-real-name{
-	@apply mt-2 text-base text-white
+	@apply mt-2 text-base text-white text-center
 }
 
 .cast-name{
-	@apply text-sm text-white mb-2
+	@apply text-sm text-white mb-2 text-center
 }
 
 #casts--parent-div{
@@ -125,4 +125,8 @@
 
 .recommendationsTitleAndDate{
 	color: white;
+}
+
+.as{
+	@apply text-center text-lg text-white
 }

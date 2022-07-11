@@ -11,13 +11,31 @@
 	<link rel="stylesheet" type="text/css" href="./moreinfo.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Montserrat+Alternates:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Montserrat+Alternates:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<script type="text/javascript" defer src="./variables.js"></script>
 	<script type="text/javascript" defer src="./moreinfo.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
 </head>
 <body>
+	<nav id="large-screen-nav">
+		<a href="./index.html" id="large-screen-nav--icon"><img src="./images/nobg.webp" id="large-screen-nav--logo" alt="website logo" loading='lazy'></a>
+		<div id="large-screen-nav--menu">
+			<div class="large-screen-nav-menu--children lg:hidden">
+				<ion-icon name="people-circle" class="large-screen-nav-menu--children-icon text-lg"></ion-icon>
+				<a href="#casts--parent-div" class="large-screen-nav--menu-text large-screen-nav--recommended-casts">Casts</a>
+			</div>
+			<div class="large-screen-nav-menu--children lg:hidden">
+				<ion-icon name="trending-up" class="large-screen-nav-menu--children-icon"></ion-icon>
+				<a href="#recommendations-parent-div" class="large-screen-nav--menu-text large-screen-nav--recommended-text">Recommended</a>
+			</div>
+			<div class="large-screen-nav-menu--children">
+				<ion-icon name="search" class="large-screen-nav-menu--children-icon"></ion-icon>
+				<a href="./searchresults.html" class="large-screen-nav--menu-text">Search</a>
+			</div>
+		</div>
+	</nav>
+
 	<div id="container" class="container2">
 		<div></div>
 		<header>
@@ -94,37 +112,37 @@
 				</div>
 			</div>
 
-			<div id="quickinfoperson" class="hidden px-6">
-				<img src="./images/photo1.webp" id="moreinfo-person-image" class="rounded-md  mx-auto my-4">
-				<p id="name" class="text-center text-lg mt-4 font-bold"></p>
+			<div id="quickinfoperson" class="hidden px-6 lg:text-lg text-white">
+				<img src="./images/photo1.webp" id="moreinfo-person-image" class="rounded-md mx-auto my-4 aspect-[2/3] max-w-[200px] w-full h-auto lg:max-w-[300px]" alt="the persons image">
+				<p id="name" class="text-center text-lg mt-4 font-semibold lg:text-2xl"></p>
 
 				<div id="forte" class="text-center"></div>
 					
 				<p id="also-known-as" class="my-6"></p>
 
-				<div>
+				<div class="biography--container truncate">
 					<h2 class="underline text-center">Biography:</h2>
 					<p id="biography"></p>
 				</div>
 
-				<div id="birth-and-death-div" class="flex justify-between items-center mt-6 text-sm">
+				<div id="birth-and-death-div" class="flex justify-between items-center my-6 text-sm">
 					<div class="birthday-div">
-						<p class="birthday"></p>
-						<p class="birthday--header text-gray-500 text-xs text-center">Birthday</p>
+						<p class="birthday text-lg"></p>
+						<p class="birthday--header text-gray-200 text-xs text-center lg:text-base">Birthday</p>
 					</div>
 					<div class="place-of-birth-div hidden">
-						<p class="place-of-birth"></p>
-						<p class="place-of-birth--header text-gray-500 text-xs text-center">Place of birth</p>
+						<p class="place-of-birth text-lg"></p>
+						<p class="place-of-birth--header text-gray-200 text-xs text-center lg:text-base">Place of birth</p>
 					</div>
 					<div class="date-of-death-div hidden">
-						<p class="date-of-death"></p>
-						<p class="date-of-death--header text-gray-500 text-xs text-center">Death day</p>
+						<p class="date-of-death text-lg"></p>
+						<p class="date-of-death--header text-gray-200 text-xs text-center lg:text-base">Death day</p>
 					</div>
 				</div>
 			</div>
 
 			<div id="casts--parent-div">
-				<h2 class="text-white text-lg underline">Casts</h2>
+				<h2 class="text-white text-lg underline" id="casts--header">Casts</h2>
 				<ion-icon name="chevron-back-circle-outline" id="back-to-begin">
 				</ion-icon>
 				<div id="blur"></div>
@@ -132,7 +150,7 @@
 				</div>
 			</div>
 
-				<p class="text-white underline text-lg pl-5 recommendations--header hidden mt-5">Recommended for You</p>
+				<p class="text-white underline text-lg pl-5 recommendations--header hidden mt-5 lg:mt-10">Recommended for You</p>
 			<div id="recommendations-parent-div" class="flex overflow-x-auto vertical"></div>
 		</main>
 	</div>

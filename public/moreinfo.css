@@ -15,6 +15,13 @@
   padding: 1.25rem;
 }
 
+@media (min-width: 1024px){
+  #quickinfo1{
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
 #quickinfo2{
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -120,6 +127,7 @@
 
 .cast-real-name{
   margin-top: 0.5rem;
+  text-align: center;
   font-size: 1rem;
   line-height: 1.5rem;
   --tw-text-opacity: 1;
@@ -128,6 +136,7 @@
 
 .cast-name{
   margin-bottom: 0.5rem;
+  text-align: center;
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
@@ -222,4 +231,12 @@
 
 .recommendationsTitleAndDate{
   color: white;
+}
+
+.as{
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }

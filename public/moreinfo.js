@@ -12,6 +12,7 @@ theDuration = qS('#dvalue');
 tagLine = qS('#tagline');
 backGround = qS('#background');
 const cast = qS('#cast');
+let castsHeader = qS('#casts--header');
 let castImages, castRealName, castName, eachCast, hour, minute;
 let eachLanguage = qS('#each-language');
 let theRevenue = qS('#revenue');
@@ -34,16 +35,18 @@ let theBirthday = qS('.birthday')
 let placeOfBirthDiv = qS('.place-of-birth-div')
 let placeOfBirth = qS('.place-of-birth')
 let dateOfDeathDiv = qS('.date-of-death-div')
-let dateOfDeath = qS('.date-of-death')
+let dateOfDeath = qS('.date-of-death');
+let biographyContainer = qS('.biography--container');
 
 window.onload = () =>{
 	//Split the url query into an array when it sees this "="
 	let splitQuery = window.location.search.split("?"); //example of what is returned ['', 'movie/338953']
 	theCategory = `${proxy}${splitQuery[1]}`;
-	theCategory.includes('person') ? (quickInfo.style.display = 'none', castParentDiv.style.display = 'none') : '';
+	theCategory.includes('person') ? (quickInfo.style.display = 'none', castsHeader.textContent = 'Featured In:') : castsHeader.textContent = 'Casts';
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
 	categoryinfo();
-	theCategoryCredit = `${theCategory}/credits?api_key=${api_key}`;
+	//If we are loading a persons details, then use that instead use the other one to load the casts of the movie or tv show
+	theCategoryCredit = theCategory.includes('person') ? `${theCategory}/combined_credits?api_key=${api_key}` : `${theCategory}/credits?api_key=${api_key}`;
 	callRecommendations = `${theCategory}/recommendations?api_key=${api_key}&page=1`
 	backToBegin.style.display = 'none';
 }
@@ -107,22 +110,26 @@ function categoryinfo () {
 	.then(data =>{
 		switch (true) {
 			case theCategory.includes('person'): //Checks whether '//person' is in the theCategory's text
+				//NOTE: Most of the time, 'cast' represents an information about the person
 				quickInfo.style.display = 'none';
 				categoryTitle = qS('#name');
 				categoryImage = qS('#moreinfo-person-image');
 				theOverview = qS('#biography');
 				tagLine = qS('#forte');
 
+
 				const{also_known_as, biography, birthday, deathday, known_for_department, place_of_birth, profile_path} = data
 				var{name} = data; //Using var because it shows issue of the 'name' variable being declared already;
 
 				document.title = `${name}`;
 				quickInfoPerson.style.display = 'block';
+				size = 'w400';
 				categoryImage.setAttribute('src', `${images}${size}${profile_path}`);
+				size = 'w200';
 
-				container.style.backgroundColor = 'hsl(178deg, 100%, 95%)';
-				main.style.backgroundColor = 'hsl(178deg, 100%, 95%)';
-				categoryTitle.textContent = `${name}`
+				backGround.style.backgroundColor = '#DAB894';/*hsl(178deg, 100%, 95%)*/
+				main.style.backgroundColor = 'transparent';
+				categoryTitle.textContent = `${name}`;
 
 				alsoKnowsAs.textContent = `Also known as: ${addComma(also_known_as)}`;
 
@@ -136,9 +143,13 @@ function categoryinfo () {
 				deathday != undefined || deathday != null ? (dateOfDeathDiv.style.display = 'block', dateOfDeath.textContent = `${deathday}`)
 				: dateOfDeathDiv.style.display = 'none';
 
-				castParentDiv.style.display = 'none';
 				recommendationsParentDiv.style.display = 'none';
 
+				fetchCast('no');
+
+				biographyContainer.onclick = () =>{
+					biographyContainer.classList.toggle('truncate');
+				}
 
 				if (profile_path == null || profile_path == undefined) return
 				// get images = ${theCategory}/images?api_key=${api_key}
@@ -230,6 +241,7 @@ function categoryinfo () {
 	});
 }
 
+
 //Create html elements for the production companies
 let loadCompanies = (imageSrc, companyName) =>{
 	let eachProductionCompanyDiv = document.createElement('div');
@@ -253,6 +265,8 @@ function fetchCast(more){
 	.then(response => response.json())
 	.then(data =>{
 
+		console.log(data)
+
 		switch (more === 'no') {//If the user clicks "load more" or not in the casts place
 			case false:
 				for (var i = 15; i <= data.cast.length - 1; i++) {
@@ -262,17 +276,28 @@ function fetchCast(more){
 			break;
 			default:
 				data.cast.forEach( (element, index) =>{
-					const{name, id, character, profile_path} = data.cast[index];
-					type = 'person';
+					const{name, id, character, profile_path, title, poster_path, media_type} = data.cast[index];
+					type = media_type || 'person';
 					createCastsTemplate(`./moreinfo.html?${type}/${id}`);
 					castImages = qSA('.cast-members-img');
 					castRealName = qSA('.cast-real-name');
 					castName = qSA(".cast-name");
 					eachCast = qSA('.eachCast');
 					size = 'w200';
-					switch (profile_path === null || profile_path === undefined) {
-						case false:
+					// switch (profile_path === null || profile_path === undefined || poster_path === null || poster_path === undefined) {
+					// 	case false:
+					// 		castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+					// 	break;
+					// 	default:
+					// 		castImages[index].setAttribute('src',  `./images/photo1.webp`);
+					// 	break;
+					// }
+					switch (true) {
+						case (profile_path != null && profile_path != undefined):
 							castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+						break;
+						case (poster_path != null && poster_path != undefined):
+							castImages[index].setAttribute('src',  `${images}${size}${poster_path}`);
 						break;
 						default:
 							castImages[index].setAttribute('src',  `./images/photo1.webp`);
@@ -280,6 +305,7 @@ function fetchCast(more){
 					}
 					castRealName[index].textContent = name;
 					castName[index].textContent = character;
+					title ? castName[index].style.fontSize = 'large' : '';
 				});
 
 				if (data.cast.length > 15) {
@@ -341,12 +367,16 @@ function createCastsTemplate(whenClicked){
 	let firstP = document.createElement('p');
 	firstP.classList.add('cast-real-name');
 	let secondP = document.createElement('p');
-	secondP.classList.add('cast-name');
+	secondP.classList.add('as');
+	secondP.textContent = 'As'
+	let thirdP = document.createElement('p');
+	thirdP.classList.add('cast-name');
 	outerDiv.appendChild(aTag);
 	outerDiv.appendChild(innerDiv);
 	aTag.appendChild(anImg);
 	innerDiv.appendChild(firstP);
 	innerDiv.appendChild(secondP);
+	innerDiv.appendChild(thirdP);
 	cast.appendChild(outerDiv);
 }
 

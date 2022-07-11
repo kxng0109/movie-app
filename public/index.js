@@ -47,7 +47,7 @@ function trendingInfo () {
 										<p class="rating">N/A</p>
 										<div class="rating-bg"></div>
 										<div class="movie-first-info">
-											<h4 class="movie-title headings"></h4>
+											<p class="movie-title headings"></p>
 											<p class="movie-release-date"></p>
 										</div>
 									</div>`
@@ -115,7 +115,7 @@ function popularInfo(type){
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">
-								<h4 class="movie-title headings"></h4>
+								<p class="movie-title headings"></p>
 								<p class="movie-release-date"></p>
 							</div>
 						</div>`
