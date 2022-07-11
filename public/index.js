@@ -9,6 +9,12 @@ window.onscroll = () =>{
 	return counter;
 }
 
+fetch(`${proxy}discover/movie?api_key=${api_key}`)
+.then(res =>res.json())
+.then(data => console.log(data))
+
+console.log()
+
 let timeOfDay = new Date().getHours();
 welcomeText.textContent = timeOfDay > 16 ? 'Good Evening!' : timeOfDay > 12 ? 'Good Afternoon!' : 'Good Morning!';
 

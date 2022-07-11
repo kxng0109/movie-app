@@ -16,6 +16,7 @@
 	--red: #C38D9E;
 	--green: #41B3A3;
 	--top: 70px;
+	--left: 13rem;
 }
 
 .logo{
@@ -44,15 +45,48 @@
 	}
 }
 
-#container{/*#141B41 #C6D8D3*/
-	font-family: 'Poppins', sans-serif;
-	background-color: var(--blue);
-	@apply relative h-fit w-full
+#large-screen-nav{
+	@apply hidden lg:block fixed left-0 top-0 bottom-0 z-3 w-[var(--left)] bg-[#FFCAAF] pt-6
 }
 
+#large-screen-nav--logo{
+	@apply w-24 h-24 relative left-1/2 -translate-x-1/2
+}
+
+#large-screen-nav--menu{
+	@apply flex flex-col relative top-1/4 -translate-y-1/4
+}
+
+.large-screen-nav-menu--children{
+	@apply  ml-14 my-6 flex items-center hover:border-r-2 border-red-500 active:border-r-2;
+}
+
+/*.large-screen-nav-menu--children-icon{
+	@apply
+}
+*/
+.large-screen-nav--menu-text{
+	@apply ml-2 no-underline text-gray-600 text-lg hover:text-black;
+}
+
+#container{/*#141B41 #C6D8D3*/
+	font-family: 'Fredoka', sans-serif;
+	background-color: var(--blue);
+	@apply relative h-fit w-full lg:left-[var(--left)];
+}
+
+a{	
+	font-family: 'Fredoka', sans-serif;
+}
 
 header{/*#60695C*/
-	@apply fixed top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)]
+	@apply fixed top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)] lg:left-[var(--left)];
+}
+
+@media (min-width: 1024px){
+	#container, header{
+		width: calc(100% - var(--left));
+	}
 }
 
 #search-choice{
@@ -61,29 +95,22 @@ header{/*#60695C*/
 }
 
 #search-bar-header{
-	@apply w-full mx-auto rounded-md border-0 h-7;
+	@apply w-full mx-auto rounded-md border-0 h-7 max-w-[400px];
 }
 
 #header-menu{
-	@apply text-black text-[35px] ml-3
+	@apply text-black text-[35px] ml-3 lg:hidden;
 }
 
 .link{
 	display: flex;
 }
 
-nav{
-	position: fixed;
-	top: 0px;
-	z-index: 3;
-	height: 100vh;
-	width: 70vw;
+#nav{
+	width: min(20rem, 70vw);
 	background-color: darkseagreen;
-	display: flex;
-	flex-direction: column;
-	padding: 100px 0 0 30px;
-	font-size: 20px;
-	margin-left: -70vw;
+	margin-left: min(-20rem, -70vw);
+	@apply fixed top-0 z-3 h-screen flex flex-col pt-24 pl-7 text-xl lg:hidden;
 }
 
 @keyframes showMenu{
@@ -106,7 +133,7 @@ nav{
 	}
 }
 
-nav>*{
+#nav>*{
 	padding-bottom: 20px;
 }
 
@@ -164,89 +191,6 @@ input[type='search']{
 input{
 	@apply focus-visible:outline-0 focus:outline-0 cursor-text text-black
 }
-
-
-#search{
-	@apply h-fit w-screen overflow-y-auto bg-gray-400;
-}
-
-#search-response{
-	background: hsla(0, 0%, 100%, 0.9);	
-	text-align: center;
-	padding: 20px 0;
-	background: linear-gradient(90deg, #e6faff 75%, transparent);
-	border-bottom: 1px solid grey;
-}
-
-.search-image{
-	width: 130px;
-	border-radius: 10px;
-	margin-left: 20px;
-	background-color: grey;
-}
-
-.search-info{
-	display: flex;
-	align-items: center;
-	background: hsla(0, 0%, 100%, 1.0);
-	color: black;
-	position: relative;
-	text-decoration: none;
-	height: 250px;
-	border-bottom: 1px dashed black;
-	animation: changeBg 0.5s ease-out 2s forwards;
-}
-
-.search-person-image, .popular-person-image{
-	background: hsl(0, 0%, 75%);
-	@apply w-full h-auto aspect-[2/3] max-w-[175px] rounded-lg
-}
-
-.search-person-image{
-	@apply w-[130px] ml-5;
-}
-
-@keyframes changeBg{
-	0%{
-		background: white;
-	}
-
-	100%{
-		background: linear-gradient(90deg, #e6faff 75%, transparent);
-	}
-}
-
-.search-rating{
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	color: white;
-	text-align: center;
-	padding: 7px 30px;
-}
-
-.search-text{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 20px 20px 0 20px;
-	width: calc(100% - 130px);
-}
-
-.search-result-description{
-	height: 65px;
-	overflow: hidden;
-	font-size: 14px;
-}
-
-.search-result-date{
-	text-align: right;
-	margin-top: 10px;
-	position: absolute;
-	bottom: 20px;
-	right: 25px;
-}
-
 
 #trending-section{
 	padding: 50px 0 20px 0;
@@ -363,17 +307,11 @@ input{
 }
 
 #time-window{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	margin-top: 10px;
-	border: 1px solid grey;
-	width: fit-content;
-	border-radius: 8px;
+	@apply flex items-center mt-3 border border-gray-500 w-fit rounded-lg sm:ml-10;
 }
 
 #trending-section>div, #popular-section>div{
-	@apply mx-5 flex flex-col items-center;
+	@apply mx-5 flex flex-col items-center sm:flex-row sm:justify-center;
 }
 
 #popular-section{

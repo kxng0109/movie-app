@@ -63,14 +63,10 @@ let searchInput = qSA('.search-bar');
 let searchSection = qS('#search');
 let resultQuery = qS('#search-response');
 let searchResultsContainer = qS('#search');
-let anyValue = (value) =>{
+let anyValue = value =>{
 	let anyNum = Math.floor(Math.random() * value);
 	return anyNum;
 }
-let loading = qS('#loading');
-let loadingAnimation = qS('#loading-animation');
-let loadingText = qS('#loading-text');
-let loadingCircles = qSA('.loading-circles');
 let searchAll = qS('#search-all');
 let searchMovies = qS('#search-movies');
 let searchTV = qS('#search-tv');
@@ -150,12 +146,12 @@ let possibilities = (index, first, second, title, date, images, poster_path, pro
 	if(poster_path === undefined) return;
 }
 
+
 searchForm.forEach((item, index) =>{
-	searchForm[index].onsubmit = (e) =>{
+	searchForm[index].onsubmit = e =>{
 		e.preventDefault();
 		if (searchInput[index].value) {
-			localStorage.setItem('searchQuery', searchInput[index].value)
-		  	window.location.replace('./searchresults.html');
+			window.location = `./searchresults.html?${searchInput[index].value}`;
 		} else{
 			alert("This field can't be empty");
 		}

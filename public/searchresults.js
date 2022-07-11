@@ -1,4 +1,7 @@
-let theSearchQuery = localStorage.getItem('searchQuery');
+//windows.location.search return something like ?Captain%20marvel
+//windows.location.search.split("?") return something like ['', 'Captain%20marvel']
+//window.location.search.split("?")[1].replace('%20', ' ') return something like Captain marvel
+let theSearchQuery = window.location.search.split("?")[1].replace('%20', ' ');
 let selectedCategory = localStorage.getItem('lastSelectedCategory') || 'multi';
 let pageNumber = 1;
 
@@ -24,7 +27,6 @@ let searching = (theType, page_no) =>{
 	fetch(search)
 	.then(response => response.json())
 	.then(search => {
-	  	// timEr(search);
 
 	  	switch (true) {
 	  		//If the search doesn't exist
@@ -43,7 +45,9 @@ let searching = (theType, page_no) =>{
 	  			for (var resultDivNum = 0; resultDivNum <= search.results.length - 1; resultDivNum++) {
 				searchResultsDiv = document.createElement('a');
 				searchResultsDiv.classList.add('search-info');
-				searchResultsDiv.setAttribute('href', `./moreinfo.html?${search.results[resultDivNum].media_type}/${search.results[resultDivNum].id}`);
+
+				let mediaType = search.results[resultDivNum].media_type || theType;
+				searchResultsDiv.setAttribute('href', `./moreinfo.html?${mediaType}/${search.results[resultDivNum].id}`);
 
 				searchResultsDiv.innerHTML = `
 										<img src="./images/grey.webp" class="search-image" alt="search result movie images">
@@ -87,7 +91,7 @@ let searching = (theType, page_no) =>{
 
 		  		votePerc(index, searchRating, vote_average, vote_count);
 		  		resultQuery.textContent = `Result of ${theSearchQuery}`;
-		  		document.title = `Result of ${theSearchQuery}`;
+		  		document.title = `Result of your search, ${theSearchQuery}`;
 		  		searchSection.style.animation = 'flyIn 0.7s linear forwards';
 
 		  		searchDiv[index].onclick = () =>{
