@@ -1080,6 +1080,110 @@ input:focus-visible {
   outline-width: 0px;
 }
 
+#search {
+  position: relative;
+  top: var(--top);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100vw;
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+#search-response{
+  background: hsla(0, 0%, 100%, 0.9);
+  text-align: center;
+  padding: 20px 0;
+  background: linear-gradient(90deg, #e6faff 75%, transparent);
+  border-bottom: 1px solid grey;
+}
+
+.search-image{
+  width: 130px;
+  border-radius: 10px;
+  margin-left: 20px;
+  background-color: grey;
+}
+
+.search-info{
+  display: flex;
+  align-items: center;
+  background: hsla(0, 0%, 100%, 1.0);
+  color: black;
+  position: relative;
+  text-decoration: none;
+  height: 250px;
+  border-bottom: 1px dashed black;
+  -webkit-animation: changeBg 0.5s ease-out 2s forwards;
+          animation: changeBg 0.5s ease-out 2s forwards;
+}
+
+.search-person-image, .popular-person-image{
+  background: hsl(0, 0%, 75%);
+  aspect-ratio: 2 / 3;
+  height: auto;
+  width: 100%;
+  max-width: 175px;
+  border-radius: 0.5rem
+}
+
+.search-person-image {
+  margin-left: 1.25rem;
+  width: 130px;
+}
+
+@-webkit-keyframes changeBg{
+  0%{
+    background: white;
+  }
+
+  100%{
+    background: linear-gradient(90deg, #e6faff 75%, transparent);
+  }
+}
+
+@keyframes changeBg{
+  0%{
+    background: white;
+  }
+
+  100%{
+    background: linear-gradient(90deg, #e6faff 75%, transparent);
+  }
+}
+
+.search-rating{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: white;
+  text-align: center;
+  padding: 7px 30px;
+}
+
+.search-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 0 20px;
+  width: calc(100% - 130px);
+}
+
+.search-result-description{
+  height: 65px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.search-result-date{
+  text-align: right;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+}
+
 #trending-section{
   padding: 50px 0 20px 0;
   /*background-color: hsla(163, 19%, 81%, 0.85);*/
