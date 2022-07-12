@@ -1,3 +1,8 @@
+.horizontal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 #main2{
   background: hwb(0deg 0% 100% / 50%);
   display: block;

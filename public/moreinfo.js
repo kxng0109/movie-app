@@ -151,6 +151,7 @@ function categoryinfo () {
 				}
 
 				largeScreenNavRecommendedCasts.textContent = 'Featured In';
+				largeScreenNavRecommendedText.textContent = `Images`;
 
 				//Get other images of the person, use recommendations() in order to reuse code and reduce file size
 				recommendations('person', name);

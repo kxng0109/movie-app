@@ -1,3 +1,7 @@
+.horizontal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb{
+	@apply bg-white;
+}
+
 #main2{
 	background: hwb(0deg 0% 100% / 50%);
 	@apply block h-fit;
