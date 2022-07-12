@@ -503,20 +503,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: absolute;
 }
 
-.relative {
-  position: relative;
+.z-\[5\] {
+  z-index: 5;
 }
 
 .-z-1 {
   z-index: -1;
-}
-
-.z-4 {
-  z-index: 4;
-}
-
-.z-\[5\] {
-  z-index: 5;
 }
 
 .mx-auto {
@@ -583,8 +575,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 6rem;
 }
 
-.h-\[90\%\] {
-  height: 90%;
+.h-full {
+  height: 100%;
 }
 
 .h-auto {
@@ -603,6 +595,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 6rem;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-full {
   width: 100%;
 }
@@ -619,6 +615,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 200px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -627,20 +627,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-direction: column;
 }
 
-.place-content-center {
-  place-content: center;
-}
-
 .items-end {
   align-items: flex-end;
 }
 
 .items-center {
   align-items: center;
-}
-
-.items-baseline {
-  align-items: baseline;
 }
 
 .justify-center {
@@ -711,12 +703,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1rem;
 }
 
-.font-semibold {
-  font-weight: 600;
-}
-
 .font-medium {
   font-weight: 500;
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .text-black {
@@ -729,19 +722,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-gray-200 {
-  --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
-}
-
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -779,7 +762,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --red: #C38D9E;
   --green: #41B3A3;
   --top: 70px;
-  --left: 13rem;
+  --left: 15rem;
 }
 
 .logo {
@@ -788,26 +771,46 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2.5rem;
 }
 
-@media screen and (max-width: 1080px){
-  #container::-webkit-scrollbar{
-    width: 0px;
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
+@media (min-width: 1024px) {
+  body::-webkit-scrollbar {
+    width: 0.5rem;
   }
 }
 
-@media screen and (min-width: 1000px){
-  body::-webkit-scrollbar{
-    width: 0;
+body::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+body::-webkit-scrollbar-track {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  /* color of the tracking area */
+}
+
+.horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .horizontal::-webkit-scrollbar {
+    display: block;
   }
 
-  #container::-webkit-scrollbar{
-    width: 8px;
-    background-color: white;
+  .horizontal::-webkit-scrollbar {
+    height: 0.5rem;
   }
+}
 
-  #container::-webkit-scrollbar-thumb{
-    background-color: grey;
-    border-radius: 10px;
-  }
+.horizontal::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 #large-screen-nav {
@@ -850,7 +853,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 .large-screen-nav-menu--children {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-  margin-left: 3rem;
+  margin-left: 2rem;
   display: flex;
   align-items: center;
   --tw-border-opacity: 1;
@@ -886,13 +889,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .large-screen-nav--menu-text:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-@media (min-width: 1024px) {
-  .large-screen-nav--menu-text {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
 }
 
 #container{
@@ -1275,7 +1271,7 @@ input:focus-visible {
   overflow-x: scroll;
 }
 
-.category-image {
+.category-image, .person-other-image {
   position: relative;
   z-index: 1;
   aspect-ratio: 2 / 3;
@@ -1420,7 +1416,7 @@ input:focus-visible {
 }
 
 .options, .search-options{
-  font-size: clamp(13px, 3.85vw, 17px);
+  font-size: clamp(13px, 4.3vw, 17px);
   display: inline-block;
   border-radius: 0.5rem;
   padding-top: 5px;
@@ -1503,7 +1499,18 @@ input:focus-visible {
   }
 }
 
+@media (min-width: 640px) {
+  .sm\:w-\[unset\] {
+    width: unset;
+  }
+}
+
 @media (min-width: 1024px) {
+  .lg\:mx-\[5vw\] {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+
   .lg\:mt-10 {
     margin-top: 2.5rem;
   }
@@ -1521,9 +1528,9 @@ input:focus-visible {
     line-height: 1.75rem;
   }
 
-  .lg\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .lg\:text-base {

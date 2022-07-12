@@ -14,33 +14,31 @@
 	--red: #C38D9E;
 	--green: #41B3A3;
 	--top: 70px;
-	--left: 13rem;
+	--left: 15rem;
 }
 
 .logo{
 	@apply w-10 h-10 mr-3;
 }
 
-@media screen and (max-width: 1080px){
-	#container::-webkit-scrollbar{
-		width: 0px;
-	}
+body::-webkit-scrollbar{
+	@apply w-0 lg:w-2
 }
 
-@media screen and (min-width: 1000px){
-	body::-webkit-scrollbar{
-		width: 0;
-	}
+body::-webkit-scrollbar-thumb{
+	@apply rounded-lg bg-gray-500;
+}
 
-	#container::-webkit-scrollbar{
-		width: 8px;
-		background-color: white;
-	}
+body::-webkit-scrollbar-track {
+  @apply bg-black;/* color of the tracking area */
+}
 
-	#container::-webkit-scrollbar-thumb{
-		background-color: grey;
-		border-radius: 10px;
-	}
+.horizontal::-webkit-scrollbar{
+	@apply hidden lg:block lg:h-2;
+}
+
+.horizontal::-webkit-scrollbar-thumb{
+	@apply bg-gray-500 rounded-lg;
 }
 
 #large-screen-nav{
@@ -56,7 +54,7 @@
 }
 
 .large-screen-nav-menu--children{
-	@apply  ml-12 my-6 flex items-center hover:border-r-2 border-red-500 active:border-r-2;
+	@apply  ml-8 my-6 flex items-center hover:border-r-2 border-red-500 active:border-r-2;
 }
 
 .large-screen-nav-menu--children-icon{
@@ -64,7 +62,7 @@
 }
 
 .large-screen-nav--menu-text{
-	@apply ml-2 no-underline text-gray-600 text-lg font-medium hover:text-black lg:text-xl;
+	@apply ml-2 no-underline text-gray-600 text-lg font-medium hover:text-black;
 }
 
 #container{/*#141B41 #C6D8D3*/
@@ -288,7 +286,7 @@ input{
 	@apply overflow-x-scroll overflow-y-hidden flex flex-row mt-3;
 }
 
-.category-image{
+.category-image, .person-other-image{
 	@apply w-full max-w-[175px] h-auto rounded-lg relative z-1 aspect-[2/3] ;
 }
 
@@ -377,7 +375,7 @@ input{
 }
 
 .options, .search-options{
-	font-size: clamp(13px, 3.85vw, 17px);
+	font-size: clamp(13px, 4.3vw, 17px);
 	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-1000 rounded-lg;
 }
 

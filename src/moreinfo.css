@@ -9,20 +9,20 @@
 }
 
 #quickinfo2{
-	@apply text-white w-full h-fit flex flex-row justify-center items-center px-2 my-8 gap-x-3;
+	@apply text-white w-full h-fit flex flex-row justify-center items-center px-2 my-8 gap-x-3 lg:gap-x-20;
 }
 
 #quickinfo2>div, #overview{
-	font-size: min(4.5vw, 16px);
+	font-size: min(4.5vw, 17px);
 }
 
 .quickinfo--headers{
-	font-size: min(5vw, 18px);
+	font-size: clamp(14px, 4vw, 20px);
 	@apply underline;
 }
 
 #main-image{
-	@apply w-1/2 max-w-[175px] rounded-md;
+	@apply w-1/2 max-w-[175px] rounded-md lg:max-w-[250px];
 }
 
 #cast{
@@ -35,7 +35,7 @@
 }
 
 .subtext{
-	@apply text-gray-500 text-sm text-center;
+	@apply text-gray-500 text-sm text-center lg:text-base;
 }
 
 #avnumber, #vcnumber, #dvalue{
@@ -66,11 +66,11 @@
 }
 
 .cast-real-name{
-	@apply mt-2 text-base text-white text-center
+	@apply mt-2 text-base text-white text-center lg:text-base;
 }
 
 .cast-name{
-	@apply text-sm text-white mb-2 text-center
+	@apply text-sm text-white mb-2 text-center lg:text-base;
 }
 
 #casts--parent-div{
@@ -129,4 +129,8 @@
 
 .as{
 	@apply text-center text-lg text-white
+}
+
+.person-other-image{
+	@apply m-4
 }

@@ -39,6 +39,8 @@ let placeOfBirth = qS('.place-of-birth')
 let dateOfDeathDiv = qS('.date-of-death-div')
 let dateOfDeath = qS('.date-of-death');
 let biographyContainer = qS('.biography--container');
+let largeScreenNavRecommendedCasts = qS('.large-screen-nav--recommended-casts');
+let largeScreenNavRecommendedText = qS('.large-screen-nav--recommended-text');
 
 window.onload = () =>{
 	//Split the url query into an array when it sees this "="
@@ -49,10 +51,9 @@ window.onload = () =>{
 	categoryinfo();
 	//If we are loading a persons details, then use that instead use the other one to load the casts of the movie or tv show
 	theCategoryCredit = theCategory.includes('person') ? `${theCategory}/combined_credits?api_key=${api_key}` : `${theCategory}/credits?api_key=${api_key}`;
-	callRecommendations = `${theCategory}/recommendations?api_key=${api_key}&page=1`
+	callRecommendations = theCategory.includes('person') ? `${theCategory}/images?api_key=${api_key}`: `${theCategory}/recommendations?api_key=${api_key}&page=1`
 	backToBegin.style.display = 'none';
 }
-
 
 let moreInfoVotePerc = (vote_average, rating, vote_count) =>{
 	if (vote_average === undefined) {
@@ -74,7 +75,6 @@ let moreInfoVotePerc = (vote_average, rating, vote_count) =>{
 		}
 	}
 }
-
 
 //Converts into hours and minutes
 let durationConversion = (rawDuration, episodeDuration) =>{
@@ -143,14 +143,17 @@ function categoryinfo () {
 				deathday != undefined || deathday != null ? (dateOfDeathDiv.style.display = 'block', dateOfDeath.textContent = `${deathday}`)
 				: dateOfDeathDiv.style.display = 'none';
 
-				recommendationsParentDiv.style.display = 'none';
-
 				castParentDiv.style.display = 'block';
 				fetchCast('no');
 
 				biographyContainer.onclick = () =>{
 					biographyContainer.classList.toggle('truncate');
 				}
+
+				largeScreenNavRecommendedCasts.textContent = 'Featured In';
+
+				//Get other images of the person, use recommendations() in order to reuse code and reduce file size
+				recommendations('person', name);
 
 				if (profile_path == null || profile_path == undefined) return
 				// get images = ${theCategory}/images?api_key=${api_key}
@@ -381,18 +384,32 @@ function createCastsTemplate(whenClicked){
 
 
 //Look for recommendations
-let recommendations = () =>{
+let recommendations = (type = 'movieOrTv', name = null) =>{
 	fetch(callRecommendations)
 	.then(res => res.json())
 	.then(data => {
-		if(data.results.length > 1) {recommendationsHeader.style.display = 'block'};
-		data.results.forEach((item, index) =>{
-			const{id, media_type, name, title, original_name, original_title, poster_path, vote_average, vote_count} = data.results[index];
-			let recommendationLink = `${proxy}/${media_type}/${id}`
-			let posterImage = `${images}${size}${poster_path}`;
-			let whenClicked = `./moreinfo.html?${media_type}/${id}`;
-			recommendationTemplate(title, original_title, name, original_name, posterImage, index, vote_average, media_type, whenClicked);
-		})
+		switch (type) {
+			case 'person':
+			data.profiles.forEach((item, index) =>{
+				data.profiles.length ? (recommendationsHeader.style.display = 'block', recommendationsHeader.textContent = `More images of ${name}:`) 
+												: recommendationsHeader.style.display = 'none';
+				const{aspect_ratio, file_path} = data.profiles[index];
+				let imageSrc = `${images}${size}${file_path}`
+				peoplesImagesTemplate(imageSrc, name);
+			})
+			break;
+
+			default:
+				if(data.results.length > 1) {recommendationsHeader.style.display = 'block'};
+				data.results.forEach((item, index) =>{
+					const{id, media_type, name, title, original_name, original_title, poster_path, vote_average, vote_count} = data.results[index];
+					let recommendationLink = `${proxy}/${media_type}/${id}`
+					let posterImage = `${images}${size}${poster_path}`;
+					let whenClicked = `./moreinfo.html?${media_type}/${id}`;
+					recommendationTemplate(title, original_title, name, original_name, posterImage, index, vote_average, media_type, whenClicked);
+				})
+			break;
+		}		
 	})
 }
 
@@ -416,3 +433,13 @@ let recommendationTemplate = (title, original_title, name, original_name, poster
 	ratingBg = qSA('.rating-bg');
 	votePerc(index, rating, vote_average);
 }
+
+let peoplesImagesTemplate = (imageSrc, thePersonsName) =>{
+	let links = document.createElement('img');
+	links.setAttribute('src', imageSrc);
+	links.setAttribute('loading', 'lazy');
+	links.setAttribute('alt', `Other images of ${thePersonsName}`);
+	links.classList.add('person-other-image');
+	links.classList.add('skeletonImg');
+	recommendationsParentDiv.appendChild(links);;
+} 
