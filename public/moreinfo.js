@@ -24,6 +24,8 @@ let releaseDateHeader = qS('#release-date--header');
 let recommendationsHeader = qS('.recommendations--header');
 let productionCompaniesContainer = qS('#production-companies--container');
 let budgetAndRevenueDiv = qS('.budget-revenue-div');
+let budgetContainer = qS('#budget--container');
+let revenueContainer = qS('#revenue--container');
 let castParentDiv = qS('#casts--parent-div');
 let recommendationsParentDiv = qS('#recommendations-parent-div');
 let episodeAndSeason = qS('#episode-and-season');
@@ -42,7 +44,7 @@ window.onload = () =>{
 	//Split the url query into an array when it sees this "="
 	let splitQuery = window.location.search.split("?"); //example of what is returned ['', 'movie/338953']
 	theCategory = `${proxy}${splitQuery[1]}`;
-	theCategory.includes('person') ? (quickInfo.style.display = 'none', castsHeader.textContent = 'Featured In:') : castsHeader.textContent = 'Casts';
+	theCategory.includes('person') ? (quickInfo.style.display = 'none', castParentDiv.style.display = 'none', castsHeader.textContent = 'Featured In:') : castsHeader.textContent = 'Casts';
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
 	categoryinfo();
 	//If we are loading a persons details, then use that instead use the other one to load the casts of the movie or tv show
@@ -102,7 +104,6 @@ let showTheNameOfMovieOrTv = (title, original_title, name, original_name) =>{
 	: name ? name : original_name;
 }
 
-
 //Calls the API and receives evey info about the movie and assigns them
 function categoryinfo () {
 	fetch(theCategoryInfo)
@@ -117,7 +118,6 @@ function categoryinfo () {
 				theOverview = qS('#biography');
 				tagLine = qS('#forte');
 
-
 				const{also_known_as, biography, birthday, deathday, known_for_department, place_of_birth, profile_path} = data
 				var{name} = data; //Using var because it shows issue of the 'name' variable being declared already;
 
@@ -131,7 +131,7 @@ function categoryinfo () {
 				main.style.backgroundColor = 'transparent';
 				categoryTitle.textContent = `${name}`;
 
-				alsoKnowsAs.textContent = `Also known as: ${addComma(also_known_as)}`;
+				alsoKnowsAs.textContent = `${addComma(also_known_as)}`;
 
 				theOverview.textContent = `${biography}`;
 				tagLine.textContent = `Forte: ${known_for_department}`;
@@ -145,6 +145,7 @@ function categoryinfo () {
 
 				recommendationsParentDiv.style.display = 'none';
 
+				castParentDiv.style.display = 'block';
 				fetchCast('no');
 
 				biographyContainer.onclick = () =>{
@@ -188,10 +189,10 @@ function categoryinfo () {
 				releaseDateHeader.textContent = release_date ? 'Released:' : 'Last aired on:';
 				categoryRelease.textContent = release_date ? release_date : last_air_date;
 
-				tagLine.textContent = `...${tagline}....`;
+				tagline ? tagLine.textContent = `...${tagline}....`: tagLine.display = 'none';
 
 				size = 'w400';
-				categoryImage.setAttribute('src', `${images}${size}${poster_path}`);
+				poster_path ? categoryImage.setAttribute('src', `${images}${size}${poster_path}`) : categoryImage.setAttribute('src', `./images/grey.webp`);;
 
 				// Status.textContent = `Status: ${status}`;
 				//What i did here is similar to addComma() but kinda much stressful
@@ -220,27 +221,30 @@ function categoryinfo () {
 				productionCompaniesContainer.style.display = mappedProductionName ? 'grid' : 'none'
 
 				size = 'w300';
-				backGround.style.background = `url('${images}${size}${backdrop_path}') no-repeat center`;
+				//If backgrop_path is available, use it, if not use poster_path
+				backGround.style.background = backdrop_path ? `url('${images}${size}${backdrop_path}') no-repeat center`: `url('${images}${size}${poster_path}') no-repeat center`;
 				backGround.style.backgroundSize = 'cover';
 				theOverview.textContent = overview;
 				
 				if (budget == undefined || revenue == undefined) {
 					budgetAndRevenueDiv.style.display = 'none'
 				}
-				theBudget.textContent = `$${budget}`;
-				theRevenue.textContent = `$${revenue}`;
+
+				console.log(data)
+				budget ? theBudget.textContent = `$${budget}` : budgetContainer.style.display = 'none';
+				revenue ? theRevenue.textContent = `$${revenue}` : revenueContainer.style.display = 'none';
 	
 				//Look for recommendations
 				recommendations();
 
 				//Fetch the cast, the no parameter is to tell the function to 
 				//display a maximum of 15 casts when callling the function
+				castParentDiv.style.display = 'block';
 				fetchCast('no');
 			break;
 		}
 	});
 }
-
 
 //Create html elements for the production companies
 let loadCompanies = (imageSrc, companyName) =>{
@@ -258,62 +262,54 @@ let loadCompanies = (imageSrc, companyName) =>{
 	productionCompaniesContainer.appendChild(eachProductionCompanyDiv);
 }
 
-
 //To fetch the casts of the movie/tv show
 function fetchCast(more){
 	fetch(theCategoryCredit)
 	.then(response => response.json())
 	.then(data =>{
+		eachCast = qSA('.eachCast');
+		let loadCasts = index =>{
+			const{name, id, character, profile_path, title, poster_path, media_type} = data.cast[index];
+			type = media_type || 'person';
+			createCastsTemplate(`./moreinfo.html?${type}/${id}`);
+			castImages = qSA('.cast-members-img');
+			castRealName = qSA('.cast-real-name');
+			castName = qSA(".cast-name");
+			eachCast = qSA('.eachCast');
+			size = 'w200';
+			switch (true) {
+				case (profile_path != null && profile_path != undefined):
+					castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+				break;
+				case (poster_path != null && poster_path != undefined):
+					castImages[index].setAttribute('src',  `${images}${size}${poster_path}`);
+				break;
+				default:
+					title ? castImages[index].setAttribute('src', './images/grey.webp') : castImages[index].setAttribute('src',  `./images/photo1.webp`);
+				break;
+			}
+			castRealName[index].textContent = name || title;
+			castName[index].textContent = character;
+			title ? castName[index].style.fontSize = 'large' : '';
+		}
 
-		console.log(data)
-
-		switch (more === 'no') {//If the user clicks "load more" or not in the casts place
-			case false:
-				for (var i = 15; i <= data.cast.length - 1; i++) {
-					eachCast[i].style.display = 'block';
+		//Find the minium value between two values
+		let minValue = Math.min(14, data.cast.length - 1);
+		//Redesigned some code to this. If what we get is no(that means that the user hasn't loaded more casts), it should run the first case
+		//if not(meaning that the user clicked to load more cast), it should load the second which checks whether the loaded casts is less
+		//than the casts from the api so that it won't keep rendering more casts when 'load more' is clicked
+		switch (true) {
+			case more === 'no' && eachCast.length == 0:
+				for (let number = 0; number <= minValue; number++) {
+					loadCasts(number);
 				}
-				qS('.more').style.display = 'none';
+				data.cast.length > 15 ? loadMoreCasts() : '';
+				minValue <= 2 ? qS('#blur').style.display = 'none' : '';
 			break;
-			default:
-				data.cast.forEach( (element, index) =>{
-					const{name, id, character, profile_path, title, poster_path, media_type} = data.cast[index];
-					type = media_type || 'person';
-					createCastsTemplate(`./moreinfo.html?${type}/${id}`);
-					castImages = qSA('.cast-members-img');
-					castRealName = qSA('.cast-real-name');
-					castName = qSA(".cast-name");
-					eachCast = qSA('.eachCast');
-					size = 'w200';
-					// switch (profile_path === null || profile_path === undefined || poster_path === null || poster_path === undefined) {
-					// 	case false:
-					// 		castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
-					// 	break;
-					// 	default:
-					// 		castImages[index].setAttribute('src',  `./images/photo1.webp`);
-					// 	break;
-					// }
-					switch (true) {
-						case (profile_path != null && profile_path != undefined):
-							castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
-						break;
-						case (poster_path != null && poster_path != undefined):
-							castImages[index].setAttribute('src',  `${images}${size}${poster_path}`);
-						break;
-						default:
-							castImages[index].setAttribute('src',  `./images/photo1.webp`);
-						break;
-					}
-					castRealName[index].textContent = name;
-					castName[index].textContent = character;
-					title ? castName[index].style.fontSize = 'large' : '';
-				});
-
-				if (data.cast.length > 15) {
-					loadMoreCasts();
-					for (var i = 15; i <= data.cast.length - 1; i++) {
-						eachCast[i].style.display = 'none';
-					}
-				}
+			case more === 'yes' && eachCast.length < data.cast.length:
+			for (let number = eachCast.length; number <= data.cast.length - 1; number++) {
+				loadCasts(number);
+			}
 			break;
 		}
 	});
@@ -332,7 +328,10 @@ let loadMoreCasts = () =>{
 	moreDiv.classList.add('more');
 	cast.appendChild(moreDiv);
 	let moreCast = qS('.more-link'); 
-	moreCast.onclick = () => fetchCast('yes');
+	moreCast.onclick = () => {
+		fetchCast('yes');
+		cast.removeChild(moreDiv);
+	};
 }
 
 

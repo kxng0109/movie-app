@@ -9,7 +9,7 @@
 }
 
 #quickinfo2{
-	@apply text-white w-full h-fit flex flex-row justify-center items-center px-5 my-8;
+	@apply text-white w-full h-fit flex flex-row justify-center items-center px-2 my-8 gap-x-3;
 }
 
 #quickinfo2>div, #overview{
@@ -22,7 +22,7 @@
 }
 
 #main-image{
-	@apply w-1/2 max-w-[175px] mr-7 rounded-md;
+	@apply w-1/2 max-w-[175px] rounded-md;
 }
 
 #cast{

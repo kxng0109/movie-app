@@ -64,7 +64,7 @@
 
 						<div id="release-date--container">
 							<p id="release-date--header" class="quickinfo--headers">Released:</p>
-							<p id="release-date"></p>
+							<p id="release-date">----:--:--</p>
 						</div>
 
 						<p id="episode-and-season" class="hidden mt-3"></p>
@@ -74,15 +74,15 @@
 
 				<div id="quickinfo1">
 					<div id="averagevote">
-						<div id="avnumber"></div>
+						<div id="avnumber">--</div>
 						<div class="subtext">Average Vote</div>
 					</div>
 					<div id="votecount">
-						<div id="vcnumber"></div>
+						<div id="vcnumber">--</div>
 						<div class="subtext">Total No. of vote</div>
 					</div>
 					<div id="duration">
-						<div id="dvalue"></div>
+						<div id="dvalue">--:--</div>
 						<div class="subtext">Duration</div>
 					</div>
 				</div>
@@ -99,16 +99,16 @@
 				<div class="grid grid-cols-2 budget-revenue-div">
 					<div id="budget--container" class="text-center my-7 text-white">
 						<p id="budget--header" class="text-lg">Budget:</p>
-						<p id="budget"></p>
+						<p id="budget">---</p>
 					</div>
 
 					<div id="revenue--container" class="text-center my-7 text-white border-l">
 						<p id="revenue--header" class="text-lg">Revenue:</p>
-						<p id="revenue"></p>
+						<p id="revenue">---</p>
 					</div>
 				</div>
 
-				<div id="production-companies--container" class="justify-center px-5 my-4 flex align-center overflow-x-auto place-content-center horizontal">
+				<div id="production-companies--container" class="px-5 my-4 overflow-x-auto justify-center items-end horizontal">
 				</div>
 			</div>
 
@@ -118,7 +118,10 @@
 
 				<div id="forte" class="text-center"></div>
 					
-				<p id="also-known-as" class="my-6"></p>
+				<div class="my-6">
+					<p class="font-medium">Also known as:</p>
+					<p id="also-known-as"></p>
+				</div>
 
 				<div class="biography--container truncate">
 					<h2 class="underline text-center">Biography:</h2>
@@ -127,16 +130,16 @@
 
 				<div id="birth-and-death-div" class="flex justify-between items-center my-6 text-sm">
 					<div class="birthday-div">
-						<p class="birthday text-lg"></p>
-						<p class="birthday--header text-gray-200 text-xs text-center lg:text-base">Birthday</p>
+						<p class="birthday lg:text-lg"></p>
+						<p class="birthday--header text-gray-300 text-xs text-center lg:text-base">Birthday</p>
 					</div>
 					<div class="place-of-birth-div hidden">
-						<p class="place-of-birth text-lg"></p>
-						<p class="place-of-birth--header text-gray-200 text-xs text-center lg:text-base">Place of birth</p>
+						<p class="place-of-birth lg:text-lg"></p>
+						<p class="place-of-birth--header text-gray-300 text-xs text-center lg:text-base">Place of birth</p>
 					</div>
 					<div class="date-of-death-div hidden">
-						<p class="date-of-death text-lg"></p>
-						<p class="date-of-death--header text-gray-200 text-xs text-center lg:text-base">Death day</p>
+						<p class="date-of-death lg:text-lg"></p>
+						<p class="date-of-death--header text-gray-300 text-xs text-center lg:text-base">Death day</p>
 					</div>
 				</div>
 			</div>
