@@ -72,6 +72,7 @@ let searchMovies = qS('#search-movies');
 let searchTV = qS('#search-tv');
 let searchPeople = qS('#search-people');
 let largeScreenNavMenuText = qSA('.large-screen-nav--menu-text');
+let likeBtn = qSA('.like');
 
 if (menuBtn){
 	menuBtn.onclick = () =>{

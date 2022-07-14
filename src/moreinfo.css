@@ -1,10 +1,18 @@
+.like{
+	@apply w-8 h-8 stroke-white mx-auto my-3 fill-transparent cursor-pointer ;
+}
+
 .horizontal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb{
 	@apply bg-white;
 }
 
 #main2{
 	background: hwb(0deg 0% 100% / 50%);
-	@apply block h-fit;
+	@apply block h-fit absolute w-full top-[var(--top)] left-0
+}
+
+.headings{
+	@apply font-medium
 }
 
 #quickinfo1{
@@ -13,7 +21,7 @@
 }
 
 #quickinfo2{
-	@apply text-white w-full h-fit flex flex-row justify-center items-center px-2 my-8 gap-x-3 lg:gap-x-20;
+	@apply text-white w-full h-fit flex flex-row justify-center items-center px-2 mt-8 gap-x-3 lg:gap-x-20;
 }
 
 #quickinfo2>div, #overview{
@@ -33,18 +41,19 @@
 	overflow-x: auto;
 }
 
-.cast-members-img, .more{
+.cast-members-img{
 	background: hsl(0, 0%, 75%);
 	@apply min-w-[150px] h-auto object-cover rounded-md aspect-[2/3];
 }
+
+.more{}
 
 .subtext{
 	@apply text-gray-500 text-sm text-center lg:text-base;
 }
 
 #avnumber, #vcnumber, #dvalue{
-	text-align: center;
-	font-size: 27px;
+	@apply text-center text-[27px];
 }
 
 .info-text{
@@ -56,16 +65,15 @@
 }
 
 #background{
-	@apply fixed inset-0 h-screen z-0 brightness-[0.4] opacity-80;
+	@apply fixed inset-0 h-screen z-0 brightness-[0.4] opacity-100;
 }
 
 #overview-div>*{
-	padding-inline: 20px;
-	color: white;
+	@apply px-5 text-white;
 }
 
 #tagline{
-	color: hsl(0, 0%, 90%);
+	color: hsl(0, 0%, 100%);
 	@apply px-5 text-lg block text-center;
 }
 
@@ -82,11 +90,38 @@
 }
 
 #cast{
-	@apply mt-9 mb-5 gap-x-8 h-fit flex flex-row items-start;
+	@apply overflow-x-scroll overflow-y-hidden mt-9 mb-5 gap-x-8 h-fit flex flex-row items-start;
 }
 
 #back-to-begin{
 	@apply absolute top-1/2 text-5xl text-white -translate-y-1/2 cursor-pointer;
+}
+
+.category-image, .person-other-image{
+	@apply w-full max-w-[175px] h-auto rounded-lg relative z-1 aspect-[2/3] ;
+}
+
+.category-movies{
+	@apply relative flex flex-col items-center w-[12.5rem] my-4 mx-5 rounded-xl
+}
+
+.movie-title{
+	@apply mt-1.5 text-center
+}
+
+.movie-link{
+	@apply text-black no-underline;
+}
+
+.rating{
+	background-color: grey;/*remove*/
+	@apply absolute text-white py-0.5 px-[15px] z-2 right-0;
+}
+
+.rating-bg{
+	background-color: grey;
+	transform: rotateZ(-60deg);
+	@apply w-[60px] h-[29px] inline-block absolute z-0 -right-0.5 top-[33px]
 }
 
 #blur{
@@ -95,20 +130,11 @@
 }
 
 .more{
-	min-width: 150px;
-	height: 225.17px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	font-size: 20px;
-	color: white;
+	@apply max-w-[150px] h-[225.17px] flex flex-row justify-center items-center text-xl text-white;
 }
 
 .more-link{
-	color: white;
-	text-decoration: none;
-	cursor: pointer;
+	@apply text-white no-underline cursor-pointer; 
 }
 
 #production-companies--container{
@@ -124,17 +150,17 @@
 }
 
 .production-companies--name{
-	@apply text-white text-lg text-center
+	@apply text-white text-lg text-center;
 }
 
 .recommendationsTitleAndDate{
-	color: white;
+	@apply text-white;
 }
 
 .as{
-	@apply text-center text-lg text-white
+	@apply text-center text-lg text-white;
 }
 
 .person-other-image{
-	@apply m-4
+	@apply m-4 cursor-pointer;
 }

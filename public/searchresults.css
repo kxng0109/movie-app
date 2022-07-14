@@ -1,0 +1,159 @@
+body{
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 250 255 / var(--tw-bg-opacity));
+}
+
+#search{
+  position: relative;
+  top: var(--top);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100vw;
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 1024px){
+  #search{
+    width: var(--calcLeft);
+  }
+}
+
+.search-options{
+  font-size: clamp(13px, 4.3vw, 17px);
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 1000ms;
+}
+
+#search-choice{
+  background: hsla(0, 0%, 0%, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#search-response{
+  background: linear-gradient(90deg, #e6faff 75%, transparent);
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(107 114 128 / var(--tw-border-opacity));
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity))
+}
+
+.search-image{
+  margin-left: 1.25rem;
+  width: 130px;
+  border-radius: 0.5rem;
+}
+
+.search-info{
+  -webkit-animation: changeBg 0.5s ease-out 2s forwards;
+          animation: changeBg 0.5s ease-out 2s forwards;
+  position: relative;
+  display: flex;
+  height: 250px;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-style: dashed;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
+
+.search-person-image, .popular-person-image{
+  background: hsl(0, 0%, 75%);
+  aspect-ratio: 2 / 3;
+  height: auto;
+  width: 100%;
+  max-width: 175px;
+  border-radius: 0.5rem
+}
+
+.search-person-image{
+  margin-left: 1.25rem;
+  width: 130px;
+}
+
+@-webkit-keyframes changeBg{
+  0%{
+    background: white;
+  }
+
+  100%{
+    background: linear-gradient(90deg, #e6faff 75%, transparent);
+  }
+}
+
+@keyframes changeBg{
+  0%{
+    background: white;
+  }
+
+  100%{
+    background: linear-gradient(90deg, #e6faff 75%, transparent);
+  }
+}
+
+.search-rating{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.search-text{
+  width: calc(100% - 130px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1.25rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.search-result-description{
+  height: 5rem;
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.search-result-date{
+  font-size: min(16px, 4vw);
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  margin-top: 0.75rem;
+  text-align: right
+}
+
+.search-result-title{
+  font-weight: 500;
+}

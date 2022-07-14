@@ -41,6 +41,7 @@ let dateOfDeath = qS('.date-of-death');
 let biographyContainer = qS('.biography--container');
 let largeScreenNavRecommendedCasts = qS('.large-screen-nav--recommended-casts');
 let largeScreenNavRecommendedText = qS('.large-screen-nav--recommended-text');
+let likedHistory;
 
 window.onload = () =>{
 	//Split the url query into an array when it sees this "="
@@ -48,6 +49,8 @@ window.onload = () =>{
 	theCategory = `${proxy}${splitQuery[1]}`;
 	theCategory.includes('person') ? (quickInfo.style.display = 'none', castParentDiv.style.display = 'none', castsHeader.textContent = 'Featured In:') : castsHeader.textContent = 'Casts';
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
+	likedHistory =  JSON.parse(localStorage.getItem('liked')) || [];
+	likeBtn.forEach(item => item.style.fill = likedHistory.includes(theCategory) ? '#ef4444' : 'transparent');
 	categoryinfo();
 	//If we are loading a persons details, then use that instead use the other one to load the casts of the movie or tv show
 	theCategoryCredit = theCategory.includes('person') ? `${theCategory}/combined_credits?api_key=${api_key}` : `${theCategory}/credits?api_key=${api_key}`;
@@ -125,6 +128,7 @@ function categoryinfo () {
 				quickInfoPerson.style.display = 'block';
 				size = 'w400';
 				categoryImage.setAttribute('src', `${images}${size}${profile_path}`);
+				profile_path ? (categoryImage.onclick = () => window.open(`${images}original${profile_path}`), categoryImage.style.cursor = 'pointer') : '';
 				size = 'w200';
 
 				backGround.style.backgroundColor = '#DAB894';/*hsl(178deg, 100%, 95%)*/
@@ -170,7 +174,7 @@ function categoryinfo () {
 				document.title = `${showTheNameOfMovieOrTv(title, original_title, name, original_name)}`;
 
 				//Gets and shows the episde and season number
-				episodeAndSeason.textContent = `Currently on S ${number_of_seasons} E ${number_of_episodes}`
+				episodeAndSeason.textContent = `Currently on S${number_of_seasons} E${number_of_episodes}`
 				if (typeof number_of_episodes == 'number') {episodeAndSeason.style.display = 'block'};
 
 				//Maps over the spoken_language array from the api and calls a function which gets it's result and displays it
@@ -196,7 +200,11 @@ function categoryinfo () {
 				tagline ? tagLine.textContent = `...${tagline}....`: tagLine.display = 'none';
 
 				size = 'w400';
-				poster_path ? categoryImage.setAttribute('src', `${images}${size}${poster_path}`) : categoryImage.setAttribute('src', `./images/grey.webp`);;
+				poster_path ? (
+										categoryImage.setAttribute('src', `${images}${size}${poster_path}`), 
+										categoryImage.onclick = () => window.open(`${images}original${poster_path}`)
+										, categoryImage.style.cursor = 'pointer'
+									) : categoryImage.setAttribute('src', `./images/grey.webp`);
 
 				// Status.textContent = `Status: ${status}`;
 				//What i did here is similar to addComma() but kinda much stressful
@@ -396,7 +404,7 @@ let recommendations = (type = 'movieOrTv', name = null) =>{
 												: recommendationsHeader.style.display = 'none';
 				const{aspect_ratio, file_path} = data.profiles[index];
 				let imageSrc = `${images}${size}${file_path}`
-				peoplesImagesTemplate(imageSrc, name);
+				peoplesImagesTemplate(imageSrc, name, file_path);
 			})
 			break;
 
@@ -435,12 +443,21 @@ let recommendationTemplate = (title, original_title, name, original_name, poster
 	votePerc(index, rating, vote_average);
 }
 
-let peoplesImagesTemplate = (imageSrc, thePersonsName) =>{
+let peoplesImagesTemplate = (imageSrc, thePersonsName, filePath) =>{
 	let links = document.createElement('img');
 	links.setAttribute('src', imageSrc);
 	links.setAttribute('loading', 'lazy');
 	links.setAttribute('alt', `Other images of ${thePersonsName}`);
 	links.classList.add('person-other-image');
 	links.classList.add('skeletonImg');
-	recommendationsParentDiv.appendChild(links);;
-} 
+	links.onclick = () => window.open(`${images}original${filePath}`);
+	recommendationsParentDiv.appendChild(links);
+};
+
+likeBtn.forEach(item => {
+	item.onclick = () =>{
+		likedHistory.includes(theCategory) ? (likedHistory.splice(likedHistory.indexOf(theCategory), 1), item.style.fill = 'transparent')
+																:(likedHistory.push(theCategory), item.style.fill = '#ef4444');
+		localStorage.setItem('liked', JSON.stringify(likedHistory))
+	};
+})

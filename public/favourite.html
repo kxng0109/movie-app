@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#60695C">
+		<meta name="description" content="Get information about your favourite movie, tv-show or actor/actress">
+	  	<meta name="keywords" content="movie description, movie, tv show, actor">
+	  	<meta name="author" content="Joshua">
+	  	<link rel="icon" type="image/x-icon" href="./images/nobg.png">
+		<title>Your Favourites</title>
+		<link rel="stylesheet" type="text/css" href="./base.css">
+		<link rel="stylesheet" type="text/css" href="./favourite.css">
+		<noscript><p class="text-red-500 text-bold absolute z-[5]">This sites needs Javascript to run efficiently!</p></noscript>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Montserrat+Alternates:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet"> -->
+		<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Montserrat+Alternates:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<script type="text/javascript" defer src="./variables.js"></script>
+	</head>
+
+	<body class="daytheme transition-all">
+		<div id="homePageBackground" class="fixed w-screen h-screen -z-1 blur-[2px]"></div><!-- Background-image for the homepage -->
+
+		<nav id="large-screen-nav">
+			<a href="./index.html" id="large-screen-nav--icon"><img src="./images/nobg.webp" id="large-screen-nav--logo" alt="website logo" loading='lazy'></a>
+			<div id="large-screen-nav--menu">
+				<div class="large-screen-nav-menu--children">
+					<ion-icon name="flame" class="large-screen-nav-menu--children-icon"></ion-icon>
+					<a href="#trending-section" class="large-screen-nav--menu-text">Trending</a>
+				</div>
+				<div class="large-screen-nav-menu--children">
+					<ion-icon name="trending-up" class="large-screen-nav-menu--children-icon"></ion-icon>
+					<a href="#popular-section" class="large-screen-nav--menu-text">Popular</a>
+				</div>
+				<div class="large-screen-nav-menu--children">
+					<img src="./images/heartfilled.svg" class="large-screen-nav-menu--children-icon">
+					<a href="./favourite.html" class="large-screen-nav--menu-text">Favourite</a>
+				</div>
+			</div>
+		</nav>
+
+		<div id="container">
+			<div></div>
+			<header>
+				<a href="./index.html" id="header-icon" class="lg:hidden"><img src="./images/nobg.webp" class="logo" alt="website-logo"></a>
+				<form class="search w-3/5 mx-auto max-w-[400px]" id="search-area">
+					<input type="search" name="search" id="search-bar-header" class="search-bar">
+				</form>
+				<!-- <ion-icon name="person-circle-outline"  id="user"></ion-icon> -->
+				<ion-icon name="menu-outline" id="header-menu"></ion-icon>
+			</header>
+
+			<nav id="nav">
+				<a href="./index.html" id="menu-icon"><img src="./images/nobg.webp" class="w-24 h-24" alt="website logo" loading='lazy'></a>
+				<a href="#trending-section" class="no-underline text-black">Trending</a>
+				<a href="#popular-section" class="no-underline text-black">Popular</a>
+				<a href="./liked.html" class="no-underline text-black">Favourites</a>
+			</nav>
+		</div>
+	</body>
+</html>

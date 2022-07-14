@@ -9,15 +9,12 @@ window.onscroll = () =>{
 	return counter;
 }
 
-fetch(`${proxy}discover/movie?api_key=${api_key}`)
-.then(res =>res.json())
-.then(data => console.log(data))
-
-console.log()
+// fetch(`${proxy}discover/movie?api_key=${api_key}`)
+// .then(res =>res.json())
+// .then(data => console.log(data))
 
 let timeOfDay = new Date().getHours();
 welcomeText.textContent = timeOfDay > 16 ? 'Good Evening!' : timeOfDay > 12 ? 'Good Afternoon!' : 'Good Morning!';
-
 
 qSA('.section-link').onclick = (e) =>{
 	for (let count2 = 0; count2 < qSA('.section-link').length - 1; count2++) {
@@ -25,7 +22,6 @@ qSA('.section-link').onclick = (e) =>{
 		container.scrollTop = counter;
 	}
 }
-
 
 function trendingInfo () {
 	let trending = `${proxy}trending/${type}/${timeWindow}?api_key=${api_key}`;
@@ -86,7 +82,6 @@ function trendingInfo () {
 	})
 }
 
-
 function popularInfo(type){
 	var popularPersonImage;
 	var popularCircular;
@@ -111,7 +106,7 @@ function popularInfo(type){
 			alinks.innerHTML = `
 									<div class="category-movies popular">
 							<img class="category-image skeletonImg" loading="lazy" src="./images/grey.webp" alt="popular movies images">
-							<img src="./images/photo1.webp" class="popular-person-image">
+							<img src="./images/photo1.webp" class="popular-person-image skeletonImg" loading="lazy">
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info">

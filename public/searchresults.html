@@ -8,7 +8,7 @@
 	<meta name="description" content="Get information about your favourite movie, tv-show or actor/actress">
   	<link rel="icon" type="image/x-icon" href="./images/nobg.png">
 	<title>Search Result</title>
-	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="stylesheet" type="text/css" href="./base.css">
 	<link rel="stylesheet" type="text/css" href="./searchresults.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,20 @@
 </head>
 
 <body>
-    <div class="container">
+	<nav id="large-screen-nav">
+		<a href="./index.html" id="large-screen-nav--icon"><img src="./images/nobg.webp" id="large-screen-nav--logo" alt="website logo" loading='lazy'></a>
+		<div id="large-screen-nav--menu">
+			<div class="large-screen-nav-menu--children">
+				<ion-icon name="home" class="large-screen-nav-menu--children-icon"></ion-icon>
+				<a href="./index.html" class="large-screen-nav--menu-text">Home</a>
+			</div>
+			<div class="large-screen-nav-menu--children">
+				<img src="./images/heartfilled.svg" class="large-screen-nav-menu--children-icon">
+				<a href="./favourite.html" class="large-screen-nav--menu-text">Favourite</a>
+			</div>
+		</div>
+	</nav>
+    <div id="container">
 		<div></div>
 		<header>
 			<a href="./index.html" id="header-icon" class="lg:hidden"><img src="./images/nobg.webp" class="logo" alt="website-logo"></a>
@@ -29,18 +42,8 @@
 			</form>
 		</header>
 
-		<nav id="large-screen-nav">
-			<a href="./index.html" id="large-screen-nav--icon"><img src="./images/nobg.webp" id="large-screen-nav--logo" alt="website logo" loading='lazy'></a>
-			<div id="large-screen-nav--menu">
-				<div class="large-screen-nav-menu--children">
-					<ion-icon name="home" class="large-screen-nav-menu--children-icon"></ion-icon>
-					<a href="./index.html" class="large-screen-nav--menu-text">Home</a>
-				</div>
-			</div>
-		</nav>
-
 		<section id="search">
-			<h3 id="search-response" class="headings"></h3>
+			<h3 id="search-response"></h3>
 			<div id="search-choice">
 				<p class="search-options" id="search-all">All</p>
 				<p class="search-options" id="search-movies">Movies</p>

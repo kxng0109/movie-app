@@ -7,7 +7,7 @@
 	<meta name="description" content="Get information about your favourite movie, tv-show or actor/actress">
   	<link rel="icon" type="image/x-icon" href="./images/nobg.png">
 	<title>More Info</title>
-	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="stylesheet" type="text/css" href="./base.css">
 	<link rel="stylesheet" type="text/css" href="./moreinfo.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
 </head>
-<body>
+<body class="bg-[#dab894]">
 	<nav id="large-screen-nav">
 		<a href="./index.html" id="large-screen-nav--icon"><img src="./images/nobg.webp" id="large-screen-nav--logo" alt="website logo" loading='lazy'></a>
 		<div id="large-screen-nav--menu">
@@ -31,8 +31,8 @@
 				<a href="#recommendations-parent-div" class="large-screen-nav--menu-text large-screen-nav--recommended-text">Recommended</a>
 			</div>
 			<div class="large-screen-nav-menu--children">
-				<ion-icon name="search" class="large-screen-nav-menu--children-icon"></ion-icon>
-				<a href="./searchresults.html" class="large-screen-nav--menu-text">Search</a>
+				<img src="./images/heartfilled.svg" class="large-screen-nav-menu--children-icon">
+				<a href="./favourite.html" class="large-screen-nav--menu-text">Favourite</a>
 			</div>
 		</div>
 	</nav>
@@ -72,6 +72,10 @@
 						<!-- <p id="status" class="info-text"></p> -->
 					</div>
 				</div>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="like" viewBox="0 0 512 512">
+					<path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+				</svg>
 
 				<div id="quickinfo1">
 					<div id="averagevote">
@@ -118,6 +122,10 @@
 				<p id="name" class="text-center text-lg mt-4 font-medium lg:text-xl"></p>
 
 				<div id="forte" class="text-center"></div>
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="like" viewBox="0 0 512 512">
+					<path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+				</svg>
 					
 				<div class="my-6">
 					<p class="font-medium">Also known as:</p>
@@ -155,7 +163,7 @@
 			</div>
 
 				<p class="text-white underline text-lg pl-5 recommendations--header hidden mt-5 lg:mt-10">Recommended for You</p>
-			<div id="recommendations-parent-div" class="flex overflow-x-auto horizontal mx-5"></div>
+			<div id="recommendations-parent-div" class="flex overflow-x-auto horizontal mb-3"></div>
 		</main>
 	</div>
 </body>

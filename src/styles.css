@@ -1,140 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-*, *:before, *:after{
-	@apply p-0 m-0 scroll-smooth box-border;
-}
-
-:root{
-	--orange: #E27D60;
-	/*--blue: #85CDCA;*/
-	--blue: hsla(178°, 42%, 66%, 0.5);
-	--yellow: #E8A87C;
-	--red: #C38D9E;
-	--green: #41B3A3;
-	--top: 70px;
-	--left: 15rem;
-}
-
-.logo{
-	@apply w-10 h-10 mr-3;
-}
-
-body::-webkit-scrollbar{
-	@apply w-0 lg:w-2
-}
-
-body::-webkit-scrollbar-thumb{
-	@apply rounded-lg bg-gray-500;
-}
-
-body::-webkit-scrollbar-track {
-  @apply bg-black;/* color of the tracking area */
-}
-
-.horizontal::-webkit-scrollbar{
-	@apply hidden lg:block lg:h-2;
-}
-
-.horizontal::-webkit-scrollbar-thumb{
-	@apply bg-gray-500 rounded-lg;
-}
-
-#large-screen-nav{
-	@apply hidden lg:block fixed left-0 top-0 bottom-0 z-3 w-[var(--left)] bg-[#FFCAAF] pt-6
-}
-
-#large-screen-nav--logo{
-	@apply w-24 h-24 relative left-1/2 -translate-x-1/2
-}
-
-#large-screen-nav--menu{
-	@apply flex flex-col relative top-1/4 -translate-y-1/4
-}
-
-.large-screen-nav-menu--children{
-	@apply  ml-8 my-6 flex items-center hover:border-r-2 border-red-500 active:border-r-2;
-}
-
-.large-screen-nav-menu--children-icon{
-	@apply lg:text-xl;
-}
-
-.large-screen-nav--menu-text{
-	@apply ml-2 no-underline text-gray-600 text-lg font-medium hover:text-black;
-}
-
-#container{/*#141B41 #C6D8D3*/
-	font-family: 'Fredoka', sans-serif;
-	background-color: var(--blue);
-	@apply relative h-fit w-full lg:left-[var(--left)];
-}
-
-a{	
-	font-family: 'Fredoka', sans-serif;
-}
-
-header{/*#60695C*/
-	@apply fixed top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)] lg:left-[var(--left)];
-}
-
-@media (min-width: 1024px){
-	#container, header{
-		width: calc(100% - var(--left));
-	}
-}
-
-#search-choice{
-	background: hsla(0, 0%, 100%, 0.5);
-	@apply flex items-center justify-evenly;
-}
-
-#search-bar-header{
-	@apply w-full mx-auto rounded-md border-0 h-7 max-w-[400px];
-}
-
-#header-menu{
-	@apply text-black text-[35px] ml-3 lg:hidden;
-}
-
-.link{
-	display: flex;
-}
-
-#nav{
-	width: min(20rem, 70vw);
-	background-color: darkseagreen;
-	margin-left: min(-20rem, -70vw);
-	@apply fixed top-0 z-3 h-screen flex flex-col pt-24 pl-7 text-xl lg:hidden;
-}
-
-@keyframes showMenu{
-	0%{
-		margin-left: -70vw;
-	}
-
-	100%{
-		margin-left: 0vw;
-	}
-}
-
-@keyframes hideMenu{
-	0%{
-		margin-left: 0vw;
-	}
-
-	100%{
-		margin-left: -70vw;
-	}
-}
-
-#nav>*{
-	padding-bottom: 20px;
-}
-
-#main1, #main2{
+#main1{
 	@apply flex flex-col justify-center absolute w-full top-[var(--top)] left-0
+}
+
+.headings{
+	@apply font-medium
 }
 
 #welcome-section{
@@ -160,10 +29,6 @@ header{/*#60695C*/
     100%{background-position:0% 2%}
 }
 
-.headings{
-	@apply font-medium
-}
-
 #welcome{
 	@apply text-4xl text-center;
 }
@@ -176,19 +41,6 @@ header{/*#60695C*/
 	@apply mx-auto w-full h-10 border-0 rounded-3xl max-w-[500px];
 }
 
-#search-btn-main{
-	font-size: 40px;
-}
-
-input[type='search']{
-	@apply px-3 bg-gray-300 text-black;
-}
-
-input{
-	@apply focus-visible:outline-0 focus:outline-0 cursor-text text-black
-}
-
-
 #trending-section{
 	padding: 50px 0 20px 0;
 	/*background-color: hsla(163, 19%, 81%, 0.85);*/
@@ -200,32 +52,13 @@ input{
 	@apply cursor-pointer
 }
 
-#trending-movies-div, #popular-movies-div, #cast{
+#trending-movies-div, #popular-movies-div{
 	@apply overflow-x-scroll overflow-y-hidden flex flex-row mt-3;
 }
 
-.category-image, .person-other-image{
+.category-image, .popular-person-image{
 	@apply w-full max-w-[175px] h-auto rounded-lg relative z-1 aspect-[2/3] ;
 }
-
-.skeletonImg{
-	/*animation: skeletonImg 2s infinite linear;	*/
-	background: hsl(0, 0%, 75%);
-}
-
-/*@keyframes skeletonImg{
-	0%{
-		background: hsl(0, 0%, 45%);
-	}
-
-	50%{
-		background: hsl(0, 0%, 75%);
-	}
-
-	100%{
-		background: hsl(0, 0%, 45%);
-	}
-}*/
 
 .category-movies{
 	@apply relative flex flex-col items-center w-[12.5rem] my-4 mx-5 rounded-xl
@@ -239,33 +72,19 @@ input{
 	@apply mt-1.5 text-center;
 }
 
-.movie-title{
-	@apply text-center
-}
-
 .movie-link{
 	@apply text-black no-underline;
 }
 
 .rating{
-	position: absolute;
 	background-color: grey;/*remove*/
-	color: white;
-	padding: 2px 15px;
-	z-index: 2;
-	right: 0%;
+	@apply absolute text-white py-0.5 px-[15px] z-2 right-0;
 }
 
 .rating-bg{
 	background-color: grey;
-	width: 60px;
-	height: 29px;
-	display: inline-block;
-	position: absolute;
-	z-index: 0;
-	right: -2px;
-	top: 33px;
 	transform: rotateZ(-60deg);
+	@apply w-[60px] h-[29px] inline-block absolute z-0 -right-0.5 top-[33px]
 }
 
 #trending-header, #popular-header{
@@ -292,7 +111,7 @@ input{
 	@apply flex items-center mt-3 border border-gray-500 rounded-lg
 }
 
-.options, .search-options{
+.options{
 	font-size: clamp(13px, 4.3vw, 17px);
 	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-1000 rounded-lg;
 }
