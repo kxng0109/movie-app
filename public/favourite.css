@@ -122,3 +122,12 @@ body{
 .favourite-result-title{
   font-weight: 500;
 }
+
+.date-added{
+  margin-top: 1.25rem;
+  font-weight: 500;
+}
+
+.date-added--parent{
+  margin-top: 1.25rem;
+}

@@ -27,12 +27,11 @@ switch (true) {
 		// }
 
 		// setSelectedElementColor(selectedCategory);\
-			let loadFavourites = (favourite, theType) => {
+			let loadFavourites = (favourite, theType, timeAdded) => {
 				fetch(favourite)
 				.then(response => response.json())
 				.then(favourite => {
 			  		// Add the divs
-		  			// for (var resultDivNum = 0; resultDivNum <= favourite.results.length - 1; resultDivNum++) {
 						favouriteDivTemplate = document.createElement('a');
 						favouriteDivTemplate.classList.add('favourite-info');
 
@@ -50,6 +49,7 @@ switch (true) {
 													<h3 class="favourite-title "></h3>
 													<p class="favourite-description"></p>
 													<p class="favourite-date"></p>
+													<p class="date-added--parent">You added it on: <span class="date-added"></span>
 												</div>`
 						favouriteContainer.appendChild(favouriteDivTemplate);
 						theFavouriteDiv = qSA('.favourite-info');
@@ -59,7 +59,8 @@ switch (true) {
 						favouriteDescription = qSA('.favourite-description');
 						favouriteDate = qSA('.favourite-date');
 						favouritePerson = qSA('.favourite-person-image');
-						let favouriteCircular = qSA('.circular-portrait');
+						let dateAdded = qSA('.date-added');
+						dateAdded.forEach(item => item.textContent ? '' : item.textContent = `${timeAdded}`)
 
 				  		const {adult, id, media_type, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = favourite;
 
@@ -97,7 +98,7 @@ switch (true) {
 			switch (selectedCategory) {
 				case 'multi':
 					theSearchQuery.forEach(item =>{
-						loadFavourites(`${item}?api_key=${api_key}`, 'multi')
+						loadFavourites(`${item.link}?api_key=${api_key}`, 'multi', item.time)
 					})
 				break;
 				default:

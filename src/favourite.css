@@ -54,3 +54,11 @@ body{
 .favourite-result-title{
 	@apply font-medium
 }
+
+.date-added{
+	@apply font-medium mt-5
+}
+
+.date-added--parent{
+	@apply mt-5;
+}

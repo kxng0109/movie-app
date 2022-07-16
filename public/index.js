@@ -9,10 +9,6 @@ window.onscroll = () =>{
 	return counter;
 }
 
-// fetch(`${proxy}discover/movie?api_key=${api_key}`)
-// .then(res =>res.json())
-// .then(data => console.log(data))
-
 let timeOfDay = new Date().getHours();
 welcomeText.textContent = timeOfDay > 16 ? 'Good Evening!' : timeOfDay > 12 ? 'Good Afternoon!' : 'Good Morning!';
 
@@ -30,10 +26,10 @@ function trendingInfo () {
 	 .then(data => {
 	 	category = trendingDiv.querySelectorAll('.movie-link');
 
-	 	//IF the length of category is 3(because we already rendered three of them in the html file)
+	 	//IF the length of category is 4(because we already rendered three of them in the html file)
 	 	//, then add 17(or so) more to it
-	 	if (category.length === 3) {
-			for (var k = 0; k < data.results.length - 3; k++) {
+	 	if (category.length === 4) {
+			for (var k = 0; k < data.results.length - 4; k++) {
 				let links = document.createElement('a');
 				links.classList.add('movie-link');
 

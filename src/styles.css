@@ -7,26 +7,9 @@
 }
 
 #welcome-section{
-	height: 380px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-	/*background: hsla(300, 100%, 25%, 0.5);*/
 	background-color: hsla(31, 49%, 72%, 0.5);
-	/*background: linear-gradient(315deg, #0000ff, #ff0000);*/
-    /*background-size: 400% 400%;*/
-    /*animation: flowing 40s ease infinite;*/
-	/*background-size: 400% 400%;*/
-	width: 100%;
-	color: white;
 	font-family: 'Montserrat Alternates', sans-serif;
-}
-
-@keyframes flowing{    
-    0%{background-position:0% 2%}
-    50%{background-position:100% 99%}
-    100%{background-position:0% 2%}
+	@apply h-[380px] flex flex-col justify-evenly w-full text-white;
 }
 
 #welcome{
@@ -42,10 +25,9 @@
 }
 
 #trending-section{
-	padding: 50px 0 20px 0;
 	/*background-color: hsla(163, 19%, 81%, 0.85);*/
 	background-color: hsla(192, 44%, 85%, 0.85);
-	width: 100%;
+	@apply pt-[50px] pb-5 w-full;
 }
 
 .section-link{
@@ -92,18 +74,7 @@
 	background-size: 30px 2px;
 	background-repeat: repeat-x;
 	background-position: 0 100%;
-	/*animation: moving 1s infinite linear;*/
 	@apply font-semibold text-xl ml-5 w-fit lg:text-2xl;
-}
-
-@keyframes moving{
-	0%{
-		background-position: 0 100%;
-	}
-
-	100%{
-		background-position:  30px 100%;
-	}
 }
 
 #trending-choice, #popular-choice{
@@ -129,11 +100,9 @@
 }
 
 #popular-section{
-	padding: 50px 0 20px 0;
 	/*background-color: hsla(172, 47%, 48%, 0.85);*/
 	background-color: hsla(209, 33%, 74%, 0.85);
-	width: 100%;
-	opacity: 0;
+	@apply pt-[50px] pb-5 w-full opacity-0;
 }
 
 @keyframes comeIn{
