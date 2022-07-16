@@ -454,8 +454,18 @@ let peoplesImagesTemplate = (imageSrc, thePersonsName, filePath) =>{
 	recommendationsParentDiv.appendChild(links);
 };
 
+
 likeBtn.forEach(item => {
+	//If it is in the array, we use splice which removes the data from the array, 
+	//so we locate where it is in the array using indexOf and remove it using splice, 
+	//or just push it to the array if it's not in the array
 	item.onclick = () =>{
+		// let addZero = value =>{
+		// 	return value < 10 ? `0${value}` : value;
+		// }
+		// let date = new Date();
+		// let addedDate = `${date.getFullYear()}:${addZero(date.getMonth())}:${addZero(date.getDate())}`;
+		// let testing = {link: theCategory, time: addedDate}
 		likedHistory.includes(theCategory) ? (likedHistory.splice(likedHistory.indexOf(theCategory), 1), item.style.fill = 'transparent')
 																:(likedHistory.push(theCategory), item.style.fill = '#ef4444');
 		localStorage.setItem('liked', JSON.stringify(likedHistory))

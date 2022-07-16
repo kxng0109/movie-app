@@ -17,6 +17,10 @@
 	--left: 15rem;
 }
 
+body{
+	font-family: 'Fredoka', sans-serif;
+}
+
 .logo{
 	@apply w-10 h-10 mr-3;
 }
@@ -80,7 +84,6 @@ input{
 }
 
 #container{/*#141B41 #C6D8D3*/
-	font-family: 'Fredoka', sans-serif;
 	background-color: var(--blue);
 	@apply relative h-fit w-full lg:left-[var(--left)] 2xl:max-w-[1536px] 2xl:mx-auto;
 }

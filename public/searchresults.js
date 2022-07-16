@@ -37,7 +37,7 @@ let searching = (theType, page_no) =>{
 	  			//Clear the divs if they exist
 		  		if (searchDiv !== undefined) {
 		  			searchDiv.forEach((item, index)=>{
-		  				searchSection.removeChild(searchDiv[index]);	  				
+		  				searchResultsContainer.removeChild(searchDiv[index]);	  				
 		  			})
 		  		}
 
@@ -92,7 +92,7 @@ let searching = (theType, page_no) =>{
 		  		votePerc(index, searchRating, vote_average, vote_count);
 		  		resultQuery.textContent = `Result of ${theSearchQuery}`;
 		  		document.title = `Result of your search, ${theSearchQuery}`;
-		  		searchSection.style.animation = 'flyIn 0.7s linear forwards';
+		  		searchResultsContainer.style.animation = 'flyIn 0.7s linear forwards';
 
 		  		searchDiv[index].onclick = () =>{
 		  			const tempInfo = `${proxy}/${media_type == undefined ? theType : media_type}/${id}`;
@@ -102,9 +102,9 @@ let searching = (theType, page_no) =>{
 		  		//Gets random numbers from the available number of total images and loads a random image with that if it is not null.
 		  		let randomNumber = anyValue(search.results.length);
 		  		let randomImages = `${search.results[randomNumber].poster_path}`;
-		  		searchSection.style.backgroundImage = randomImages == 'null' || randomImages == 'undefined' ? '' : `url('${images}${size}${randomImages}')`;
-			  	searchSection.style.backgroundSize = 'contain';
-			  	searchSection.style.backgroundPosition = 'center';
+		  		searchResultsContainer.style.backgroundImage = randomImages == 'null' || randomImages == 'undefined' ? '' : `url('${images}${size}${randomImages}')`;
+			  	searchResultsContainer.style.backgroundSize = 'contain';
+			  	searchResultsContainer.style.backgroundPosition = 'center';
 	  		}
 	  		break;
 	  	}

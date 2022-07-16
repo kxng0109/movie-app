@@ -60,7 +60,6 @@ let dailyTrending = qS('.daily');
 let weeklyTrending = qS('.weekly');
 let searchForm = qSA('.search');
 let searchInput = qSA('.search-bar');
-let searchSection = qS('#search');
 let resultQuery = qS('#search-response');
 let searchResultsContainer = qS('#search');
 let anyValue = value =>{

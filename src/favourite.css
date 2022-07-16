@@ -1,0 +1,56 @@
+body{
+	@apply bg-[#e6faff]
+}
+
+#favourite{
+	@apply h-fit w-screen bg-gray-400 relative top-[var(--top)] lg:w-[var(--calcLeft)];
+}
+
+.favourite-options{
+	font-size: clamp(13px, 4.3vw, 17px);
+	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-1000 rounded-lg cursor-pointer;
+}
+
+#favourite-choice{
+	background: hsla(0, 0%, 0%, 0.7);
+	@apply flex items-center justify-evenly;
+}
+
+.favourite-image{
+	@apply w-[130px] rounded-lg ml-5;
+}
+
+.favourite-info{
+	@apply flex items-center bg-white text-black relative no-underline h-[250px] border-b border-black border-dashed;
+}
+
+.favourite-person-image, .popular-person-image{
+	background: hsl(0, 0%, 75%);
+	@apply w-full h-auto aspect-[2/3] max-w-[175px] rounded-lg
+}
+
+.favourite-person-image{
+	@apply w-[130px] ml-5;
+}
+
+.favourite-rating{
+	@apply absolute top-0 right-0 text-white text-center py-2 px-8;
+}
+
+.favourite-text{
+	width: calc(100% - 130px);
+	@apply flex flex-col justify-center pt-5 pr-5 pl-5;
+}
+
+.favourite-result-description{
+	@apply h-20 overflow-hidden text-sm;
+}
+
+.favourite-result-date{
+	font-size: min(16px, 4vw);
+	@apply text-right mt-3 absolute bottom-5 right-5
+}
+
+.favourite-result-title{
+	@apply font-medium
+}
