@@ -1178,6 +1178,10 @@ a{
 }
 
 @media (min-width: 1024px) {
+  .lg\:left-\[var\(--left\)\] {
+    left: var(--left);
+  }
+
   .lg\:mx-\[5vw\] {
     margin-left: 5vw;
     margin-right: 5vw;
