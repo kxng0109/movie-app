@@ -5,11 +5,12 @@ let favouriteMovies = qS('#favourite-movies');
 let favouriteTV = qS('#favourite-tv');
 let favouritePeople = qS('#favourite-people');
 let favouriteContainer = qS('#favourite');
+let noFavourite = qS('#no-favourite');
 var index = 0;
 
 switch (true) {
 	case theSearchQuery == '' || theSearchQuery == null:
-		qS('#no-favourite').classList.toggle('hidden');
+		noFavourite.classList.toggle('hidden');
 	break;
 	default:
 
@@ -49,7 +50,7 @@ switch (true) {
 													<h3 class="favourite-title "></h3>
 													<p class="favourite-description"></p>
 													<p class="favourite-date"></p>
-													<p class="date-added--parent">You added it on: <span class="date-added"></span>
+													<p class="date-added--parent">You added it: <span class="date-added"></span>
 												</div>`
 						favouriteContainer.appendChild(favouriteDivTemplate);
 						theFavouriteDiv = qSA('.favourite-info');
@@ -60,31 +61,79 @@ switch (true) {
 						favouriteDate = qSA('.favourite-date');
 						favouritePerson = qSA('.favourite-person-image');
 						let dateAdded = qSA('.date-added');
-						dateAdded.forEach(item => item.textContent ? '' : item.textContent = `${timeAdded}`)
+
+						let checkDate = passedInfo =>{
+							let addZero = value =>{
+								return value < 10 ? `0${value}` : value;
+							}
+							let date = new Date();
+							let splitPassedInfo = passedInfo.split('-');
+							let passedYear = splitPassedInfo[0], passedMonth = splitPassedInfo[1], passedDate = splitPassedInfo[2], passedHour = splitPassedInfo[3], passedMinutes = splitPassedInfo[4], passedDay = splitPassedInfo[5];
+							let currentYear = date.getFullYear(), currentMonth = addZero(date.getMonth()), currentDate = addZero(date.getDate());
+
+							let getNameOfDay = value =>{
+								switch (value) {
+									case 0:
+										return 'Sunday';
+									break;
+									case 1:
+										return 'Monday';
+									break;
+									case 2:
+										return 'Tuesday';
+									break;
+									case 3:
+										return 'Wednesday';
+									break;
+									case 4:
+										return 'Thursday';
+									break;
+									case 5:
+										return 'Friday';
+									break;
+									case 6:
+										return 'Saturday';
+									break;
+									default:
+										return '';
+									break;
+								}
+							}
+
+							let generateAddedText = value =>{
+								switch (passedYear == currentYear && passedMonth == passedMonth) {
+									case true && value == 0:
+										return `Today at ${passedHour}:${passedMinutes}`
+									break;
+									case true && value == 1:
+										return `Yesterday at ${passedHour}:${passedMinutes}`
+									break;
+									case true && value >= 2 && value < 6:
+										return `${getNameOfDay(passedDay)} at ${passedHour}:${passedMinutes}`
+									break;
+									default:
+										return `${passedYear}-${passedMonth}-${passedDate}`
+									break;
+								}
+							}
+							return generateAddedText((currentDate - passedDate))
+						}
+						dateAdded.forEach(item => {
+							item.textContent ? '' : item.textContent = `${checkDate(timeAdded)}`
+						})
 
 				  		const {adult, id, media_type, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, popularity, name, gender, profile_path} = favourite;
 
 				  		possibilities(index, favouritePerson, favouriteImage, favouriteTitle, favouriteDate, images,poster_path, profile_path, original_title, original_name, name, release_date, first_air_date, known_for_department);
 
 				  		votePerc(index, favouriteRating, vote_average, vote_count);
+
+				  		let desc = favouriteDescription[index];
+					 	document.documentElement.clientWidth < 768 ? desc.style.display = 'none' 
+					 	: overview == undefined || overview == null || overview == '' ? desc.style.display = 'none'
+					 	: (desc.textContent =`${overview}`, desc.style.display = 'block');
+
 				  		index++;
-				  		switch (true) {
-				  			case overview != undefined:
-				  				favouriteDescription.textContent = `${overview}`;
-				  			break;
-
-				  			case known_for != undefined && known_for.length == 1:
-				  				mappedFeatureOnTitles = known_for.map(item => item.original_title || item.original_name)
-				  				favouriteDescription.textContent = `${mappedFeatureOnTitles}`;
-				  			break;
-
-				  			case known_for != undefined && known_for.length > 1:
-				  				mappedFeatureOnTitles = known_for.map(item => item.original_title || item.original_name)
-				  				favouriteDescription.textContent = `${addComma(mappedFeatureOnTitles)}`
-				  			break;
-				  		}
-
-				  		favouriteContainer.style.animation = 'flyIn 0.7s linear forwards';
 
 				  		theFavouriteDiv.forEach(item =>{
 				  			item.onclick = () =>{

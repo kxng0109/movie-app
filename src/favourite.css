@@ -42,17 +42,17 @@ body{
 	@apply flex flex-col justify-center pt-5 pr-5 pl-5;
 }
 
-.favourite-result-description{
-	@apply h-20 overflow-hidden text-sm;
+.favourite-description{
+	@apply h-fit overflow-hidden text-sm max-h-[5rem] lg:text-base;
 }
 
-.favourite-result-date{
+.favourite-date{
 	font-size: min(16px, 4vw);
 	@apply text-right mt-3 absolute bottom-5 right-5
 }
 
-.favourite-result-title{
-	@apply font-medium
+.favourite-title{
+	@apply font-medium mb-2 lg:text-lg;
 }
 
 .date-added{
@@ -60,5 +60,5 @@ body{
 }
 
 .date-added--parent{
-	@apply mt-5;
+	@apply mt-2;
 }

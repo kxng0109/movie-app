@@ -97,7 +97,7 @@ input{
 
 #container{/*#141B41 #C6D8D3*/
 	background-color: var(--blue);
-	@apply relative h-fit w-full lg:left-[var(--left)] 2xl:max-w-[1536px] 2xl:mx-auto;
+	@apply relative h-fit w-full lg:left-[var(--left)];
 }
 
 @media (min-width: 1024px){

@@ -50,8 +50,8 @@ window.onload = () =>{
 	theCategory.includes('person') ? (quickInfo.style.display = 'none', castParentDiv.style.display = 'none', castsHeader.textContent = 'Featured In:') : castsHeader.textContent = 'Casts';
 	theCategoryInfo = `${theCategory}?api_key=${api_key}`;
 	likedHistory =  JSON.parse(localStorage.getItem('liked')) || [];	
-	let theLinks = likedHistory.map(element => element.link);
-	likeBtn.forEach(item => item.style.fill = theLinks.includes(theCategory) ? '#ef4444' : 'transparent');
+	let theQuery = likedHistory.map(element => element.link);
+	likeBtn.forEach(item => item.style.fill = theQuery.includes(theCategory) ? '#ef4444' : 'transparent');
 	categoryinfo();
 	//If we are loading a persons details, then use that instead use the other one to load the casts of the movie or tv show
 	theCategoryCredit = theCategory.includes('person') ? `${theCategory}/combined_credits?api_key=${api_key}` : `${theCategory}/credits?api_key=${api_key}`;
@@ -429,7 +429,7 @@ let recommendationTemplate = (title, original_title, name, original_name, poster
 
 	links.innerHTML = `
 							<div class="category-movies recommendations-div">
-							<img class="category-image skeletonImg" loading='lazy' src=${posterImage} alt='recommeded ${media_type}'>
+							<img class="category-image skeletonImg" loading='lazy' src=${posterImage.includes('null') || posterImage.includes('undefined') ? './images/grey.webp' : posterImage} alt='recommeded ${media_type}'>
 							<p class="rating">N/A</p>
 							<div class="rating-bg"></div>
 							<div class="movie-first-info recommendationsTitleAndDate">
@@ -445,7 +445,7 @@ let recommendationTemplate = (title, original_title, name, original_name, poster
 
 let peoplesImagesTemplate = (imageSrc, thePersonsName, filePath) =>{
 	let links = document.createElement('img');
-	links.setAttribute('src', imageSrc);
+	links.setAttribute('src', imageSrc.includes('null') || imageSrc.includes('undefined') ? './images/.photo1.webp' : imageSrc);
 	links.setAttribute('loading', 'lazy');
 	links.setAttribute('alt', `Other images of ${thePersonsName}`);
 	links.classList.add('person-other-image');
@@ -454,22 +454,22 @@ let peoplesImagesTemplate = (imageSrc, thePersonsName, filePath) =>{
 	recommendationsParentDiv.appendChild(links);
 };
 
-
 likeBtn.forEach(item => {
+	let splitQuery = window.location.search.split("?");
 	item.onclick = () =>{
 		let addZero = value =>{
 			return value < 10 ? `0${value}` : value;
 		}
 		let date = new Date();
-		let addedDate = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(date.getDate())}`;
-		let likeInfo = {link: theCategory, time: addedDate}
+		let addedDate = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(date.getDate())}-${addZero(date.getHours())}-${addZero(date.getMinutes())} - ${date.getDay()}`;
+		let likeInfo = {query: splitQuery[1], link: theCategory, time: addedDate}
 		//There is probably a more efficient way to do this but we map through the likedHistory(gotten from the localStorage) array and we get the links
-		//We save them to an array called theLinks and if it includes libk from the object we are trying to save(likeInfo),
+		//We save them to an array called theQuery and if it includes libk from the object we are trying to save(likeInfo),
 		//we use splice which removes the data from the array, 
 		//so we locate where it is in the array using indexOf and remove it using splice, 
 		//or just push the object(likeInfo) to the array if it's not in the array
-		let theLinks = likedHistory.map(element => element.link);
-		theLinks.includes(likeInfo.link) ? (likedHistory.splice(likedHistory.indexOf(likeInfo), 1), item.style.fill = 'transparent') : (likedHistory.push(likeInfo), item.style.fill = '#ef4444')
+		let theQuery = likedHistory.map(element => element.query);
+		theQuery.includes(likeInfo.query) ? (likedHistory.splice(theQuery.indexOf(likeInfo.query), 1), item.style.fill = 'transparent') : (likedHistory.push(likeInfo), item.style.fill = '#ef4444')
 		localStorage.setItem('liked', JSON.stringify(likedHistory))
 	};
 })

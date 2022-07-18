@@ -103,14 +103,24 @@ body{
   padding-left: 1.25rem;
 }
 
-.favourite-result-description{
-  height: 5rem;
+.favourite-description{
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 5rem;
   overflow: hidden;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-.favourite-result-date{
+@media (min-width: 1024px){
+  .favourite-description{
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.favourite-date{
   font-size: min(16px, 4vw);
   position: absolute;
   bottom: 1.25rem;
@@ -119,8 +129,16 @@ body{
   text-align: right
 }
 
-.favourite-result-title{
+.favourite-title{
+  margin-bottom: 0.5rem;
   font-weight: 500;
+}
+
+@media (min-width: 1024px){
+  .favourite-title{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 .date-added{
@@ -129,5 +147,5 @@ body{
 }
 
 .date-added--parent{
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
 }
