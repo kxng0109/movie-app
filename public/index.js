@@ -1,12 +1,15 @@
-// import * as variable from "./variables.js";
 dailyTrending.style.backgroundColor = '#120D31';
 
-window.onscroll = () =>{
-	counter = window.scrollY;//used to be container.scrollTop
-	if (counter >= 200) {
-		popularSection.style.animation = 'comeIn 0.5s linear forwards'
-	}
-	return counter;
+switch (true) {
+	case screen.width < 1536:	
+		window.onscroll = () =>{
+			counter = window.scrollY;//used to be container.scrollTop
+			if (counter >= 200) {
+				popularSection.style.animation = 'comeIn 0.5s linear forwards'
+			}
+			return counter;
+		}
+	break;
 }
 
 let timeOfDay = new Date().getHours();

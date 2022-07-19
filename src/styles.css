@@ -109,7 +109,7 @@
 }
 
 #popular-section{
-	@apply pt-[50px] pb-5 w-full opacity-0 border-b border-b-gray-400;
+	@apply pt-[50px] pb-5 w-full opacity-0 2xl:opacity-100;
 }
 
 @keyframes comeIn{

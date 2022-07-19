@@ -286,12 +286,15 @@
 
 #popular-section{
   width: 100%;
-  border-bottom-width: 1px;
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(156 163 175 / var(--tw-border-opacity));
   padding-top: 50px;
   padding-bottom: 1.25rem;
   opacity: 0;
+}
+
+@media (min-width: 1536px){
+  #popular-section{
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes comeIn{
