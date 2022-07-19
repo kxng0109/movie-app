@@ -16,7 +16,8 @@ body{
 }
 
 #search-response{
-	@apply text-black text-center py-5 border-b border-b-gray-500 font-semibold dark:bg-greenishblue-700 dark:text-white;
+	background: linear-gradient(90deg, #e6faff 75%, transparent);
+	@apply text-black text-center py-5 border-b border-b-gray-500 font-semibold dark:bg-none dark:bg-greenishblue-700 dark:text-white;
 }
 
 .search-image{
@@ -24,16 +25,8 @@ body{
 }
 
 .search-info{
-	@apply flex items-center bg-white text-black relative no-underline h-[250px] border-b border-black border-dashed dark:bg-greenishblueopacity-700 dark:text-white dark:border-white;
-}
-
-@media (prefers-color-scheme: light){
-	.search-info{
-		animation: changeBg 0.5s ease-out 2s forwards;
-	}
-	#search-response{
-		background: linear-gradient(90deg, #e6faff 75%, transparent);
-	}
+	animation: changeBg 0.5s ease-out 2s forwards;
+	@apply flex items-center bg-white text-black relative no-underline h-[250px] border-b border-black border-dashed dark:animate-none dark:bg-greenishblueopacity-700 dark:text-white dark:border-white;
 }
 
 .search-person-image, .popular-person-image{

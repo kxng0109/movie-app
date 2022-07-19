@@ -1,3 +1,7 @@
+#homePageBackground{
+	@apply fixed w-screen h-screen -z-1 blur-[2px] brightness-50 bg-gray-700;
+}
+
 #main1{
 	@apply flex flex-col justify-center relative w-full top-[var(--top)] left-0
 }
@@ -7,7 +11,7 @@
 }
 
 #welcome-section{
-	background-color: hsla(31, 49%, 72%, 0.5);
+	background-color: hsla(31, 49%, 72%, 0.4);
 	font-family: 'Montserrat Alternates', sans-serif;
 	@apply h-[380px] flex flex-col justify-evenly w-full text-white dark:bg-greenishblueopacity-500;
 }
@@ -79,12 +83,12 @@
 
 #trending-choice, #popular-choice{
 	width: fit-content;
-	@apply flex items-center mt-3 border border-gray-500 rounded-lg
+	@apply flex items-center mt-3 border border-gray-500 rounded-lg bg-gray-400 dark:bg-transparent;
 }
 
 .options{
 	font-size: clamp(13px, 4.3vw, 17px);
-	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-1000 rounded-lg;
+	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-100 rounded-lg motion-reduce:transition-none;
 }
 
 .options:active{	
@@ -92,7 +96,7 @@
 }
 
 #time-window{
-	@apply flex items-center mt-3 border border-gray-500 w-fit rounded-lg sm:ml-10;
+	@apply flex items-center mt-3 border border-gray-500 w-fit rounded-lg sm:ml-10 bg-gray-400 dark:bg-transparent;
 }
 
 #trending-section>div, #popular-section>div{
@@ -105,8 +109,7 @@
 }
 
 #popular-section{
-	/*background-color: hsla(172, 47%, 48%, 0.85);*/
-	@apply pt-[50px] pb-5 w-full opacity-0;
+	@apply pt-[50px] pb-5 w-full opacity-0 border-b border-b-gray-400;
 }
 
 @keyframes comeIn{

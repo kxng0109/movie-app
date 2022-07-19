@@ -3,11 +3,9 @@ body{
   background-color: rgb(230 250 255 / var(--tw-bg-opacity));
 }
 
-@media (prefers-color-scheme: dark){
-  body{
-    --tw-bg-opacity: 1;
-    background-color: rgb(0 32 41 / var(--tw-bg-opacity));
-  }
+.dark body{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 32 41 / var(--tw-bg-opacity));
 }
 
 #favourite{
@@ -21,10 +19,8 @@ body{
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 
-@media (prefers-color-scheme: dark){
-  #favourite{
-    background-color: transparent;
-  }
+.dark #favourite{
+  background-color: transparent;
 }
 
 @media (min-width: 1024px){
@@ -80,20 +76,12 @@ body{
           text-decoration-line: none;
 }
 
-@media (prefers-color-scheme: dark){
-  .favourite-info{
-    --tw-border-opacity: 1;
-    border-color: rgb(255 255 255 / var(--tw-border-opacity));
-  }
-
-  .favourite-info{
-    background-color: transparent;
-  }
-
-  .favourite-info{
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
+.dark .favourite-info{
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .favourite-person-image, .popular-person-image{

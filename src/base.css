@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 *, *:before, *:after{
-	@apply p-0 m-0 scroll-smooth box-border;
+	@apply p-0 m-0 scroll-smooth box-border md:transition-colors md:duration-200 motion-reduce:transition-none motion-reduce:duration-[0];
 }
 
 :root{
@@ -23,7 +23,7 @@ body{
 }
 
 .logo{
-	@apply w-10 h-10 mr-3;
+	@apply w-10 h-10 mr-5 min-w-[40px];
 }
 
 body::-webkit-scrollbar{
@@ -72,6 +72,22 @@ input{
 	@apply focus-visible:outline-0 focus:outline-0 cursor-text text-black
 }
 
+#set-theme{
+	@apply ml-3 w-7 h-7 min-w-[28px] flex overflow-hidden items-center relative cursor-pointer;
+}
+
+.set-theme--icons{
+	@apply w-7 text-[25px] min-w-[25px] relative left-0;
+}
+
+#set-theme--day{
+	@apply mr-4 fill-orange-500 !important;
+}
+
+#set-theme--night{
+	@apply fill-gray-400 !important;
+}
+
 #large-screen-nav{
 	@apply hidden lg:block fixed left-0 top-0 bottom-0 z-3 w-[var(--left)] bg-[#FFCAAF] pt-6 dark:bg-greenishblue-700;
 }
@@ -112,7 +128,7 @@ a{
 }
 
 #header-menu{
-	@apply text-black text-[35px] ml-3 cursor-pointer lg:hidden;
+	@apply text-black text-[35px] min-w-[35px] ml-3 cursor-pointer lg:hidden;
 }
 
 .link{

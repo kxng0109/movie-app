@@ -3,11 +3,9 @@ body{
   background-color: rgb(230 250 255 / var(--tw-bg-opacity));
 }
 
-@media (prefers-color-scheme: dark){
-  body{
-    --tw-bg-opacity: 1;
-    background-color: rgb(0 32 41 / var(--tw-bg-opacity));
-  }
+.dark body{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 32 41 / var(--tw-bg-opacity));
 }
 
 #search{
@@ -52,6 +50,7 @@ body{
 }
 
 #search-response{
+  background: linear-gradient(90deg, #e6faff 75%, transparent);
   border-bottom-width: 1px;
   --tw-border-opacity: 1;
   border-bottom-color: rgb(107 114 128 / var(--tw-border-opacity));
@@ -63,16 +62,12 @@ body{
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-@media (prefers-color-scheme: dark){
-  #search-response{
-    --tw-bg-opacity: 1;
-    background-color: rgb(0 64 82 / var(--tw-bg-opacity));
-  }
-
-  #search-response{
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
+.dark #search-response{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 64 82 / var(--tw-bg-opacity));
+  background-image: none;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .search-image{
@@ -83,6 +78,8 @@ body{
 }
 
 .search-info{
+  -webkit-animation: changeBg 0.5s ease-out 2s forwards;
+          animation: changeBg 0.5s ease-out 2s forwards;
   position: relative;
   display: flex;
   height: 250px;
@@ -99,31 +96,14 @@ body{
           text-decoration-line: none;
 }
 
-@media (prefers-color-scheme: dark){
-  .search-info{
-    --tw-border-opacity: 1;
-    border-color: rgb(255 255 255 / var(--tw-border-opacity));
-  }
-
-  .search-info{
-    background-color: hsla(193, 100%, 16%, 0.85);
-  }
-
-  .search-info{
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
-}
-
-@media (prefers-color-scheme: light){
-  .search-info{
-    -webkit-animation: changeBg 0.5s ease-out 2s forwards;
-            animation: changeBg 0.5s ease-out 2s forwards;
-  }
-
-  #search-response{
-    background: linear-gradient(90deg, #e6faff 75%, transparent);
-  }
+.dark .search-info{
+  -webkit-animation: none;
+          animation: none;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  background-color: hsla(193, 100%, 16%, 0.85);
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .search-person-image, .popular-person-image{

@@ -5,16 +5,10 @@ let data = `${proxy}movie/upcoming?api_key=${api_key}`;
 fetch(data)
 .then(response => response.json())
 .then(data => {
-	console.log(data)
 	infos(comingSoonSection, '#comingsoon-section');
 	comingSoonSection.scrollTo({left: 0, behavior: 'smooth'});
 
 	var resultDivNum;
-	if (category.length === data.results.length){
-		category.forEach( function(element, index) {
-			comingSoonSection.removeChild(category[index]);
-		});
-	}
 	for (var resultDivNum = 0; resultDivNum <= data.results.length - 1; resultDivNum++) {
 	  	const {adult, original_language, original_title, overview, poster_path, release_date, title, vote_average, vote_count, original_name, first_air_date, known_for, known_for_department, comingsoonity, name, gender, profile_path, id} = data.results[resultDivNum];
 		let alinks = document.createElement('a');

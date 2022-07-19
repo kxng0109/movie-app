@@ -4,6 +4,7 @@ let images = `https://image.tmdb.org/t/p/`;//used to be original not w200
 var timeWindow = 'day';
 let qSA = (qSA) => document.querySelectorAll(qSA);
 let qS = (qS) => document.querySelector(qS);
+let setTheme = qS('#set-theme');
 let welcomeText = qS('#welcome');
 let homePageBackground = qS('#homePageBackground')
 let trendingSection = qS('#trending-section');
@@ -46,6 +47,20 @@ let searchResultsDiv;
 let theId;
 var theGenre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, theDuration, backGround, theOverview;
 let popular;
+
+if (localStorage.getItem('theme') == 'dark') {qS('#set-theme--day').style.display = 'none';}
+
+setTheme.onclick = () =>{
+	if (localStorage.getItem('theme') == 'dark') {
+		document.documentElement.classList.remove('dark');
+		qS('#set-theme--day').style.display = 'block';
+		localStorage.setItem('theme', 'light');
+	}else{
+		document.documentElement.classList.add('dark');
+		qS('#set-theme--day').style.display = 'none';
+		localStorage.setItem('theme', 'dark');
+	}
+}
 
 let infos = (theDiv, something)=>{
 	category = theDiv.querySelectorAll('.movie-link');
