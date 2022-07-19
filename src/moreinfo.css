@@ -9,7 +9,7 @@
 
 #main2{
 	background: hwb(0deg 0% 100% / 50%);
-	@apply block h-fit absolute w-full top-[var(--top)] left-0
+	@apply block h-fit absolute w-full top-[var(--top)] left-0 dark:bg-greenishblue-900;
 }
 
 .headings{

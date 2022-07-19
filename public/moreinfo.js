@@ -133,6 +133,10 @@ function categoryinfo () {
 				size = 'w200';
 
 				backGround.style.backgroundColor = '#DAB894';/*hsl(178deg, 100%, 95%)*/
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					backGround.style.background = '';
+				}
+				backGround.classList.add('dark:bg-greenishblue-900');
 				main.style.backgroundColor = 'transparent';
 				categoryTitle.textContent = `${name}`;
 
@@ -234,8 +238,8 @@ function categoryinfo () {
 				productionCompaniesContainer.style.display = mappedProductionName ? 'grid' : 'none'
 
 				size = 'w300';
-				//If backgrop_path is available, use it, if not use poster_path
-				backGround.style.background = backdrop_path ? `url('${images}${size}${backdrop_path}') no-repeat center`: `url('${images}${size}${poster_path}') no-repeat center`;
+				//If backgrop_path is available, use it, if not use poster_path, if either is not available, then choose darkgreen
+				backGround.style.background = backdrop_path ? `url('${images}${size}${backdrop_path}') no-repeat center`: poster_path ? `url('${images}${size}${poster_path}') no-repeat center` : 'darkgreen';
 				backGround.style.backgroundSize = 'cover';
 				theOverview.textContent = overview;
 				
@@ -279,50 +283,56 @@ function fetchCast(more){
 	fetch(theCategoryCredit)
 	.then(response => response.json())
 	.then(data =>{
-		eachCast = qSA('.eachCast');
-		let loadCasts = index =>{
-			const{name, id, character, profile_path, title, poster_path, media_type} = data.cast[index];
-			type = media_type || 'person';
-			createCastsTemplate(`./moreinfo.html?${type}/${id}`);
-			castImages = qSA('.cast-members-img');
-			castRealName = qSA('.cast-real-name');
-			castName = qSA(".cast-name");
+		if (data.cast.length){
+			castsHeader.style.display = 'block';
 			eachCast = qSA('.eachCast');
-			size = 'w200';
-			switch (true) {
-				case (profile_path != null && profile_path != undefined):
-					castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
-				break;
-				case (poster_path != null && poster_path != undefined):
-					castImages[index].setAttribute('src',  `${images}${size}${poster_path}`);
-				break;
-				default:
-					title ? castImages[index].setAttribute('src', './images/grey.webp') : castImages[index].setAttribute('src',  `./images/photo1.webp`);
-				break;
+			let loadCasts = index =>{
+				const{name, id, character, profile_path, title, poster_path, media_type} = data.cast[index];
+				type = media_type || 'person';
+				createCastsTemplate(`./moreinfo.html?${type}/${id}`);
+				castImages = qSA('.cast-members-img');
+				castRealName = qSA('.cast-real-name');
+				castName = qSA(".cast-name");
+				eachCast = qSA('.eachCast');
+				size = 'w200';
+				switch (true) {
+					case (profile_path != null && profile_path != undefined):
+						castImages[index].setAttribute('src',  `${images}${size}${profile_path}`);
+					break;
+					case (poster_path != null && poster_path != undefined):
+						castImages[index].setAttribute('src',  `${images}${size}${poster_path}`);
+					break;
+					default:
+						title ? castImages[index].setAttribute('src', './images/grey.webp') : castImages[index].setAttribute('src',  `./images/photo1.webp`);
+					break;
+				}
+				castRealName[index].textContent = name || title;
+				castName[index].textContent = character;
+				title ? castName[index].style.fontSize = 'large' : '';
 			}
-			castRealName[index].textContent = name || title;
-			castName[index].textContent = character;
-			title ? castName[index].style.fontSize = 'large' : '';
-		}
 
-		//Find the minium value between two values
-		let minValue = Math.min(14, data.cast.length - 1);
-		//Redesigned some code to this. If what we get is no(that means that the user hasn't loaded more casts), it should run the first case
-		//if not(meaning that the user clicked to load more cast), it should load the second which checks whether the loaded casts is less
-		//than the casts from the api so that it won't keep rendering more casts when 'load more' is clicked
-		switch (true) {
-			case more === 'no' && eachCast.length == 0:
-				for (let number = 0; number <= minValue; number++) {
+			//Find the minium value between two values
+			let minValue = Math.min(14, data.cast.length - 1);
+			//Redesigned some code to this. If what we get is no(that means that the user hasn't loaded more casts), it should run the first case
+			//if not(meaning that the user clicked to load more cast), it should load the second which checks whether the loaded casts is less
+			//than the casts from the api so that it won't keep rendering more casts when 'load more' is clicked
+			switch (true) {
+				case more === 'no' && eachCast.length == 0:
+					for (let number = 0; number <= minValue; number++) {
+						loadCasts(number);
+					}
+					data.cast.length > 15 ? loadMoreCasts() : '';
+					minValue <= 2 ? qS('#blur').style.display = 'none' : '';
+				break;
+				case more === 'yes' && eachCast.length < data.cast.length:
+				for (let number = eachCast.length; number <= data.cast.length - 1; number++) {
 					loadCasts(number);
 				}
-				data.cast.length > 15 ? loadMoreCasts() : '';
-				minValue <= 2 ? qS('#blur').style.display = 'none' : '';
-			break;
-			case more === 'yes' && eachCast.length < data.cast.length:
-			for (let number = eachCast.length; number <= data.cast.length - 1; number++) {
-				loadCasts(number);
+				break;
 			}
-			break;
+		}else{
+			castsHeader.style.display = 'none';
+			cast.style.display = 'none';
 		}
 	});
 };

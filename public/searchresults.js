@@ -105,6 +105,10 @@ let searching = (theType, page_no) =>{
 		  		searchResultsContainer.style.backgroundImage = randomImages == 'null' || randomImages == 'undefined' ? '' : `url('${images}${size}${randomImages}')`;
 			  	searchResultsContainer.style.backgroundSize = 'contain';
 			  	searchResultsContainer.style.backgroundPosition = 'center';
+			  	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					searchResultsContainer.style.backgroundSize = 'cover';
+					searchResultsContainer.style.backgroundRepeat = 'no-repeat';
+				}
 	  		}
 	  		break;
 	  	}

@@ -1,5 +1,5 @@
 #main1{
-  position: absolute;
+  position: relative;
   top: var(--top);
   left: 0px;
   display: flex;
@@ -22,6 +22,12 @@
   justify-content: space-evenly;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+@media (prefers-color-scheme: dark){
+  #welcome-section{
+    background-color: hsla(193, 100%, 24%, 0.85);
+  }
 }
 
 #welcome{
@@ -52,6 +58,17 @@
   width: 100%;
   padding-top: 50px;
   padding-bottom: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark){
+  #trending-section{
+    background-color: hsla(193, 100%, 20%, 0.85);
+  }
+
+  #trending-section{
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
 }
 
 .section-link{
@@ -103,6 +120,13 @@
   text-align: center;
 }
 
+@media (prefers-color-scheme: dark){
+  .movie-title, .movie-release-date{
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+}
+
 .movie-link{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -148,6 +172,13 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark){
+  #trending-header, #popular-header{
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
 }
 
 @media (min-width: 1024px){
@@ -233,6 +264,12 @@
   padding-top: 50px;
   padding-bottom: 1.25rem;
   opacity: 0;
+}
+
+@media (prefers-color-scheme: dark){
+  #popular-section{
+    background-color: hsla(193, 100%, 16%, 0.85);
+  }
 }
 
 @-webkit-keyframes comeIn{

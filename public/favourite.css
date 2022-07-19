@@ -3,6 +3,13 @@ body{
   background-color: rgb(230 250 255 / var(--tw-bg-opacity));
 }
 
+@media (prefers-color-scheme: dark){
+  body{
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 32 41 / var(--tw-bg-opacity));
+  }
+}
+
 #favourite{
   position: relative;
   top: var(--top);
@@ -12,6 +19,12 @@ body{
   width: 100vw;
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+@media (prefers-color-scheme: dark){
+  #favourite{
+    background-color: transparent;
+  }
 }
 
 @media (min-width: 1024px){
@@ -45,6 +58,7 @@ body{
 
 .favourite-image{
   margin-left: 1.25rem;
+  aspect-ratio: 2 / 3;
   width: 130px;
   border-radius: 0.5rem;
 }
@@ -64,6 +78,22 @@ body{
   color: rgb(0 0 0 / var(--tw-text-opacity));
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
+}
+
+@media (prefers-color-scheme: dark){
+  .favourite-info{
+    --tw-border-opacity: 1;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  }
+
+  .favourite-info{
+    background-color: transparent;
+  }
+
+  .favourite-info{
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
 }
 
 .favourite-person-image, .popular-person-image{

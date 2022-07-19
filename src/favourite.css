@@ -1,9 +1,9 @@
 body{
-	@apply bg-[#e6faff]
+	@apply bg-[#e6faff] dark:bg-greenishblue-900;
 }
 
 #favourite{
-	@apply h-fit w-screen bg-gray-400 relative top-[var(--top)] lg:w-[var(--calcLeft)];
+	@apply h-fit w-screen bg-gray-400 relative top-[var(--top)] lg:w-[var(--calcLeft)] dark:bg-transparent;
 }
 
 .favourite-options{
@@ -17,11 +17,11 @@ body{
 }
 
 .favourite-image{
-	@apply w-[130px] rounded-lg ml-5;
+	@apply w-[130px] rounded-lg ml-5 aspect-[2/3];
 }
 
 .favourite-info{
-	@apply flex items-center bg-white text-black relative no-underline h-[250px] border-b border-black border-dashed;
+	@apply flex items-center bg-white text-black relative no-underline h-[250px] border-b border-black border-dashed dark:bg-transparent dark:text-white dark:border-white;
 }
 
 .favourite-person-image, .popular-person-image{

@@ -18,7 +18,8 @@
 }
 
 body{
-	font-family: 'Fredoka', sans-serif;
+	font-family: 'Fredoka', sans-serif; 
+	@apply dark:bg-greenishblue-900;
 }
 
 .logo{
@@ -60,11 +61,11 @@ body::-webkit-scrollbar-track {
 
 
 header{/*#60695C*/
-	@apply fixed top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)] lg:left-[var(--left)];
+	@apply fixed top-0 right-0 w-full z-4 flex flex-row justify-between items-center bg-[#F1FFC4] px-5 py-2.5 h-[var(--top)] lg:left-[var(--left)] dark:bg-greenishblue-800;
 }
 
 input[type='search']{
-	@apply px-3 bg-gray-300 text-black;
+	@apply px-3 bg-gray-300 text-black dark:bg-gray-400 focus:bg-white;
 }
 
 input{
@@ -126,7 +127,7 @@ a{
 	width: min(20rem, 70vw);
 	background-color: darkseagreen;
 	margin-left: min(-20rem, -70vw);
-	@apply fixed top-0 z-3 h-screen flex flex-col pt-24 pl-7 text-xl lg:hidden;
+	@apply fixed top-0 z-3 h-screen flex flex-col pt-24 pl-7 text-xl lg:hidden dark:bg-greenishblue-700;
 }
 
 @keyframes showMenu{
@@ -150,9 +151,13 @@ a{
 }
 
 #nav>*{
-	padding-bottom: 20px;
+	@apply pb-6 hover:text-white dark:hover:text-gray-300 dark:text-white;
 }
 
 .skeletonImg{
 	background: hsl(0, 0%, 75%);
+}
+
+svg, ion-icon{
+	@apply dark:text-white !important;
 }
