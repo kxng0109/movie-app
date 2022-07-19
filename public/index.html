@@ -17,6 +17,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Montserrat+Alternates:wght@500;700&display=swap" rel="stylesheet">
 	<script type="text/javascript" defer src="./variables.js"></script>
 	<script type="text/javascript" defer src="./index.js"></script>
+	<script type="text/javascript" defer src="./comingsoon.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
 </head>
@@ -35,7 +36,11 @@
 				<a href="#popular-section" class="large-screen-nav--menu-text">Popular</a>
 			</div>
 			<div class="large-screen-nav-menu--children">
-				<img src="./images/heartfilled.svg" class="large-screen-nav-menu--children-icon" alt="heart icon">
+				<ion-icon name="refresh" class="large-screen-nav-menu--children-icon"></ion-icon>
+				<a href="#upcoming--header" class="large-screen-nav--menu-text">Upcoming</a>
+			</div>
+			<div class="large-screen-nav-menu--children">
+				<ion-icon name="heart" class="large-screen-nav-menu--children-icon" alt="heart icon"></ion-icon>
 				<a href="./favourite.html" class="large-screen-nav--menu-text">Favourite</a>
 			</div>
 		</div>
@@ -55,6 +60,7 @@
 			<a href="./index.html" id="menu-icon"><img src="./images/nobg.webp" class="w-24 h-24" alt="website logo" loading='lazy'></a>
 			<a href="#trending-section" class="no-underline text-black dark:text-white">Trending</a>
 			<a href="#popular-section" class="no-underline text-black dark:text-white">Popular</a>
+			<a href="#upcoming--header" class="no-underline text-black dark:text-white">Upcoming</a>
 			<a href="./favourite.html" class="no-underline text-black dark:text-white">Favourites</a>
 		</nav>
 
@@ -131,19 +137,24 @@
 				</section>
 			</section>
 
+			<section id="popular-coming-soon-section">
+				<section id="popular-section">
+					<h2 id="popular-header">What's been Popular</h2>
 
-			<section id="popular-section">
-				<h2 id="popular-header">What's been Popular</h2>
-
-				<div>
-					<div id="popular-choice">
-						<p class=" movies options section-link">Movies</p>
-						<p class="tv-shows options section-link">TV Shows</p>
-						<p class="popular-people options section-link">People</p>
+					<div>
+						<div id="popular-choice">
+							<p class=" movies options section-link">Movies</p>
+							<p class="tv-shows options section-link">TV Shows</p>
+							<p class="popular-people options section-link">People</p>
+						</div>
 					</div>
-				</div>
-				
-				<section id="popular-movies-div" class="horizontal">
+					
+					<section id="popular-movies-div" class="horizontal">
+					</section>
+				</section>
+
+				<p id="upcoming--header">Upcoming Movies</p>
+				<section id="coming-soon-div" class="horizontal">
 				</section>
 			</section>
 		</main>

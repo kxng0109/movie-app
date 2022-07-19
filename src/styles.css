@@ -34,7 +34,7 @@
 	@apply cursor-pointer
 }
 
-#trending-movies-div, #popular-movies-div{
+#trending-movies-div, #popular-movies-div, #coming-soon-div{
 	@apply overflow-x-scroll overflow-y-hidden flex flex-row mt-3;
 }
 
@@ -69,7 +69,7 @@
 	@apply w-[60px] h-[29px] inline-block absolute z-0 -right-0.5 top-[33px]
 }
 
-#trending-header, #popular-header{
+#trending-header, #popular-header, #upcoming--header{
 	background: linear-gradient(90deg, #cc33ff, transparent 50%);
 	background-size: 30px 2px;
 	background-repeat: repeat-x;
@@ -99,10 +99,14 @@
 	@apply mx-5 flex flex-col items-center sm:flex-row sm:justify-center;
 }
 
+#popular-coming-soon-section{
+	background-color: hsla(209, 33%, 74%, 0.85);
+	@apply dark:bg-greenishblueopacity-700
+}
+
 #popular-section{
 	/*background-color: hsla(172, 47%, 48%, 0.85);*/
-	background-color: hsla(209, 33%, 74%, 0.85);
-	@apply pt-[50px] pb-5 w-full opacity-0 dark:bg-greenishblueopacity-700;
+	@apply pt-[50px] pb-5 w-full opacity-0;
 }
 
 @keyframes comeIn{

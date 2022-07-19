@@ -31,7 +31,7 @@ body::-webkit-scrollbar{
 }
 
 body::-webkit-scrollbar-thumb{
-	@apply rounded-lg bg-gray-500;
+	@apply rounded-lg bg-gray-500 hover:bg-white;
 }
 
 body::-webkit-scrollbar-track {
@@ -49,7 +49,7 @@ body::-webkit-scrollbar-track {
 }
 
 .horizontal::-webkit-scrollbar-thumb{
-	@apply bg-gray-500 rounded-lg;
+	@apply bg-gray-500 rounded-lg hover:bg-white;
 }
 
 @media (pointer:  fine), (pointer:  coarse){
@@ -73,7 +73,7 @@ input{
 }
 
 #large-screen-nav{
-	@apply hidden lg:block fixed left-0 top-0 bottom-0 z-3 w-[var(--left)] bg-[#FFCAAF] pt-6
+	@apply hidden lg:block fixed left-0 top-0 bottom-0 z-3 w-[var(--left)] bg-[#FFCAAF] pt-6 dark:bg-greenishblue-700;
 }
 
 #large-screen-nav--logo{
@@ -93,7 +93,7 @@ input{
 }
 
 .large-screen-nav--menu-text{
-	@apply ml-2 no-underline text-gray-600 text-lg font-medium hover:text-black;
+	@apply ml-2 no-underline text-gray-600 text-lg font-medium hover:text-black dark:text-white dark:hover:text-gray-500;
 }
 
 #container{/*#141B41 #C6D8D3*/

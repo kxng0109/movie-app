@@ -75,7 +75,7 @@
   cursor: pointer;
 }
 
-#trending-movies-div, #popular-movies-div{
+#trending-movies-div, #popular-movies-div, #coming-soon-div{
   margin-top: 0.75rem;
   display: flex;
   flex-direction: row;
@@ -160,7 +160,7 @@
   width: 60px
 }
 
-#trending-header, #popular-header{
+#trending-header, #popular-header, #upcoming--header{
   background: linear-gradient(90deg, #cc33ff, transparent 50%);
   background-size: 30px 2px;
   background-repeat: repeat-x;
@@ -175,14 +175,14 @@
 }
 
 @media (prefers-color-scheme: dark){
-  #trending-header, #popular-header{
+  #trending-header, #popular-header, #upcoming--header{
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 }
 
 @media (min-width: 1024px){
-  #trending-header, #popular-header{
+  #trending-header, #popular-header, #upcoming--header{
     font-size: 1.5rem;
     line-height: 2rem;
   }
@@ -257,19 +257,22 @@
   }
 }
 
+#popular-coming-soon-section{
+  background-color: hsla(209, 33%, 74%, 0.85)
+}
+
+@media (prefers-color-scheme: dark){
+  #popular-coming-soon-section{
+    background-color: hsla(193, 100%, 16%, 0.85);
+  }
+}
+
 #popular-section{
   /*background-color: hsla(172, 47%, 48%, 0.85);*/
-  background-color: hsla(209, 33%, 74%, 0.85);
   width: 100%;
   padding-top: 50px;
   padding-bottom: 1.25rem;
   opacity: 0;
-}
-
-@media (prefers-color-scheme: dark){
-  #popular-section{
-    background-color: hsla(193, 100%, 16%, 0.85);
-  }
 }
 
 @-webkit-keyframes comeIn{
