@@ -13,7 +13,7 @@
 #welcome-section{
 	background-color: hsla(31, 49%, 72%, 0.4);
 	font-family: 'Montserrat Alternates', sans-serif;
-	@apply h-[380px] flex flex-col justify-evenly w-full text-white dark:bg-greenishblueopacity-500;
+	@apply h-80 flex flex-col justify-evenly w-full text-white dark:bg-greenishblueopacity-500;
 }
 
 #welcome{
@@ -25,11 +25,14 @@
 }
 
 #search-bar-main{
-	@apply mx-auto w-full h-10 border-0 rounded-3xl max-w-[500px];
+	@apply mx-auto w-full h-10 border-0 rounded-3xl max-w-[500px] placeholder:text-xs sm:placeholder:text-base dark:placeholder:text-gray-200 dark:focus:bg-white;
+}
+
+#search-bar-header{
+	@apply dark:focus:bg-white;
 }
 
 #trending-section{
-	/*background-color: hsla(163, 19%, 81%, 0.85);*/
 	background-color: hsla(192, 44%, 85%, 0.85);
 	@apply pt-[50px] pb-5 w-full dark:bg-greenishblueopacity-600 dark:text-white;
 }
@@ -88,7 +91,7 @@
 
 .options{
 	font-size: clamp(13px, 4.3vw, 17px);
-	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-100 rounded-lg motion-reduce:transition-none;
+	@apply text-white inline-block py-[5px] px-3 transition-[all] duration-150 rounded-lg motion-reduce:transition-none font-medium;
 }
 
 .options:active{	

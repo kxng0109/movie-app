@@ -28,7 +28,7 @@
   background-color: hsla(31, 49%, 72%, 0.4);
   font-family: 'Montserrat Alternates', sans-serif;
   display: flex;
-  height: 380px;
+  height: 20rem;
   width: 100%;
   flex-direction: column;
   justify-content: space-evenly;
@@ -62,8 +62,48 @@
   border-width: 0px;
 }
 
+#search-bar-main::-moz-placeholder{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+#search-bar-main::placeholder{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.dark #search-bar-main::-moz-placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
+.dark #search-bar-main::placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
+.dark #search-bar-main:focus{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 640px){
+  #search-bar-main::-moz-placeholder{
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  #search-bar-main::placeholder{
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.dark #search-bar-header:focus{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 #trending-section{
-  /*background-color: hsla(163, 19%, 81%, 0.85);*/
   background-color: hsla(192, 44%, 85%, 0.85);
   width: 100%;
   padding-top: 50px;
@@ -216,11 +256,12 @@
   padding-bottom: 5px;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+  font-weight: 500;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 100ms;
+  transition-duration: 150ms;
 }
 
 @media (prefers-reduced-motion: reduce){
