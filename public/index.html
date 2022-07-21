@@ -5,9 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#60695C">
 	<meta name="description" content="Get information about your favourite movie, tv-show or actor/actress">
-  	<meta name="keywords" content="movie description, movie, tv show, actor">
+  	<meta name="keywords" content="movie description, movie, tv show, actor, your movie, movie info, latest movie, latest series, popular actor, crew">
   	<meta name="author" content="Joshua">
   	<link rel="icon" type="image/x-icon" href="./images/nobg.png">
+  	<meta property="og:title" content="Movies"> 
+	<meta property="og:description" content="Need any information about any movie, tv-series or person, we have those information.">
+	<meta property="og:image" content="https://your-movie-info.netlify.app/images/nobg.webp">
+	<meta property="og:url" content="https://your-movie-info.netlify.app/">
 	<title>Movies</title>
 	<link rel="stylesheet" type="text/css" href="./base.min.css">
 	<link rel="stylesheet" type="text/css" href="./styles.css">
@@ -59,7 +63,7 @@
 		<div></div>
 		<header>
 			<a href="./index.html" id="header-icon" class="lg:hidden"><img src="./images/nobg.webp" class="logo" alt="website-logo"></a>
-			<form class="search w-3/5 mx-auto max-w-[400px]" id="search-area">
+			<form class="search" id="search-area--header">
 				<input type="search" name="search" id="search-bar-header" class="search-bar">
 			</form>
 			<div id="set-theme">
@@ -81,7 +85,7 @@
 			<section id="welcome-section">
 				<h2 id="welcome" class="font-bold">Good day!</h2>
 				<div id="search-area-main">
-					<form class="search max-w-[500px] mx-auto">
+					<form class="search">
 						<input type="search" name="search" id="search-bar-main" class="search-bar" placeholder="Search for any movie, tv-series or person">
 					</form>
 				</div>

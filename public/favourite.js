@@ -126,7 +126,7 @@ let loadFavourites = (favourite, theType, timeAdded) => {
 
 switch (true) {
 	case theSearchQuery == '' || theSearchQuery == null:
-		noFavourite.classList.toggle('hidden');
+		noFavourite.style.display = 'block';
 	break;
 	default:
 		theSearchQuery.forEach(item =>{

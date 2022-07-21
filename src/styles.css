@@ -1,3 +1,15 @@
+@tailwind components;
+
+@layer components{
+	.placeholdersize{		
+		font-size: min(3.35vw, 14px);
+	}
+}
+
+#search-area-main .search{
+	@apply max-w-[500px];
+}
+
 #homePageBackground{
 	@apply fixed w-screen h-screen -z-1 blur-[2px] brightness-50 bg-gray-700;
 }
@@ -25,7 +37,7 @@
 }
 
 #search-bar-main{
-	@apply mx-auto w-full h-10 border-0 rounded-3xl max-w-[500px] placeholder:text-xs sm:placeholder:text-base dark:placeholder:text-gray-200 dark:focus:bg-white;
+	@apply mx-auto w-full h-10 border-0 rounded-3xl max-w-[500px] placeholder:placeholdersize sm:placeholder:text-base dark:placeholder:text-gray-200 dark:focus:bg-white;
 }
 
 #search-bar-header{

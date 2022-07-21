@@ -1,3 +1,41 @@
+.container{
+  width: 100%;
+}
+
+@media (min-width: 640px){
+  .container{
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px){
+  .container{
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px){
+  .container{
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  .container{
+    max-width: 1536px;
+  }
+}
+
+#search-area-main .search{
+  max-width: 500px;
+}
+
 #homePageBackground{
   position: fixed;
   z-index: -1;
@@ -63,13 +101,11 @@
 }
 
 #search-bar-main::-moz-placeholder{
-  font-size: 0.75rem;
-  line-height: 1rem;
+  font-size: min(3.35vw, 14px);
 }
 
 #search-bar-main::placeholder{
-  font-size: 0.75rem;
-  line-height: 1rem;
+  font-size: min(3.35vw, 14px);
 }
 
 .dark #search-bar-main::-moz-placeholder{

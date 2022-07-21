@@ -471,7 +471,7 @@ likeBtn.forEach(item => {
 			return value < 10 ? `0${value}` : value;
 		}
 		let date = new Date();
-		let addedDate = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(date.getDate())}-${addZero(date.getHours())}-${addZero(date.getMinutes())} - ${date.getDay()}`;
+		let addedDate = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(date.getDate())}-${addZero(date.getHours())}-${addZero(date.getMinutes())}-${date.getDay()}`;
 		let likeInfo = {query: splitQuery[1], link: theCategory, time: addedDate}
 		//There is probably a more efficient way to do this but we map through the likedHistory(gotten from the localStorage) array and we get the links
 		//We save them to an array called theQuery and if it includes libk from the object we are trying to save(likeInfo),

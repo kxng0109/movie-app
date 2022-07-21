@@ -110,12 +110,15 @@ let votePerc = (index, varName, vote_average, vote_count) =>{
 			varName[index].textContent = ratingPercent + '%';	
 			if (ratingPercent >= 80) {
 		  		varName[index].style.backgroundColor = "hsl(120, 100%, 35%)";
+		  		varName[index].style.color = "black";
 		  		if (ratingBg != undefined){ratingBg[index].style.backgroundColor = "hsl(120, 100%, 25%)"};
 		  	} else if (ratingPercent >= 50) {
 		  		varName[index].style.backgroundColor = "hsl(66, 100%, 35%)";
+		  		varName[index].style.color = "black";
 		  		if (ratingBg != undefined){ratingBg[index].style.backgroundColor = "hsl(66, 100%, 25%)"};
 		  	} else {
 		  		varName[index].style.backgroundColor = "hsl(0, 100%, 35%)";
+		  		varName[index].style.color = "white";
 		  		if (ratingBg != undefined){ratingBg[index].style.backgroundColor = "hsl(0, 100%, 25%)"}	;	  	
 		  	}
 		} else{

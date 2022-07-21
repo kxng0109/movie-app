@@ -4,7 +4,7 @@ switch (true) {
 	case screen.width < 1536:	
 		window.onscroll = () =>{
 			counter = window.scrollY;//used to be container.scrollTop
-			if (counter >= 100) {
+			if (counter >= 50) {
 				popularSection.style.animation = 'comeIn 0.5s linear forwards'
 			}
 			return counter;

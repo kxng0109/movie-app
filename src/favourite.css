@@ -34,7 +34,7 @@ body{
 }
 
 .favourite-rating{
-	@apply absolute top-0 right-0 text-white text-center py-2 px-8;
+	@apply absolute top-0 right-0 text-white text-center py-[6px] px-7;
 }
 
 .favourite-text{
@@ -61,4 +61,12 @@ body{
 
 .date-added--parent{
 	@apply mt-2;
+}
+
+#no-favourite{
+	@apply absolute inset-0 z-1 top-[var(--top)] hidden bg-white lg:left-[var(--left)] dark:bg-greenishblue-900;
+}
+
+#no-favourite--text{
+	@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl w-fit dark:text-white 2xl:text-2xl;
 }
