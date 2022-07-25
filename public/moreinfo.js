@@ -132,10 +132,11 @@ function categoryinfo () {
 				profile_path ? (categoryImage.onclick = () => window.open(`${images}original${profile_path}`), categoryImage.style.cursor = 'pointer') : '';
 				size = 'w200';
 
-				backGround.style.backgroundColor = '#DAB894';/*hsl(178deg, 100%, 95%)*/
-				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					backGround.style.background = '';
-				}
+				// backGround.style.backgroundColor = '#DAB894';/*hsl(178deg, 100%, 95%)*/
+				// if (document.documentElement.classList.contains('dark')) {
+				// 	backGround.style.backgroundColor = '';
+				// 	console.log('execute')
+				// }
 				backGround.classList.add('dark:bg-greenishblue-900');
 				main.style.backgroundColor = 'transparent';
 				categoryTitle.textContent = `${name}`;
