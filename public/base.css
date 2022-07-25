@@ -827,7 +827,7 @@ body::-webkit-scrollbar-track {
   }
 }
 
-@media (pointer:  fine), (pointer:  coarse){
+@media (pointer:  fine){
   .horizontal::-webkit-scrollbar {
     display: block;
   }
@@ -846,12 +846,6 @@ body::-webkit-scrollbar-track {
 .horizontal::-webkit-scrollbar-thumb:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-@media (pointer:  fine), (pointer:  coarse){
-  .horizontal::-webkit-scrollbar {
-    display: block;
-  }
 }
 
 header{

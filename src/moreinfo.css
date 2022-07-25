@@ -3,13 +3,9 @@
 	@apply w-8 h-8 stroke-white mx-auto my-3 fill-transparent cursor-pointer ;
 }
 
-.horizontal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb{
-	@apply bg-white;
-}
-
 #main2{
 	background: hwb(0deg 0% 100% / 50%);
-	@apply block h-fit absolute w-full top-[var(--top)] left-0 dark:bg-greenishblue-900;
+	@apply block h-fit absolute w-full top-[var(--top)] left-0 dark:bg-greenishblueopacity-900;
 }
 
 .headings{
@@ -19,6 +15,10 @@
 #quickinfo1{
 	background-color: hsla(0, 0%, 100%, 0.9);
 	@apply flex flex-row justify-between items-center p-5 lg:px-[5vw];
+}
+
+.dark #quickinfo1{
+	background-color: hsla(0, 0%, 90%, 0.9);
 }
 
 #quickinfo2{

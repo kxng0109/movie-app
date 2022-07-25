@@ -92,7 +92,7 @@ let loadFavourites = (favourite, theType, timeAdded) => {
 						return `${getNameOfDay(passedDay)} at ${passedHour}:${passedMinutes}`
 					break;
 					default:
-						return `${passedYear}-${passedMonth}-${passedDate}`
+						return `${passedDate}-${passedMonth}-${passedYear}`
 					break;
 				}
 			}

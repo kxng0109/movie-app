@@ -48,17 +48,22 @@ let theId;
 var theGenre, companies, languages, countries, Status, tagLine, voteCount, posterPath, belongsTo, homePage, ID, theDuration, backGround, theOverview;
 let popular;
 
-if (localStorage.getItem('theme') == 'dark') {qS('#set-theme--day').style.display = 'none';}
+if (localStorage.getItem('theme') == 'dark') {
+	qS('#set-theme--day').style.display = 'none'; 
+	document.querySelector("meta[name='theme-color']").content = "#002029";
+}
 
 setTheme.onclick = () =>{
 	if (localStorage.getItem('theme') == 'dark') {
 		document.documentElement.classList.remove('dark');
 		qS('#set-theme--day').style.display = 'block';
 		localStorage.setItem('theme', 'light');
+		document.querySelector("meta[name='theme-color']").content = "#F1FFC4";
 	}else{
 		document.documentElement.classList.add('dark');
 		qS('#set-theme--day').style.display = 'none';
 		localStorage.setItem('theme', 'dark');
+		document.querySelector("meta[name='theme-color']").content = "#002029";
 	}
 }
 

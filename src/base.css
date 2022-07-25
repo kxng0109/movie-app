@@ -42,7 +42,7 @@ body::-webkit-scrollbar-track {
 	@apply hidden lg:block lg:h-2;
 }
 
-@media (pointer:  fine), (pointer:  coarse){
+@media (pointer:  fine){
 	.horizontal::-webkit-scrollbar{
 		@apply block h-2;
 	}
@@ -50,12 +50,6 @@ body::-webkit-scrollbar-track {
 
 .horizontal::-webkit-scrollbar-thumb{
 	@apply bg-gray-500 rounded-lg hover:bg-white;
-}
-
-@media (pointer:  fine), (pointer:  coarse){
-	.horizontal::-webkit-scrollbar{
-		@apply block;
-	}
 }
 
 

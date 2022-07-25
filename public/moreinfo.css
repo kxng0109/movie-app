@@ -11,11 +11,6 @@
   stroke: #fff;
 }
 
-.horizontal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 #main2{
   background: hwb(0deg 0% 100% / 50%);
   position: absolute;
@@ -29,8 +24,7 @@
 }
 
 .dark #main2{
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 32 41 / var(--tw-bg-opacity));
+  background-color: hsla(193, 100%, 8%, 0.85);
 }
 
 .headings{
@@ -51,6 +45,10 @@
     padding-left: 5vw;
     padding-right: 5vw;
   }
+}
+
+.dark #quickinfo1{
+  background-color: hsla(0, 0%, 90%, 0.9);
 }
 
 #quickinfo2{
